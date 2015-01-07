@@ -7,7 +7,6 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 google.setOnLoadCallback(drawChart);
 
 $( 'select').change(function() {
-  alert( "Handler for .change() called." );
   if ($('select[name=dataType_col_a]').val() == "string" && 
 		$('select[name=dataType_col_b]').val() == "number") {
 		$("input[class=no_val_val]").attr('disabled', false);
