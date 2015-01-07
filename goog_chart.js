@@ -81,120 +81,113 @@ google.setOnLoadCallback(drawChart);
 	    // ]);
 
 var options = {
-				'title': ($('input[name=chart_title]').val()),
+		'title': ($('input[name=chart_title]').val()),
 	    vAxis: {title: ($('input[name=col_a_label]').val())},
 	    hAxis: {title: ($('input[name=col_b_label]').val())},
               	'width':500,
               	'height':400
               };
 
+//ASSIGNING METHOD NAMES FOR EACH GOOGLE CHART
     var areachart = new google.visualization.AreaChart(document.getElementById('chart_div0'));
-
     var barchart = new google.visualization.BarChart(document.getElementById('chart_div0'));
-
     var stepchart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div0'));
-
     var columnchart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
-
     var linechart = new google.visualization.LineChart(document.getElementById('chart_div0'));
-
     var histogram = new google.visualization.Histogram(document.getElementById('chart_div0'));
-
     var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
-
     var scatterchart = new google.visualization.ScatterChart(document.getElementById('chart_div0'));
 
+//FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
+	var col_a_array = [ parseInt($('input[name=cell_1a]').val()), parseInt($('input[name=cell_2a]').val()), parseInt($('input[name=cell_3a]').val()), parseInt($('input[name=cell_4a]').val())];
+	var col_b_array = [ parseInt($('input[name=cell_1b]').val()), parseInt($('input[name=cell_2b]').val()), parseInt($('input[name=cell_3b]').val()), parseInt($('input[name=cell_4b]').val())];
+	var max_a = Math.max.apply(Math,col_a_array);
+	var min_a = Math.min.apply(Math,col_a_array);
+	var max_b = Math.max.apply(Math,col_b_array);
+	var min_b = Math.min.apply(Math,col_b_array);
 
-
-var col_a_array = [ parseInt($('input[name=cell_1a]').val()), parseInt($('input[name=cell_2a]').val()), parseInt($('input[name=cell_3a]').val()), parseInt($('input[name=cell_4a]').val())];
-var col_b_array = [ parseInt($('input[name=cell_1b]').val()), parseInt($('input[name=cell_2b]').val()), parseInt($('input[name=cell_3b]').val()), parseInt($('input[name=cell_4b]').val())];
-var max_a = Math.max.apply(Math,col_a_array);
-var min_a = Math.min.apply(Math,col_a_array);
-var max_b = Math.max.apply(Math,col_b_array);
-var min_b = Math.min.apply(Math,col_b_array);
-
-
-
-if($('input[name=chart_type]:radio:checked').val() == "area") {
-	 areachart.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "bar") {
-	 barchart.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "step") {
- 	stepchart.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "column") {
- 	columnchart.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "line") {
- 	linechart.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "histo") {
- 	histogram.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "pie") {
- 	piechart.draw(data, options);
-} else if($('input[name=chart_type]:radio:checked').val() == "scatter"){
-
-	var options = {
+//READ SELECTED RADIO BUTTONS AND REDRAW CHART
+	switch($('input[name=chart_type]:radio:checked').val()) {
+		case "area":
+			console.log("area switch"); areachart.draw(data, options);
+			break;
+		case "bar":
+			console.log("bar switch"); barchart.draw(data, options);
+			break;
+		case "step":
+			console.log("step switch"); stepchart.draw(data, options);
+			break;
+		case "column":
+			console.log("column switch"); columnchart.draw(data, options);
+			break;
+		case "line":
+			console.log("line switch"); linechart.draw(data, options);
+			break;
+		case "histo":
+			console.log("histo switch"); histogram.draw(data, options);
+			break;	
+		case "pie":
+			console.log("pie switch"); piechart.draw(data, options);
+			break;
+		case "scatter":
+			console.log("scatter switch");
+			var options = {
 				'title': ($('input[name=chart_title]').val()),
-	    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-	    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
-		};
-	     scatterchart.draw(data, options);   // str/val ONLY
-
-} else if($('input[name=chart_type]:radio:checked').val() == "trend_lin"){
-
-	var options = {
+		    	vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
+		    	hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			};
+		     scatterchart.draw(data, options);   // str/val ONLY
+			break;
+		case "trend_lin":
+			console.log("trend_lin switch");
+			var options = {
 				'title': ($('input[name=chart_title]').val()),
-	    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-	    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
-	    trendlines: {
-	      0: {
-	         type: 'linear',
-	        //type: 'exponential',
-	        //type: 'polynomial',
-	        // degree: 3, // degree is used with polynomial
-	        // visibleInLegend: true,
-	      }
-		}
-		};
-	     scatterchart.draw(data, options);   // str/val ONLY
-} else if($('input[name=chart_type]:radio:checked').val() == "trend_exp"){
-
-	var options = {
+			    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
+			    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			    trendlines: {
+			      0: {
+			         type: 'linear',
+				     }
+				}
+				};
+		     scatterchart.draw(data, options);   // str/val ONLY
+			break;	
+		case "trend_exp":
+			console.log("trend_exp switch");
+			var options = {
 				'title': ($('input[name=chart_title]').val()),
-	    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-	    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
-	    trendlines: {
-	      0: {
-	        // type: 'linear',
-	        type: 'exponential',
-
-	        // degree: 3, // degree is used with polynomial
-	        // visibleInLegend: true,
-	      }
-		}
-		};
-	     scatterchart.draw(data, options);   // str/val ONLY
-} else if($('input[name=chart_type]:radio:checked').val() == "trend_poly"){
-
-	var options = {
+			    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
+			    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			    trendlines: {
+			      0: {
+			        type: 'exponential',
+			     	 }
+				}
+				};
+		     scatterchart.draw(data, options);   // str/val ONLY
+			break;
+		case "trend_poly":
+			var options = {
 				'title': ($('input[name=chart_title]').val()),
-	    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-	    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
-	    trendlines: {
-	      0: {
-	        // type: 'linear',
-	        //type: 'exponential',
-	        type: 'polynomial',
-	        degree: 3, // degree is used with polynomial
-	        // visibleInLegend: true,
-	      }
-		}
-		};
-	     scatterchart.draw(data, options);   // str/val ONLY
+			    vAxis: {title: ($('input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
+			    hAxis: {title: ($('input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			    trendlines: {
+			      0: {
+			        type: 'polynomial',
+			        degree: 3, // degree is used with polynomial
+			      	 }
+				}
+				};
+			     scatterchart.draw(data, options);   // str/val ONLY
+			console.log("trend_poly switch");
+			break;
+		default:
+	        console.log('default');
+	      	alert("please select a chart");
+	      	break;
+	}; // END OF SWITCH CASE 
 
-} else {
-	alert("please select a chart");
-} 
-
-});
+}); // END OF REFRESH CLICK FUNCTION
 
 
  function drawChart() {
@@ -222,7 +215,7 @@ if($('input[name=chart_type]:radio:checked').val() == "area") {
 	        //type: 'exponential',
 	        type: 'polynomial',
 	        degree: 3, // degree is used with polynomial
-	        visibleInLegend: true,
+	        // visibleInLegend: true,
 	      }
 		}
 		};
