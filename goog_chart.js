@@ -138,7 +138,11 @@ var options = {
 var yep = 567
 console.log(parseInt(min_a)) 
 document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
-	' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array);
+	' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array +
+	 '  //Load the Visualization API and the piechart package. ' +
+" google.load('visualization', '1.0', {'packages':['corechart']}); " +
+  ' // Set a callback to run when the Google Visualization API is loaded. ' +
+ ' google.setOnLoadCallback(drawChart); '    );
 
 
 
