@@ -34,17 +34,17 @@
 	<br>
 	<p>select a type of chart</p>
 	<br>
-	<input id="area2" type="radio" name="chart_type" value="area" disabled = true><label for="area2">area chart</label>
-	<input id="bar2" type="radio" name="chart_type" value="bar"><label for="bar2">bar chart</label>
-	<input id="step2" type="radio" name="chart_type" value="step"><label for="step2">step chart</label>
-	<input id="col2" type="radio" name="chart_type" value="column"><label for="col2">column chart</label>
-	<input id="line2" type="radio" name="chart_type" value="line"><label for="line2">line chart</label>
-	<input id="histo2" type="radio" name="chart_type" value="histo"><label for="histo2">histogram</label>
-	<input id="pie2" type="radio" name="chart_type" value="pie"><label for="pie2">pie chart</label>
-	<input id="scatter2" type="radio" name="chart_type" value="scatter"><label for="scatter2">scatter chart</label>
-	<input id="lin2" type="radio" name="chart_type" value="trend_lin"><label for="lin2">trend chart: linear</label>
-	<input id="exp2" type="radio" name="chart_type" value="trend_exp" disabled = true><label for="exp2">trend chart: exponential</label>
-	<input id="poly2" type="radio" name="chart_type" value="trend_poly" disabled = true><label for="poly2">trend chart: polynomial</label>
+	<input id="area2" class="no_val_val" type="radio" name="chart_type" value="area"><label for="area2">area chart</label>
+	<input id="bar2" class="no_val_val" type="radio" name="chart_type" value="bar"><label for="bar2">bar chart</label>
+	<input id="step2" class="no_val_val" type="radio" name="chart_type" value="step"><label for="step2">step chart</label>
+	<input id="col2" class="no_val_val" type="radio" name="chart_type" value="column"><label for="col2">column chart</label>
+	<input id="line2" class="no_val_val" type="radio" name="chart_type" value="line"><label for="line2">line chart</label>
+	<input id="histo2" class="no_val_val" type="radio" name="chart_type" value="histo"><label for="histo2">histogram</label>
+	<input id="pie2" class="no_val_val" type="radio" name="chart_type" value="pie"><label for="pie2">pie chart</label>
+	<input id="scatter2" class="no_string" type="radio" name="chart_type" value="scatter"><label for="scatter2">scatter chart</label>
+	<input id="lin2" class="no_string" type="radio" name="chart_type" value="trend_lin"><label for="lin2">trend chart: linear</label>
+	<input id="exp2" class="no_string" type="radio" name="chart_type" value="trend_exp"><label for="exp2">trend chart: exponential</label>
+	<input id="poly2" class="no_string" type="radio" name="chart_type" value="trend_poly"><label for="poly2">trend chart: polynomial</label>
 	<br>
 
 	<p>TITLE OF CHART:  <input type="text" name="chart_title"></p>
@@ -62,6 +62,7 @@
 	  <select name="dataType_col_b" required>
 	  <option value = "number">number</option>
 	  <option value = ""> - select data type - </option>
+	  <option value = "string">string</option>
 	  </select>
 	</p>
 

@@ -6,6 +6,26 @@ google.load('visualization', '1.0', {'packages':['corechart']});
   // Set a callback to run when the Google Visualization API is loaded.
 google.setOnLoadCallback(drawChart);
 
+$( 'select').change(function() {
+  alert( "Handler for .change() called." );
+  if ($('select[name=dataType_col_a]').val() == "string" && 
+		$('select[name=dataType_col_b]').val() == "number") {
+		$("input[class=no_val_val]").attr('disabled', false);
+		$("input[class=no_string]").attr('disabled', true);
+  } else if ($('select[name=dataType_col_a]').val() == "number" && 
+	   $('select[name=dataType_col_b]').val() == "string") {
+		$("input[type=radio]").attr('disabled', true);
+		$("input[id=histo2]").attr('disabled', false);
+  } else if ($('select[name=dataType_col_a]').val() == "number" && 
+		$('select[name=dataType_col_b]').val() == "number") {
+		$("input[class=no_val_val]").attr('disabled', true);
+		$("input[class=no_string]").attr('disabled', false);
+  } else {
+		$("input[type=radio]").attr('disabled', true);  	
+  }
+});
+
+
 
 	$("#refresh").click(function(){
 		var data = new google.visualization.DataTable();
@@ -37,6 +57,9 @@ google.setOnLoadCallback(drawChart);
 		$('select[name=dataType_col_b]').val() == "number") {
 		console.log("NO SCATTERCHART. COL_A is string COL_B is number");
 
+		// document.getElementById("no_val_val").disabled = false;
+		// document.getElementById("no_string").disabled = true;
+
 		data.addRows([
 			[($('input[name=cell_1a]').val()), 
 					parseInt($('input[name=cell_1b]').val())],
@@ -51,6 +74,8 @@ google.setOnLoadCallback(drawChart);
 		$('select[name=dataType_col_b]').val() == "number") {
 		console.log("does NOT work with stepchart or piechart ...number number");
 
+		// document.getElementById("no_val_val").disabled = true;
+		// document.getElementById("no_string").disabled = false;
 		data.addRows([
 			[parseInt($('input[name=cell_1b]').val()), 
 					parseInt($('input[name=cell_1a]').val())],

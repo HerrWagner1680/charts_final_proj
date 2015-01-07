@@ -1,3 +1,15 @@
+function disable() {
+    document.getElementById("myRadio").disabled = true;
+}
+
+function removeDisable() {
+    document.getElementById("myRadio").disabled = false;
+}
+
+
+
+
+
   minValue - lowest # in column_a(hAxis)
   maxValue - highest # in column_a(hAxis)
 
