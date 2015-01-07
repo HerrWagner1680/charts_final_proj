@@ -21,6 +21,8 @@ google.setOnLoadCallback(drawChart);
 
 	if ($('select[name=dataType_col_a]').val() == "number" && 
 	   $('select[name=dataType_col_b]').val() == "string") {
+		console.log("histogram only? COL_A is number COL_B is string");
+
 		data.addRows([
 			[parseInt($('input[name=cell_1a]').val()), 
 					 ($('input[name=cell_1b]').val())],
@@ -33,6 +35,8 @@ google.setOnLoadCallback(drawChart);
 	    ]);
 	} else if ($('select[name=dataType_col_a]').val() == "string" && 
 		$('select[name=dataType_col_b]').val() == "number") {
+		console.log("NO SCATTERCHART. COL_A is string COL_B is number");
+
 		data.addRows([
 			[($('input[name=cell_1a]').val()), 
 					parseInt($('input[name=cell_1b]').val())],
@@ -45,9 +49,7 @@ google.setOnLoadCallback(drawChart);
 	    ]);
 	} else if ($('select[name=dataType_col_a]').val() == "number" && 
 		$('select[name=dataType_col_b]').val() == "number") {
-
-			$('#chart_type_wrapper').append('<nobr><td><input type="radio" name="chart_type" value="scatter">scatter chart</td></nobr>');
-
+		console.log("does NOT work with stepchart or piechart ...number number");
 
 		data.addRows([
 			[parseInt($('input[name=cell_1b]').val()), 
@@ -105,6 +107,17 @@ var options = {
 	var min_a = Math.min.apply(Math,col_a_array);
 	var max_b = Math.max.apply(Math,col_b_array);
 	var min_b = Math.min.apply(Math,col_b_array);
+
+
+
+//EXPORTING CODE ---- experiment
+var yep = 567
+console.log(parseInt(min_a)) 
+document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
+	' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array);
+
+
+
 
 //READ SELECTED RADIO BUTTONS AND REDRAW CHART
 	switch($('input[name=chart_type]:radio:checked').val()) {
@@ -246,6 +259,7 @@ var options = {
     // scatterchart.draw(data, options);  // ** val/val ONLY
 
     };
+
 
 
 // function handleQueryResponse(response) {

@@ -1,0 +1,7 @@
+#chart_button {
+	background-color: red;
+}
+
+#chart_button:focus {
+	background-color: blue;
+}
