@@ -1,7 +1,8 @@
-#chart_button {
-	background-color: red;
+input[type="radio"]:checked + label {
+	background-color: #ADD8E6;
 }
 
-#chart_button:focus {
-	background-color: blue;
+input[type="radio"]:disabled + label {
+	color: #BBB;
+	background-color: #444;
 }
