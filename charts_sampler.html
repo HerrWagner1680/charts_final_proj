@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GOOG chart complete</title>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+    <!--Divs that will hold the charts-->
+    	<br>
+    <div id="chart_div0"></div>
+    	<br>
+<!--     <div id="chart_div1"></div> -->
+
+<!--     <div id="chart_div2"></div> -->
+
+<!--     <div id="chart_div3"></div> -->
+
+<!--     <div id="chart_div4"></div> -->
+
+<!--     <div id="chart_div5"></div> -->
+
+<!--     <div id="chart_div6"></div> -->
+
+
+	<!-- data form -->
+	<button id="refresh">Refresh (redraw chart)</button>
+	<br>
+	<br>
+	<td>select a type of chart</td>
+	<br>
+	<td><input type="radio" name="chart_type" value="area">area chart</td>
+	<td><input type="radio" name="chart_type" value="bar">bar chart</td>
+	<td><input type="radio" name="chart_type" value="step">step chart</td>
+	<td><input type="radio" name="chart_type" value="column">column chart</td>
+	<td><input type="radio" name="chart_type" value="line">line chart</td>
+	<td><input type="radio" name="chart_type" value="histo">histogram</td>
+	<td><input type="radio" name="chart_type" value="pie">pie chart</td>
+	<td><input type="radio" name="chart_type" value="scatter">scatter chart</td>
+	<td><input type="radio" name="chart_type" value="trend_lin">trend chart: linear</td>
+	<td><input type="radio" name="chart_type" value="trend_exp">trend chart: exponential</td>
+	<td><input type="radio" name="chart_type" value="trend_poly">trend chart: polynomial</td>
+	</article>
+	<br>
+
+	<p>TITLE OF CHART:  <input type="text" name="chart_title"></p>
+
+	<td><input type="text" name="col_a_label" value="Vertical Axis"></td>
+	<td><input type="text" name="col_b_label" value="Horizontal Axis"></td>
+
+	<p>
+	  <select name="dataType_col_a" required>
+	  <option value = ""> - select data type - </option>
+	  <option value = "string">string</option>
+	  <option value = "number">number</option>
+	  </select>
+
+	  <select name="dataType_col_b" required>
+	  <option value = "number">number</option>
+	  <option value = ""> - select data type - </option>
+	  </select>
+	</p>
+
+	<br>
+	<td><input type="text" name="cell_1a" value=""></td>
+	<td><input type="text" name="cell_1b" value=""></td>
+	<br>
+	<td><input type="text" name="cell_2a" value=""></td>
+	<td><input type="text" name="cell_2b" value=""></td>
+	<br>
+	<td><input type="text" name="cell_3a" value=""></td>
+	<td><input type="text" name="cell_3b" value=""></td>
+	<br>
+	<td><input type="text" name="cell_4a" value=""></td>
+	<td><input type="text" name="cell_4b" value=""></td>
+	<!-- END OF DATA FORM -->
+
+</body>
+
+<script type="text/javascript" src="goog_chart.js"></script>
+
+</html>
