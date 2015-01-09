@@ -282,7 +282,7 @@ document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
     ]);
 
   var options = {'title':'How Much Pizza I Ate Last Night',
-	    hAxis: {title: 'Time of Day', minValue: 1800, maxValue: 2100},
+	    hAxis: {title: 'Calories', minValue: 1800, maxValue: 2100},
 	    vAxis: {title: 'Slices', minValue: 100, maxValue: 300},
 	    trendlines: {
 	      0: {
@@ -321,7 +321,6 @@ document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
     // scatterchart.draw(data, options);  // ** val/val ONLY
 
     };
-
 
 
 // function handleQueryResponse(response) {
