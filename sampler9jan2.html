@@ -14,7 +14,7 @@
 
 function drawsamplerChart() {
   var query = new google.visualization.Query(
-  //NOTE - DO NOT SUBMIT WITH EDIT IN URL !!!!!
+  //NOTE - DO NOT SUBMIT WITH EDIT IN URL !!!!! MUST BE PUBLIC AND PUBLISHED 
  // 'https://docs.google.com/spreadsheets/d/1vonOpz2D-z_I_IZA-sHoHHy4BDesFXbTgLZgw7iIf5s/edit#gid=0');
  'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
 
@@ -28,21 +28,11 @@ function samplerResponse(response) {
   }
 
   var data = response.getDataTable();
-      console.log(data.Pf[0].type)
-      console.log(data.Pf[1].type)
+ 
+  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
+    $("#col2").attr('checked', 'checked'); // selecting columnchart radio button for sampler
 
-      console.log(data.Nf[1].c[0].v)
-      console.log(data.Nf[1].c[1].v)
-      console.log(data.Nf[2].c[0].v)
-      console.log(data.Nf[2].c[1].v)
-      console.log(data.Nf[3].c[0].v)
-      console.log(data.Nf[3].c[1].v)
-
-
-
-  var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
-
-     chart.draw( data, {'width':600, 'height':500});
+    chart.draw( data, {'width':600, 'height':500});
 
 }
 
@@ -54,60 +44,192 @@ function samplerResponse(response) {
 
 <body>
 
-<span id='columnchart'></span>
+<!--div that will hold the charts-->
+<br>
+<div id="chart_div0"></div>
+<br>
 
+<button id="refresh">Refresh (redraw chart)</button>
+<br>
+<br>
+<!-- radio buttons -->
+  <p>select a type of chart</p>
 
-<IFRAME SRC="" WIDTH=800 HEIGHT=300></IFRAME>
+  <br>
+
+  <input id="area2" class="no_val_val" type="radio" name="chart_type" value="area"><label for="area2">area chart</label></button>
+  <input id="bar2" class="no_val_val" type="radio" name="chart_type" value="bar"><label for="bar2">bar chart</label>
+  <input id="step2" class="no_val_val" type="radio" name="chart_type" value="step"><label for="step2">step chart</label>
+  <input id="col2" class="no_val_val" type="radio" name="chart_type" value="column"><label for="col2">column chart</label>
+  <input id="line2" class="no_val_val" type="radio" name="chart_type" value="line"><label for="line2">line chart</label>
+  <input id="histo2" class="no_val_val" type="radio" name="chart_type" value="histo"><label for="histo2">histogram</label>
+  <input id="pie2" class="no_val_val" type="radio" name="chart_type" value="pie"><label for="pie2">pie chart</label>
+  <input id="scatter2" class="no_string" type="radio" name="chart_type" value="scatter"><label for="scatter2">scatter chart</label>
+  <input id="lin2" class="no_string" type="radio" name="chart_type" value="trend_lin"><label for="lin2">trend chart: linear</label>
+  <input id="exp2" class="no_string" type="radio" name="chart_type" value="trend_exp"><label for="exp2">trend chart: exponential</label>
+  <input id="poly2" class="no_string" type="radio" name="chart_type" value="trend_poly"><label for="poly2">trend chart: polynomial</label>
+  <br>
+<!-- END OF RADIO BUTTONS -->
+
+<!-- DATA FORM -->
+  <p>TITLE OF CHART:  <input type="text" name="chart_title"></p>
+
+  <td><input type="text" id="col_a_label" name="col_a_label" value="Vertical Axis"></td>
+  <td><input type="text" id="col_b_label" name="col_b_label" value="Horizontal Axis"></td>
+
+  <p>
+    <select id="dataType_col_a" name="dataType_col_a" required>
+    <option value = ""> - select data type - </option>
+    <option value = "string">string</option>
+    <option value = "number">number</option>
+    </select>
+
+    <select id="dataType_col_b" name="dataType_col_b" required>
+    <option value = "number">number</option>
+    <option value = ""> - select data type - </option>
+    <option value = "string">string</option>
+    </select>
+  </p>
+
+  <br>
+  <input type="text" id="cell_1a" name="cell_1a" value="">
+  <input type="text" id="cell_1b" name="cell_1b" value="">
+  <br>
+  <input type="text" id="cell_2a" name="cell_2a" value="">
+  <input type="text" id="cell_2b" name="cell_2b" value="">
+  <br>
+  <input type="text" id="cell_3a" name="cell_3a" value="">
+  <input type="text" id="cell_3b" name="cell_3b" value="">
+  <br>
+  <input type="text" id="cell_4a" name="cell_4a" value="">
+  <input type="text" id="cell_4b" name="cell_4b" value="">
+<!-- END OF DATA FORM -->
+
+<br>
+<br>
+
 
 <h3>UPLOAD GOOGLE SPREADSHEET URL   .......  UPLOAD BUTTON</h3>
 
-<form NAME="myform" onSubmit="JavaScript:ExampleJS()">
- <input  type="url" id="spreadsheet_file" name="spreadsheet_file" size="30">
+  <form NAME="myform" onSubmit="JavaScript:ExampleJS()">
+  <input  type="url" id="spreadsheet_file" name="spreadsheet_file" size="30">
   <input type="submit" value="Upload URL">
-</form>
-<!-- <button id="clear_url">clear url</button> -->
+  </form>
+<br>
+<br>
+
+<!-- export code -->
+  <h5>EXPORT CODE</h5>
+  <textarea name="export_code" cols=80 rows=25></textarea>
+<!-- end of export code -->
+<br>
+<br>
+
 
 <script>
-
-// $('#clear_url').click( function() {
-//   $('#spreadsheet_file').val(null)
-// }
 
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
 
   //simple column chart - IT WORKS!
       // 'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
 
+//metals 
 // https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0 //metals
 
-
-// 'https://docs.google.com/spreadsheet/tq?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE');  //metals - IT WORKS!
-
-
+// 'https://docs.google.com/spreadsheet/tq?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE');  //metals 
 
 //var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
 
-// var jUrl = "https://docs.google.com/spreadsheets/d/1vonOpz2D-z_I_IZA-sHoHHy4BDesFXbTgLZgw7iIf5s/edit#gid=0";
-
+//gathering data from upload url window
 function handleQueryResponse(response) {
   if (response.isError()) {
     alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
     return;
   }
 
+    console.log("below is TITLE in handleQueryResponse")
+    console.log($('#docs-title-inner')) // title of sheet
+
   var data = response.getDataTable();
-      console.log(data.Pf[0].type)
-      console.log(data.Pf[1].type)
-
-      console.log(data.Nf[1].c[0].v)
-      console.log(data.Nf[1].c[1].v)
-      console.log(data.Nf[2].c[0].v)
-      console.log(data.Nf[2].c[1].v)
-      console.log(data.Nf[3].c[0].v)
-      console.log(data.Nf[3].c[1].v)
 
 
-  var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+    $("#dataType_col_a").val(data.Pf[0].type) // string or number
+    $("#dataType_col_b").val(data.Pf[1].type)
+     // console.log(data.Pf[0].type)
+     // console.log(data.Pf[1].type)
+
+    $("#col_a_label").attr("value", data.Pf[0].label) // column name
+    $("#col_b_label").attr("value", data.Pf[1].label)
+  //     console.log(data.Nf[1].c[0].v)
+  //     console.log(data.Nf[1].c[1].v)
+    $("#cell_1a").attr("value", data.Nf[0].c[0].v)
+    $("#cell_1b").attr("value", data.Nf[0].c[1].v)
+    $("#cell_2a").attr("value", data.Nf[1].c[0].v)
+    $("#cell_2b").attr("value", data.Nf[1].c[1].v)
+    $("#cell_3a").attr("value", data.Nf[2].c[0].v)
+    $("#cell_3b").attr("value", data.Nf[2].c[1].v)
+    $("#cell_4a").attr("value", data.Nf[3].c[0].v)
+    $("#cell_4b").attr("value", data.Nf[3].c[1].v)
+  // //need to have ? true or if else in case object null,nil
+
+  
+  // // IF ELSE statements for data-type selection
+
+  // if ($("#dataType_col_a").val(data.Pf[0].type)) == "number" && 
+  //    ($("#dataType_col_b").val(data.Pf[1].type)) == "string") {
+  //   console.log("histogram only? COL_A is number COL_B is string");
+
+  //   data.addRows([
+  //     [parseInt($('input[name=cell_1a]').val()), 
+  //          ($('input[name=cell_1b]').val())],
+  //     [parseInt($('input[name=cell_2a]').val()), 
+  //          ($('input[name=cell_2b]').val())],
+  //     [parseInt($('input[name=cell_3a]').val()), 
+  //          ($('input[name=cell_3b]').val())],
+  //     [parseInt($('input[name=cell_4a]').val()), 
+  //          ($('input[name=cell_4b]').val())],
+  //     ]);
+  // } else if ($("#dataType_col_a").val(data.Pf[0].type)) == "string" && 
+  //   ($("#dataType_col_b").val(data.Pf[1].type)) == "number") {
+  //   console.log("NO SCATTERCHART. COL_A is string COL_B is number");
+
+  //   // document.getElementById("no_val_val").disabled = false;
+  //   // document.getElementById("no_string").disabled = true;
+
+  //   data.addRows([
+  //     [($('input[name=cell_1a]').val()), 
+  //         parseInt($('input[name=cell_1b]').val())],
+  //     [($('input[name=cell_2a]').val()), 
+  //         parseInt($('input[name=cell_2b]').val())],
+  //     [($('input[name=cell_3a]').val()), 
+  //         parseInt($('input[name=cell_3b]').val())],
+  //     [($('input[name=cell_4a]').val()), 
+  //         parseInt($('input[name=cell_4b]').val())],
+  //     ]);
+  // } else if ($("#dataType_col_a").val(data.Pf[0].type)) == "number" && 
+  //   ($("#dataType_col_b").val(data.Pf[1].type)) {
+  //   console.log("does NOT work with stepchart or piechart ...number number");
+
+
+  //   data.addRows([
+  //     [parseInt($('input[name=cell_1b]').val()), 
+  //         parseInt($('input[name=cell_1a]').val())],
+  //     [parseInt($('input[name=cell_2b]').val()), 
+  //         parseInt($('input[name=cell_2a]').val())],
+  //     [parseInt($('input[name=cell_3b]').val()), 
+  //         parseInt($('input[name=cell_3a]').val())],
+  //     [parseInt($('input[name=cell_4b]').val()), 
+  //         parseInt($('input[name=cell_4a]').val())],
+  //   ]);
+  // } else {
+  //   alert("please correct data type," +
+  //     "at least one column must be NUMBER type");
+  // }
+
+
+
+//NOTE - below is for column chart only!!!!
+  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
 
      chart.draw( data, {'width':600, 'height':500});
 
@@ -117,12 +239,10 @@ function handleQueryResponse(response) {
 
 function SheetRefresh() { 
 	console.log(jUrl);
-	$("iframe").attr("src", jUrl );
 
   var query = new google.visualization.Query(jUrl);
   query.send(handleQueryResponse);
 
-  // $('#spreadsheet_file').val(null)
 }
 
 function ExampleJS(){
@@ -131,7 +251,7 @@ function ExampleJS(){
     console.log("Grabbing File")
     console.log(jUrl);
 
-    $('#spreadsheet_file').val(null)
+    $('#spreadsheet_file').val(null) //clears the upload url window
     SheetRefresh();
  }
 
