@@ -8,6 +8,7 @@ google.setOnLoadCallback(drawChart);
 
 
 $( 'select').change(function() {
+// $( 'select[name=dataType_col_a] select[name=dataType_col_b]').change(function() {
   if ($('select[name=dataType_col_a]').val() == "string" && 
 		$('select[name=dataType_col_b]').val() == "number") {
 		$("input[class=no_val_val]").attr('disabled', false);
