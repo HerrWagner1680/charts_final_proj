@@ -14,11 +14,9 @@
 
 function drawsamplerChart() {
   var query = new google.visualization.Query(
-  //NOTE - DO NOT SUBMIT WITH EDIT IN URL !!!!! MUST BE PUBLIC AND PUBLISHED 
- // 'https://docs.google.com/spreadsheets/d/1vonOpz2D-z_I_IZA-sHoHHy4BDesFXbTgLZgw7iIf5s/edit#gid=0');
- 'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
+  'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
 
- query.send(samplerResponse);
+  query.send(samplerResponse);
 }
 
 function samplerResponse(response) {
@@ -62,8 +60,8 @@ function samplerResponse(response) {
   <input id="step2" class="no_val_val" type="radio" name="chart_type" value="step"><label for="step2">step chart</label>
   <input id="col2" class="no_val_val" type="radio" name="chart_type" value="column"><label for="col2">column chart</label>
   <input id="line2" class="no_val_val" type="radio" name="chart_type" value="line"><label for="line2">line chart</label>
-  <input id="histo2" class="no_val_val" type="radio" name="chart_type" value="histo"><label for="histo2">histogram</label>
   <input id="pie2" class="no_val_val" type="radio" name="chart_type" value="pie"><label for="pie2">pie chart</label>
+  <input id="donut2" class="no_val_val" type="radio" name="chart_type" value="donut"><label for="donut2">donut chart</label>
   <input id="scatter2" class="no_string" type="radio" name="chart_type" value="scatter"><label for="scatter2">scatter chart</label>
   <input id="lin2" class="no_string" type="radio" name="chart_type" value="trend_lin"><label for="lin2">trend chart: linear</label>
   <input id="exp2" class="no_string" type="radio" name="chart_type" value="trend_exp"><label for="exp2">trend chart: exponential</label>
@@ -74,8 +72,8 @@ function samplerResponse(response) {
 <!-- DATA FORM -->
   <p>TITLE OF CHART:  <input type="text" name="chart_title"></p>
 
-  <td><input type="text" id="col_a_label" name="col_a_label" value="Vertical Axis"></td>
-  <td><input type="text" id="col_b_label" name="col_b_label" value="Horizontal Axis"></td>
+  <td><input type="text" id="col_a_label" name="col_a_label" value="Axis 1"></td>
+  <td><input type="text" id="col_b_label" name="col_b_label" value="Axis 2"></td>
 
   <p>
     <select id="dataType_col_a" name="dataType_col_a" required>
@@ -87,22 +85,42 @@ function samplerResponse(response) {
     <select id="dataType_col_b" name="dataType_col_b" required>
     <option value = "number">number</option>
     <option value = ""> - select data type - </option>
-    <option value = "string">string</option>
+<!--<option value = "string">string</option> -->
     </select>
+
+<!--<select id="dataType_col_c" name="dataType_col_c" required>
+    <option value = "number">number</option>
+    <option value = ""> - select data type - </option> -->
+<!--<option value = "string">string</option> -->
+<!--     </select>
+
+    <select id="dataType_col_d" name="dataType_col_d" required>
+    <option value = "number">number</option>
+    <option value = ""> - select data type - </option> -->
+<!--<option value = "string">string</option> 
+    </select> -->
   </p>
 
   <br>
   <input type="text" id="cell_1a" name="cell_1a" value="">
   <input type="text" id="cell_1b" name="cell_1b" value="">
+<!--   <input type="text" id="cell_1c" name="cell_1c" value="">
+  <input type="text" id="cell_1d" name="cell_1d" value=""> -->
   <br>
   <input type="text" id="cell_2a" name="cell_2a" value="">
   <input type="text" id="cell_2b" name="cell_2b" value="">
+<!--   <input type="text" id="cell_2c" name="cell_2c" value="">
+  <input type="text" id="cell_2d" name="cell_2d" value=""> -->
   <br>
   <input type="text" id="cell_3a" name="cell_3a" value="">
   <input type="text" id="cell_3b" name="cell_3b" value="">
+<!--   <input type="text" id="cell_3c" name="cell_3c" value="">
+  <input type="text" id="cell_3d" name="cell_3d" value=""> -->
   <br>
   <input type="text" id="cell_4a" name="cell_4a" value="">
   <input type="text" id="cell_4b" name="cell_4b" value="">
+<!--   <input type="text" id="cell_4c" name="cell_4c" value="">
+  <input type="text" id="cell_4d" name="cell_4d" value=""> -->
 <!-- END OF DATA FORM -->
 
 <br>
@@ -129,16 +147,24 @@ function samplerResponse(response) {
 <script>
 
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
+//perhaps you should only ask for the goog sheet key?
+//ignore columns of strings after row a
 
+//https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/pubhtml
+//https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/edit?usp=sharing
+//https://docs.google.com/spreadsheet/tq?key=15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA
+//WORKS://https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/gviz/tq
+
+// all charts must be public and published to web (have in instructions? or error message?)
   //simple column chart - IT WORKS!
-      // 'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
+      // https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#
 
 //metals 
 // https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0 //metals
 
-// 'https://docs.google.com/spreadsheet/tq?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE');  //metals 
+// https://docs.google.com/spreadsheet/tq?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE  //metals 
 
-//var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
+// https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#   
 
 //gathering data from upload url window
 function handleQueryResponse(response) {
@@ -155,6 +181,8 @@ function handleQueryResponse(response) {
 
     $("#dataType_col_a").val(data.Pf[0].type) // string or number
     $("#dataType_col_b").val(data.Pf[1].type)
+    // $("#dataType_col_c").val(data.Pf[2].type) // string or number
+    // $("#dataType_col_d").val(data.Pf[3].type)
      // console.log(data.Pf[0].type)
      // console.log(data.Pf[1].type)
 
@@ -162,14 +190,25 @@ function handleQueryResponse(response) {
     $("#col_b_label").attr("value", data.Pf[1].label)
   //     console.log(data.Nf[1].c[0].v)
   //     console.log(data.Nf[1].c[1].v)
-    $("#cell_1a").attr("value", data.Nf[0].c[0].v)
+    $("#cell_1a").attr("value", data.Nf[0].c[0].v) //first row
     $("#cell_1b").attr("value", data.Nf[0].c[1].v)
-    $("#cell_2a").attr("value", data.Nf[1].c[0].v)
+    // $("#cell_1c").attr("value", data.Nf[0].c[2].v)
+    // $("#cell_1d").attr("value", data.Nf[0].c[3].v)
+
+    $("#cell_2a").attr("value", data.Nf[1].c[0].v) //second row
     $("#cell_2b").attr("value", data.Nf[1].c[1].v)
-    $("#cell_3a").attr("value", data.Nf[2].c[0].v)
+    // $("#cell_2c").attr("value", data.Nf[1].c[2].v)
+    // $("#cell_2d").attr("value", data.Nf[1].c[3].v)
+
+    $("#cell_3a").attr("value", data.Nf[2].c[0].v) //third row
     $("#cell_3b").attr("value", data.Nf[2].c[1].v)
-    $("#cell_4a").attr("value", data.Nf[3].c[0].v)
+    // $("#cell_3c").attr("value", data.Nf[2].c[2].v)
+    // $("#cell_3d").attr("value", data.Nf[2].c[3].v)
+
+    $("#cell_4a").attr("value", data.Nf[3].c[0].v) //fourth row
     $("#cell_4b").attr("value", data.Nf[3].c[1].v)
+    // $("#cell_4c").attr("value", data.Nf[3].c[2].v)
+    // $("#cell_4d").attr("value", data.Nf[3].c[3].v)
   // //need to have ? true or if else in case object null,nil
 
   
@@ -177,7 +216,7 @@ function handleQueryResponse(response) {
 
   // if ($("#dataType_col_a").val(data.Pf[0].type)) == "number" && 
   //    ($("#dataType_col_b").val(data.Pf[1].type)) == "string") {
-  //   console.log("histogram only? COL_A is number COL_B is string");
+  //   console.log("histogram only? COL_A is number COL_B is string"); ///histogram removed
 
   //   data.addRows([
   //     [parseInt($('input[name=cell_1a]').val()), 
