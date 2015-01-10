@@ -2,48 +2,31 @@
   <head>
     <meta charset="utf-8">
   <title>jQuery UI Slider - Snap to increments</title>
-   <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      // google.setOnLoadCallback(drawChart);
-      // function drawChart() {
-      //   var data = google.visualization.arrayToDataTable([
-      //     ['Language', 'Speakers (in millions)'],
-      //     ['German',  5.85],
-      //     ['French',  1.66],
-      //     ['Italian', 0.316],
-      //     ['Romansh', 0.0791]
-      //   ]);
-
-      // var options = {
-      //   // height: 400,
-      //   // width: 400,
-      //   legend: 'none',
-      //   pieSliceText: 'label',
-      //   title: 'Swiss Language Use (100 degree rotation)',
-      //   pieStartAngle: 0,
-      //   // pieHole: 0.1,
-      //   is3D: true,
-      // };
-
-      //   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      //   chart.draw(data, options);
-      // }
 
 //jquery range slider
+//for more details see http://simeydotme.github.io/jQuery-ui-Slider-Pips/
   $(function() {
     $( "#slider" ).slider({
-      value: 0,
-      min: -180,
-      max: 180,
-      step: 10,
-      slide: function( event, ui ) {
-        $( "#amount" ).val(ui.value );
-      }
-    });
+                    value: 0,
+                    min: -180,
+                    max: 180,
+                    step: 10,
+                    slide: function( event, ui ) {
+                      $( "#amount" ).val(ui.value );
+                    }
+                  })
+                  // .slider("pips", {
+                  //   rest: "label",
+                  //   step: 2
+                  // }).slider("float");
+
+
     $( "#amount" ).val($( "#slider" ).slider( "value" ) );
   });
 
@@ -52,20 +35,34 @@
   <body>
     <div id="piechart" style="width: 900px; height: 500px;"></div>
 
+<!-- http://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically -->
+<input type="range" orient="vertical" />
+
+<!-- http://www.html5tutorial.info/html5-range.php -->
+<input id="slider3" type ="range" min ="-2.5" max="3.0" step ="0.1" value="0"/>
+<input type="text" id="rangeValue3" size="2" value="0"/>
 <p>
   <label for="amount">Rotation amount (10 degree increments):</label>
 <!--   <input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;"> -->
   <input type="text" id="amount" readonly>
+<!-- <input type="range" id="amount"> -->
 </p>
  
 <div id="slider"></div>
 
 <script>
+
+$("#slider3").change(function(){
+console.log($("#slider3").val())
+$("#rangeValue3").val($('#slider3').val())
+
+});
+
+
  // $("#slider").focusout(function(){
 $("#slider").mouseup(function(){
-  // var deg =  parseInt($( "#amount" ).val());
+
 console.log("change")
-// console.log(parseInt($( "#amount" ).val()))
 
 var deg =  parseInt($( "#amount" ).val());
 console.log(deg)
