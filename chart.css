@@ -6,8 +6,3 @@ input[type="radio"]:disabled + label {
 	color: #BBB;
 	background-color: #444;
 }
-
-button:disabled + label {
-	color: #BBB;
-	background-color: #444;	
-}
