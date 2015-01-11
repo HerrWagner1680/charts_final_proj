@@ -20,88 +20,83 @@ $( 'select').change(function() {
 });
 // END OF - DISABLES INACTIVE CHART TYPES
 
+function exportCode (data) {
+	//FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
+	var col_a_array = [ parseInt($('input[name=cell_1a]').val()), parseInt($('input[name=cell_2a]').val()), parseInt($('input[name=cell_3a]').val()), parseInt($('input[name=cell_4a]').val())];
+	var col_b_array = [ parseInt($('input[name=cell_1b]').val()), parseInt($('input[name=cell_2b]').val()), parseInt($('input[name=cell_3b]').val()), parseInt($('input[name=cell_4b]').val())];
+	var max_a = Math.max.apply(Math,col_a_array);
+	var min_a = Math.min.apply(Math,col_a_array);
+	var max_b = Math.max.apply(Math,col_b_array);
+	var min_b = Math.min.apply(Math,col_b_array);
 
-	$("#refresh").click(function(){
-		var data = new google.visualization.DataTable();
+	var col_a_array_nan = [ $('input[name=cell_1a]').val(), $('input[name=cell_2a]').val(), $('input[name=cell_3a]').val(), $('input[name=cell_4a]').val()];
+	//EXPORTING CODE ---- experiment -- make this into separate function
+	// this sep function should upload on start of program as well
+	var yep = 567;
+	var title = $('input[name=chart_title]').val();
+	if ($('input[name=cell_1a]').val() == NaN) {
+		console.log("no num in col a")
+		var mess = "no num in col a" //variable is trapped in scope of if statement
+	};
+	var col_a_label = $('input[name=col_a_label]').val()
+	var col_b_label = $('input[name=col_b_label]').val()
+	var dataValA = $('select[name=dataType_col_a]').val()
+	var dataValB = $('select[name=dataType_col_b]').val()
+	var br = '<br>'
+	var newline = '&#10;'
+	console.log("minimum col a: " + parseInt(min_a)) 
+	document.getElementsByName('export_code')[0].value=('STILL IN TEST MODE' +
+		' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array + '\r' + '\r' +
+		 "  //Load the Visualization API and the piechart package. " + '\r' +
+	" google.load('visualization', '1.0', {'packages':['corechart']}); " +
+	  " // Set a callback to run when the Google Visualization API is loaded. " + '\r' +
+	 " google.setOnLoadCallback(drawChart); " +  br + newline + '\r' + '\r' + '\r' +
+	 "<html>" + '\r' +
+	  "	<head>" + '\r' +
+	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" +
+	    "	<script type='text/javascript'>" + '\r' + '\r' +
+	      "	google.load('visualization', '1.1', {packages:['bar']});" + '\r' +
+	      "	google.setOnLoadCallback(drawChart);" + '\r' + 
+	      "	function drawChart() {" + '\r' +
+	        "		var data = google.visualization.arrayToDataTable([" + '\r' +
+	          "			['Year', 'Sales', 'Expenses', 'Profit']," + '\r' +
+	          "			['2014', 1000, 400, 200]," + '\r' +
+	          "			['2015', 1170, 460, 250]," + '\r' +
+	          "			['2016', 660, 1120, 300]," + '\r' +
+	          "			['2017', 1030, 540, 350]" + '\r' +
+	        "		]);" + '\r' + mess + " XXXXXXXX  " + 
+			col_a_array + " OR IF NaN: " + col_a_array_nan + " col b array " + col_b_array + " dataval:" + dataValA + " B: " + dataValB + '\r' +
 
-		data.addColumn($('select[name=dataType_col_a]').val(), 
-					   $('input[name=col_a_label]').val());
-		data.addColumn($('select[name=dataType_col_b]').val(), 
-					   $('input[name=col_b_label]').val());
+	        "		var options = {" +
+	          "			chart: { title: '" + title + "'' ," +
+	            " subtitle: 'Sales, Expenses, and Profit: 2014-2017' " +
+	          "}" + '\r' + 
+	        " };" + '\r' + 
 
-		console.log("refresh")
+	        "		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));" + '\r' + 
 
-	// IF ELSE statements for data-type selection
+	        "		chart.draw(data, options);" + '\r' + 
+	      "		}" + '\r' + 
+	    "	</script>" +  '\r' + 
+	    "	</head>" + '\r' + '\r' + 
+	  "<body>" + '\r' + 
+	    "	<div id='columnchart_material' style='width: 900px; height: 500px;''></div>" + '\r' + 
+	  "</body>" + '\r' + '\r' + 
+	"</html>"   );
 
-	// if ($('select[name=dataType_col_a]').val() == "number" && 
-	//    $('select[name=dataType_col_b]').val() == "string") {
-	// 	console.log("histogram only? COL_A is number COL_B is string");
-
-	// 	data.addRows([
-	// 		[parseInt($('input[name=cell_1a]').val()), 
-	// 				 ($('input[name=cell_1b]').val())],
-	// 		[parseInt($('input[name=cell_2a]').val()), 
-	// 				 ($('input[name=cell_2b]').val())],
-	// 		[parseInt($('input[name=cell_3a]').val()), 
-	// 				 ($('input[name=cell_3b]').val())],
-	// 		[parseInt($('input[name=cell_4a]').val()), 
-	// 				 ($('input[name=cell_4b]').val())],
-	//     ]);   }
-	if ($('select[name=dataType_col_a]').val() == "string" && 
-		$('select[name=dataType_col_b]').val() == "number") {
-		console.log("NO SCATTERCHART. COL_A is string COL_B is number");
-
-		// document.getElementById("no_val_val").disabled = false;
-		// document.getElementById("no_string").disabled = true;
-
-		data.addRows([
-			[($('input[name=cell_1a]').val()), 
-					parseInt($('input[name=cell_1b]').val())],
-			[($('input[name=cell_2a]').val()), 
-					parseInt($('input[name=cell_2b]').val())],
-			[($('input[name=cell_3a]').val()), 
-					parseInt($('input[name=cell_3b]').val())],
-			[($('input[name=cell_4a]').val()), 
-					parseInt($('input[name=cell_4b]').val())],
-	    ]);
-	} else if ($('select[name=dataType_col_a]').val() == "number" && 
-		$('select[name=dataType_col_b]').val() == "number") {
-		console.log("does NOT work with stepchart or piechart ...number number");
-
-		// document.getElementById("no_val_val").disabled = true;
-		// document.getElementById("no_string").disabled = false;
-		data.addRows([
-			[parseInt($('input[name=cell_1b]').val()), 
-					parseInt($('input[name=cell_1a]').val())],
-			[parseInt($('input[name=cell_2b]').val()), 
-					parseInt($('input[name=cell_2a]').val())],
-			[parseInt($('input[name=cell_3b]').val()), 
-					parseInt($('input[name=cell_3a]').val())],
-			[parseInt($('input[name=cell_4b]').val()), 
-					parseInt($('input[name=cell_4a]').val())],
-		]);
-	} else {
-		alert("please correct data type," +
-			"at least one column must be NUMBER type");
-	}
-
-
-	// automate the choice by looking for NaN 
-
-	// is there a way to refactor using variables?
-
-// to show error in HTML
-// http://stackoverflow.com/questions/14702190/to-show-error-message-without-alert-box-in-java-script
+};
 
 
 
-var options = {
-		'title': ($('input[name=chart_title]').val()),
-	    vAxis: {title: ($('input[name=col_a_label]').val())},
-	    hAxis: {title: ($('input[name=col_b_label]').val())},
-              	'width':500,
-              	'height':400
-              };
+function drawNewChart(data) {
+
+	var options = {
+			'title': ($('input[name=chart_title]').val()),
+		    vAxis: {title: ($('input[name=col_a_label]').val())},
+		    hAxis: {title: ($('input[name=col_b_label]').val())},
+	              	'width':500,
+	              	'height':400
+	              };
 
 //ASSIGNING METHOD NAMES FOR EACH GOOGLE CHART
     var areachart = new google.visualization.AreaChart(document.getElementById('chart_div0'));
@@ -123,56 +118,9 @@ var options = {
 	var max_b = Math.max.apply(Math,col_b_array);
 	var min_b = Math.min.apply(Math,col_b_array);
 
+	exportCode (data);
 
-
-//EXPORTING CODE ---- experiment
-var yep = 567
-console.log(parseInt(min_a)) 
-document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
-		' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array +
-		 "  //Load the Visualization API and the piechart package. " +
-	" google.load('visualization', '1.0', {'packages':['corechart']}); " +
-	  " // Set a callback to run when the Google Visualization API is loaded. " +
-	 " google.setOnLoadCallback(drawChart); " +
-	 "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" +
-	 "__________________________________" +
-	 "<html>" +
-	  "<head>" +
-	    "<script type='text/javascript' src='https://www.google.com/jsapi'></script>" +
-	    "<script type='text/javascript'>" +
-	      "google.load('visualization', '1.1', {packages:['bar']});" +
-	      "google.setOnLoadCallback(drawChart);" +
-	      "function drawChart() {" +
-	        "var data = google.visualization.arrayToDataTable([" +
-	          "['Year', 'Sales', 'Expenses', 'Profit']," +
-	          "['2014', 1000, 400, 200]," +
-	          "['2015', 1170, 460, 250]," +
-	          "['2016', 660, 1120, 300]," +
-	          "['2017', 1030, 540, 350]" +
-	        "]);" +
-
-	        "var options = {" +
-	          "chart: {" +
-	            "title: 'Company Performance'," +
-	            "subtitle: 'Sales, Expenses, and Profit: 2014-2017'," +
-	          "}" +
-	        "};" +
-
-	        "var chart = new google.charts.Bar(document.getElementById('columnchart_material'));" +
-
-	        "chart.draw(data, options);" +
-	      "}" +
-	    "</script>" +  
-	    "</head>" +
-	  "<body>" +
-	    "<div id='columnchart_material' style='width: 900px; height: 500px;''></div>" +
-	  "</body>" +
-	"</html>"   );
-
-
-
-
-//READ SELECTED RADIO BUTTONS AND REDRAW CHART
+	//READ SELECTED RADIO BUTTONS AND REDRAW CHART
 	switch($('input[name=chart_type]:radio:checked').val()) {
 		case "area":
 			console.log("area switch"); areachart.draw(data, options);
@@ -190,7 +138,7 @@ document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
 			console.log("line switch"); linechart.draw(data, options);
 			break;
 	
-//HTML CODE NOTES FOR INSERTING HTML SLIDERS
+	//HTML CODE NOTES FOR INSERTING HTML SLIDERS
 
 			// <!-- http://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically -->
 
@@ -289,7 +237,64 @@ document.getElementsByName('export_code')[0].value=( yep + ' adsfadfs' +
 	      	alert("please select a chart");
 	      	break;
 	}; // END OF SWITCH CASE 
+}; //END OF drawNewChart function
 
-}); // END OF REFRESH CLICK FUNCTION
 
+
+$("#refresh").click(function(){
+	var data = new google.visualization.DataTable();
+
+	console.log("refresh")
+
+	// IF ELSE statements for data-type selection
+	if ($('select[name=dataType_col_a]').val() == "string" && 
+		$('select[name=dataType_col_b]').val() == "number") {
+		console.log("NO SCATTERCHART. COL_A is string COL_B is number");
+		data.addColumn($('select[name=dataType_col_a]').val(), 
+					   $('input[name=col_a_label]').val());
+		data.addColumn($('select[name=dataType_col_b]').val(), 
+					   $('input[name=col_b_label]').val());
+
+		data.addRows([
+			[($('input[name=cell_1a]').val()), 
+					parseInt($('input[name=cell_1b]').val())],
+			[($('input[name=cell_2a]').val()), 
+					parseInt($('input[name=cell_2b]').val())],
+			[($('input[name=cell_3a]').val()), 
+					parseInt($('input[name=cell_3b]').val())],
+			[($('input[name=cell_4a]').val()), 
+					parseInt($('input[name=cell_4b]').val())],
+	    ]);
+	    drawNewChart(data)
+	} else if ($('select[name=dataType_col_a]').val() == "number" && 
+		$('select[name=dataType_col_b]').val() == "number") {
+		console.log("does NOT work with stepchart or piechart ...number number");
+		data.addColumn($('select[name=dataType_col_a]').val(), 
+					   $('input[name=col_a_label]').val());
+		data.addColumn($('select[name=dataType_col_b]').val(), 
+					   $('input[name=col_b_label]').val());
+		data.addRows([
+			[parseInt($('input[name=cell_1b]').val()), 
+					parseInt($('input[name=cell_1a]').val())],
+			[parseInt($('input[name=cell_2b]').val()), 
+					parseInt($('input[name=cell_2a]').val())],
+			[parseInt($('input[name=cell_3b]').val()), 
+					parseInt($('input[name=cell_3a]').val())],
+			[parseInt($('input[name=cell_4b]').val()), 
+					parseInt($('input[name=cell_4a]').val())],
+		]);
+		drawNewChart(data)
+	} else {
+		console.log("col a: " + $('select[name=dataType_col_a]').val())
+		console.log("col b: " + $('select[name=dataType_col_b]').val())
+		alert("please correct data type");
+	}
+
+});
+	// automate the choice by looking for NaN 
+
+	// is there a way to refactor using variables?
+
+// to show error in HTML
+// http://stackoverflow.com/questions/14702190/to-show-error-message-without-alert-box-in-java-script
 

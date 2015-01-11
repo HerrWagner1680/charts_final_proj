@@ -36,6 +36,8 @@ function samplerResponse(response) {
             };
   var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
 
+    exportCode (data);
+
     $("#col2").attr('checked', 'checked'); // selecting columnchart radio button for sampler
 
     //disabling the unrelated radio buttons for sampler
@@ -63,7 +65,7 @@ function samplerResponse(response) {
 <br>
 <br>
 <!-- radio buttons -->
-  <p>select a type of chart</p>
+  <p id="select_typ">select a type of chart</p>
 
   <br>
 
@@ -226,15 +228,6 @@ function handleQueryResponse(response) {
     // $("#cell_4c").attr("value", data.Nf[3].c[2].v)
     // $("#cell_4d").attr("value", data.Nf[3].c[3].v)
   // //need to have ? true or if else in case object null,nil
-
-
-
-
-
-//NOTE - below is for column chart only!!!!
-  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
-
-     chart.draw( data, {'width':500, 'height':400});
 
 }
 
