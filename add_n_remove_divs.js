@@ -13,12 +13,17 @@ function addElement() {
   var divIdName = 'my'+num+'Div';
 
   newdiv.setAttribute('id',divIdName);
+  //set multiple attributes:
+  // http://stackoverflow.com/questions/12274748/setting-multiple-attributes-for-an-element-at-once-with-javascript
 
   newdiv.innerHTML = 'Element Number '+num+' has been added! <a href=\'#\' onclick=\'removeElement('+divIdName+')\'>Remove the div "'+divIdName+'"</a>';
 
   ni.appendChild(newdiv);
 
 }
+
+
+
 //REMOVEELEMENT JAVASCRIPT FUNCTION
 function removeElement(divNum) {
 

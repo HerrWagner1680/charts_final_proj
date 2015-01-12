@@ -20,6 +20,19 @@ $( 'select').change(function() {
 });
 // END OF - DISABLES INACTIVE CHART TYPES
 
+function addPieRotateSlider() {
+	$("#select_typ").append("<span id='rot'><label for='slider3'> Degrees of rotation: " + 
+		"</label><input id='slider3' type ='range' min ='-180' max='180' step ='10' value='0'/>" + 
+		"<input type='text' id='rangeValue3' size='2' value='0' readonly/></span>");
+};
+
+function addPieHoleSlider() {
+	$("span").append("<label for='piehole3'> Donut hole (range 0 - 0.9 of radius): </label>" + 
+		"<input id='piehole3' type='range' min ='0' max='0.9' step='0.05' value='0'/>" + 
+		"<input type='text' id='holeRange3' size='2' value='0' readonly/>")
+};
+
+
 function exportCode (data) {
 	//FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
 	var col_a_array = [ parseInt($('input[name=cell_1a]').val()), parseInt($('input[name=cell_2a]').val()), parseInt($('input[name=cell_3a]').val()), parseInt($('input[name=cell_4a]').val())];
@@ -137,37 +150,28 @@ function drawNewChart(data) {
 		case "line":
 			console.log("line switch"); linechart.draw(data, options);
 			break;
-	
-	//HTML CODE NOTES FOR INSERTING HTML SLIDERS
-
-			// <!-- http://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically -->
-
-			// <!-- NOTE - PIEHOLE DOES NOT WORK IN 3D MODE ... orient="vertical" -->
-			// <label for="piehole3">Donut hole (range 0 - 0.9 of radius): </label>
-			// <input id="piehole3" type="range" min ="0" max="0.9" step="0.05" value="0"/>
-			// <input type="text" id="holeRange3" size="2" value="0" readonly/>
-			// <br>
-			// <!-- http://www.html5tutorial.info/html5-range.php -->
-			//  <label for="slider3">Degrees of rotation:</label>
-			//  <input id="slider3" type ="range" min ="-180" max="180" step ="10" value="0"/>
-			// <!-- <input id="slider3" type ="range" min ="-2.5" max="3.0" step ="0.1" value="0"/> -->
-			// <input type="text" id="rangeValue3" size="2" value="0" readonly/>
 
 	//NOTE donut covers regular pie chart and donut chart with range sliders
 		case "donut":
+			addPieRotateSlider();
+			addPieHoleSlider();
 			console.log("pie / donut switch"); 
 			var options = {
 	          // legend: 'none',
 	          pieSliceText: 'label',
 	          // title: 'Swiss Language Use',
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html
-	          pieHole: 0.5, //change to slider variable see rotate_pie.html
+	          pieHole: 0, //change to slider variable see rotate_pie.html
 			};
+			$("#slider3").change(revise);
+			$("#piehole3").change(revise);
+			//NOTE - piehole does not work in 3d mode
 			piechart.draw(data, options);
 			break
 
 	//NOTE case pie is 3d pie - only has one range slider
 		case "pie":
+			addPieRotateSlider();
 			console.log("pie switch"); 
 			var options = {
 	          // legend: 'none',
@@ -176,6 +180,7 @@ function drawNewChart(data) {
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html
 	          is3D: true,
 			};
+			$("#slider3").change(revise);
 			piechart.draw(data, options);
 			break;
 
@@ -240,11 +245,65 @@ function drawNewChart(data) {
 }; //END OF drawNewChart function
 
 
+function pieRefresh(deg, hole) {
+	var data = new google.visualization.DataTable();
+		console.log("pie refresh function")
+		data.addColumn($('select[name=dataType_col_a]').val(), 
+					   $('input[name=col_a_label]').val());
+		data.addColumn($('select[name=dataType_col_b]').val(), 
+					   $('input[name=col_b_label]').val());
+
+		data.addRows([
+			[($('input[name=cell_1a]').val()), 
+					parseInt($('input[name=cell_1b]').val())],
+			[($('input[name=cell_2a]').val()), 
+					parseInt($('input[name=cell_2b]').val())],
+			[($('input[name=cell_3a]').val()), 
+					parseInt($('input[name=cell_3b]').val())],
+			[($('input[name=cell_4a]').val()), 
+					parseInt($('input[name=cell_4b]').val())],
+	    ]);
+	    // drawNewChart(data)
+
+	    var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
+
+if ($('input[name=chart_type]:radio:checked').val()=="pie") {
+	var three_dee = true
+} else {
+	var three_dee = false
+}
+			var options = {
+	          // legend: 'none',
+	          pieSliceText: 'label',
+	          // title: 'Swiss Language Use',
+	          pieStartAngle: deg, //change to slider variable see rotate_pie.html
+	          pieHole: hole,
+	          is3D: three_dee,
+			};
+			piechart.draw(data, options);
+}
+
+function revise(){
+  // update the numbers to the right of the sliders
+  $("#rangeValue3").val($('#slider3').val())
+  $("#holeRange3").val(parseFloat($("#piehole3").val()))
+
+  var deg =  parseInt($( "#slider3" ).val());
+  var hole = parseFloat($("#piehole3").val());
+
+  // CHANGE THE SETTINGS and redraw chart
+  pieRefresh(deg, hole);
+};
+
+
 
 $("#refresh").click(function(){
 	var data = new google.visualization.DataTable();
 
 	console.log("refresh")
+
+	//REMOVE ANY RANGE SLIDERS
+	$("#rot").remove();
 
 	// IF ELSE statements for data-type selection
 	if ($('select[name=dataType_col_a]').val() == "string" && 

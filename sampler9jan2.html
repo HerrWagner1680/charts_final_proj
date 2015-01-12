@@ -163,7 +163,6 @@ function samplerResponse(response) {
 
 
 
-
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
 //perhaps you should only ask for the goog sheet key?
 //ignore columns of strings after row a
@@ -252,6 +251,12 @@ function ExampleJS(){
  }
 
 SheetRefresh();
+
+
+//revise is a function in sampler9jan2.js
+$("#slider3").change(revise);
+$("#piehole3").change(revise);
+//NOTE - piehole does not work in 3d mode
 
 </script>
 
