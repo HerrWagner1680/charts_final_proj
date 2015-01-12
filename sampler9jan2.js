@@ -184,7 +184,6 @@ function drawNewChart(data) {
 			piechart.draw(data, options);
 			break;
 
-
 		case "scatter":
 			console.log("scatter switch");
 			var options = {
@@ -267,11 +266,11 @@ function pieRefresh(deg, hole) {
 
 	    var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
 
-if ($('input[name=chart_type]:radio:checked').val()=="pie") {
-	var three_dee = true
-} else {
-	var three_dee = false
-}
+	if ($('input[name=chart_type]:radio:checked').val()=="pie") {
+		var three_dee = true
+	} else {
+		var three_dee = false
+	}
 			var options = {
 	          // legend: 'none',
 	          pieSliceText: 'label',
@@ -294,8 +293,6 @@ function revise(){
   // CHANGE THE SETTINGS and redraw chart
   pieRefresh(deg, hole);
 };
-
-
 
 $("#refresh").click(function(){
 	var data = new google.visualization.DataTable();

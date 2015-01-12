@@ -86,56 +86,55 @@ function samplerResponse(response) {
 <!-- DATA FORM -->
   <p>TITLE OF CHART:  <input type="text" name="chart_title" value="Title"></p>
 
-  <td><input type="text" id="col_a_label" name="col_a_label" value="Axis 1"></td>
-  <td><input type="text" id="col_b_label" name="col_b_label" value="Axis 2"></td>
-
-  <p>
+<table>
+  <tr>
+  <th><input type="text" id="col_a_label" name="col_a_label" value="Axis 1"></th>
+  <th><input type="text" id="col_b_label" name="col_b_label" value="Axis 2"></th>
+  </tr>
+  <tr>
+    <th>
     <select id="dataType_col_a" name="dataType_col_a" required>
     <option value = ""> - select data type - </option>
     <option value = "string">string</option>
     <option value = "number">number</option>
     </select>
-
+    </th>
+    <th>
     <select id="dataType_col_b" name="dataType_col_b" required>
     <option value = "number">number</option>
     <option value = ""> - select data type - </option>
 <!--<option value = "string">string</option> -->
     </select>
-
-<!--<select id="dataType_col_c" name="dataType_col_c" required>
-    <option value = "number">number</option>
-    <option value = ""> - select data type - </option> -->
-<!--<option value = "string">string</option> -->
-<!--     </select>
-
-    <select id="dataType_col_d" name="dataType_col_d" required>
-    <option value = "number">number</option>
-    <option value = ""> - select data type - </option> -->
-<!--<option value = "string">string</option> 
-    </select> -->
-  </p>
-
-  <br>
-  <input type="text" id="cell_1a" name="cell_1a" value="">
-  <input type="text" id="cell_1b" name="cell_1b" value="">
+    </th>
+  </tr>
+  <tr id="row_1">
+    <td class="col_a"><input type="text" id="cell_1a" name="cell_1a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_1b" name="cell_1b" value=""></td>
 <!--   <input type="text" id="cell_1c" name="cell_1c" value="">
   <input type="text" id="cell_1d" name="cell_1d" value=""> -->
-  <br>
-  <input type="text" id="cell_2a" name="cell_2a" value="">
-  <input type="text" id="cell_2b" name="cell_2b" value="">
+  </tr>
+  <tr id="row_2">
+    <td class="col_a"><input type="text" id="cell_2a" name="cell_2a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_2b" name="cell_2b" value=""></td>
 <!--   <input type="text" id="cell_2c" name="cell_2c" value="">
   <input type="text" id="cell_2d" name="cell_2d" value=""> -->
-  <br>
-  <input type="text" id="cell_3a" name="cell_3a" value="">
-  <input type="text" id="cell_3b" name="cell_3b" value="">
+  </tr>
+  <tr id="row_3">
+    <td class="col_a"><input type="text" id="cell_3a" name="cell_3a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_3b" name="cell_3b" value=""></td>
 <!--   <input type="text" id="cell_3c" name="cell_3c" value="">
   <input type="text" id="cell_3d" name="cell_3d" value=""> -->
-  <br>
-  <input type="text" id="cell_4a" name="cell_4a" value="">
-  <input type="text" id="cell_4b" name="cell_4b" value="">
+  </tr>
+  <tr id="row_4">
+    <td class="col_a"><input type="text" id="cell_4a" name="cell_4a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_4b" name="cell_4b" value=""></td>
 <!--   <input type="text" id="cell_4c" name="cell_4c" value="">
   <input type="text" id="cell_4d" name="cell_4d" value=""> -->
+  </tr>
 <!-- END OF DATA FORM -->
+</table>
+
+
 <br>
 <button id="row_add">ADD ROW</button>
 <button id="row_remove">REMOVE ROW</button>
