@@ -52,12 +52,12 @@ function exportCode (data) {
 	var max_b = Math.max.apply(Math,col_b_array);
 	var min_b = Math.min.apply(Math,col_b_array);
 
-	var radio = ($('#real-data input[type=radio]:checked').val())
+	var radio = ($('input[type=radio]:checked').val())
 	var col_a_array_nan = [ $('#real-data input[name=cell_1_a]').val(), $('#real-data input[name=cell_2_a]').val(), $('#real-data input[name=cell_3_a]').val(), $('#real-data input[name=cell_4_a]').val()];
 	//EXPORTING CODE ---- experiment -- make this into separate function
 	// this sep function should upload on start of program as well
 	var yep = 567;
-	var title = $('#real-data input[name=chart_title]').val();
+	var title = $('input[name=chart_title]').val();
 	if ($('#real-data input[name=cell_1_a]').val() == NaN) {
 		console.log("no num in col a")
 		var mess = "no num in col a" //variable is trapped in scope of if statement
@@ -140,7 +140,7 @@ function pieRefresh(deg, hole) {
 			var options = {
 	          // legend: 'none',
 	          pieSliceText: 'label',
-	          title: ($('#real-data input[name=chart_title]').val()),
+	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: deg, //change to slider variable see rotate_pie.html
 	          pieHole: hole,
 	          is3D: three_dee,

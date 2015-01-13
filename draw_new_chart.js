@@ -5,7 +5,7 @@ function drawNewChart(data) {
 	// if(piehole_slider='undefined'){ var piehole_slider=0 }
 
 	var options = {
-			'title': ($('#real-data input[name=chart_title]').val()),
+			'title': ($('input[name=chart_title]').val()),
 		    vAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 		    hAxis: {title: ($('#real-data input[name=col_b_label]').val())},
 	              	'width':500,
@@ -39,7 +39,7 @@ function drawNewChart(data) {
 		case "area":
 			//switch labels
 			var options = {
-					'title': ($('#real-data input[name=chart_title]').val()),
+					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
 	              	'width':500,
@@ -54,7 +54,7 @@ function drawNewChart(data) {
 		case "step":
 			//switch labels
 			var options = {
-					'title': ($('#real-data input[name=chart_title]').val()),
+					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
 	              	'width':500,
@@ -65,7 +65,7 @@ function drawNewChart(data) {
 		case "column":
 			//switch labels
 			var options = {
-					'title': ($('#real-data input[name=chart_title]').val()),
+					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
 	              	'width':500,
@@ -93,7 +93,7 @@ function drawNewChart(data) {
 			var options = {
 	          // legend: 'none',
 	          pieSliceText: 'label',
-	          title: ($('#real-data input[name=chart_title]').val()),
+	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html
 	          pieHole: 0, //change to slider variable see rotate_pie.html
 			};
@@ -110,7 +110,7 @@ function drawNewChart(data) {
 			var options = {
 	          // legend: 'none',
 	          pieSliceText: 'label',
-	          title: ($('#real-data input[name=chart_title]').val()),
+	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html
 	          is3D: true,
 			};
@@ -121,7 +121,7 @@ function drawNewChart(data) {
 		case "scatter":
 			console.log("scatter switch");
 			var options = {
-				'title': ($('#real-data input[name=chart_title]').val()),
+				'title': ($('input[name=chart_title]').val()),
 		    	vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 		    	hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
 			};
@@ -130,7 +130,7 @@ function drawNewChart(data) {
 		case "trend_lin":
 			console.log("trend_lin switch");
 			var options = {
-				'title': ($('#real-data input[name=chart_title]').val()),
+				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
 			    trendlines: {
@@ -144,7 +144,7 @@ function drawNewChart(data) {
 		case "trend_exp":
 			console.log("trend_exp switch");
 			var options = {
-				'title': ($('#real-data input[name=chart_title]').val()),
+				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
 			    trendlines: {
@@ -157,7 +157,7 @@ function drawNewChart(data) {
 			break;
 		case "trend_poly":
 			var options = {
-				'title': ($('#real-data input[name=chart_title]').val()),
+				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
 			    trendlines: {
