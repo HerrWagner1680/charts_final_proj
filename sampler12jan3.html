@@ -70,7 +70,7 @@ function samplerResponse(response) {
   <br>
 
   <input id="area2" class="no_val_val" type="radio" name="chart_type" value="area"><label for="area2">area</label></button>
-  <input id="bar2" class="no_val_val" type="radio" name="chart_type" value="bar"><label for="bar2">bar</label>
+  <input id="bar2" class="no_val_val" type="radio" name="chart_type" value="bar"><label for="bar2">horizontal bar</label>
   <input id="step2" class="no_val_val" type="radio" name="chart_type" value="step"><label for="step2">step</label>
   <input id="col2" class="no_val_val" type="radio" name="chart_type" value="column"><label for="col2">column</label>
   <input id="line2" class="no_val_val" type="radio" name="chart_type" value="line"><label for="line2">line</label>
@@ -86,7 +86,7 @@ function samplerResponse(response) {
 <!-- DATA FORM -->
   <p>TITLE OF CHART:  <input type="text" name="chart_title" value="Title"></p>
 
-<table>
+<table id="real-data">
   <tr>
   <th><input type="text" id="col_a_label" name="col_a_label" value="Axis 1"></th>
   <th><input type="text" id="col_b_label" name="col_b_label" value="Axis 2"></th>
@@ -108,26 +108,26 @@ function samplerResponse(response) {
     </th>
   </tr>
   <tr id="row_1">
-    <td class="col_a"><input type="text" id="cell_1a" name="cell_1a" value=""></td>
-    <td class="col_b"><input type="text" id="cell_1b" name="cell_1b" value=""></td>
+    <td class="col_a"><input type="text" id="cell_1_a" name="cell_1_a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_1_b" name="cell_1_b" value=""></td>
 <!--   <input type="text" id="cell_1c" name="cell_1c" value="">
   <input type="text" id="cell_1d" name="cell_1d" value=""> -->
   </tr>
   <tr id="row_2">
-    <td class="col_a"><input type="text" id="cell_2a" name="cell_2a" value=""></td>
-    <td class="col_b"><input type="text" id="cell_2b" name="cell_2b" value=""></td>
+    <td class="col_a"><input type="text" id="cell_2_a" name="cell_2_a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_2_b" name="cell_2_b" value=""></td>
 <!--   <input type="text" id="cell_2c" name="cell_2c" value="">
   <input type="text" id="cell_2d" name="cell_2d" value=""> -->
   </tr>
   <tr id="row_3">
-    <td class="col_a"><input type="text" id="cell_3a" name="cell_3a" value=""></td>
-    <td class="col_b"><input type="text" id="cell_3b" name="cell_3b" value=""></td>
+    <td class="col_a"><input type="text" id="cell_3_a" name="cell_3_a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_3_b" name="cell_3_b" value=""></td>
 <!--   <input type="text" id="cell_3c" name="cell_3c" value="">
   <input type="text" id="cell_3d" name="cell_3d" value=""> -->
   </tr>
   <tr id="row_4">
-    <td class="col_a"><input type="text" id="cell_4a" name="cell_4a" value=""></td>
-    <td class="col_b"><input type="text" id="cell_4b" name="cell_4b" value=""></td>
+    <td class="col_a"><input type="text" id="cell_4_a" name="cell_4_a" value=""></td>
+    <td class="col_b"><input type="text" id="cell_4_b" name="cell_4_b" value=""></td>
 <!--   <input type="text" id="cell_4c" name="cell_4c" value="">
   <input type="text" id="cell_4d" name="cell_4d" value=""> -->
   </tr>
@@ -159,14 +159,47 @@ function samplerResponse(response) {
 <!-- end of export code -->
 <br>
 <br>
+<button id="export_png">EXPORT TO PNG</button>
 
 <script type="text/javascript" src="sampler9jan2.js"></script>
 
 <script>
 
-$('[id^="row_"]').click(function() {
-   // $(this).find('img').attr('src','/admin/images/ok.png');
-   alert("you clicked a row_")
+$('#row_add').click(function() {
+
+    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+    var last_col_int = last_col.charCodeAt(0);
+    var next_col_int = last_col_int + 1;
+    var next_col = String.fromCharCode(next_col_int);
+    var next_row = last_row + 1;
+
+   $("#real-data").append("<tr id='row_" + next_row + "'><td class='col_" + "a" + 
+    "'><input type='text' id='cell_" + next_row + "_" + "a" + "' name='cell_" + next_row + "_" + "a" +"' value=''></td>" +
+    "<td class='col_" + "b" + "'><input type='text' " + 
+    "id='cell_" + next_row + "_" + "b" + "' name='cell_" + next_row + 
+    "_" + "b" + "' value=''></td></tr>")
+});
+
+$('#row_remove').click(function() {
+  $("tr:last-of-type").remove()
+});
+
+// //looping through letters a=65 f=70
+// for(var i=65;i<=70;i++) {
+//     console.log(String.fromCharCode(i));
+//  }
+
+//reverse engineering a letter "a"
+// "a".charCodeAt(0);
+// returns number
+
+//sample capture of id data
+// $('th:last-of-type > input').attr('id').split('_')[1]
+// $('th:last-of-type > input').attr('id').split('_')[2]
+
+$('#export_png').click(function(){
+  alert("NOTE: Export to PNG STILL UNDER CONSTRUCTION")
 });
 
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
@@ -196,46 +229,28 @@ function handleQueryResponse(response) {
     return;
   }
 
-    // console.log("below is TITLE in handleQueryResponse")
-    // console.log($('#docs-title-inner')) // title of sheet
 
   var data = response.getDataTable();
 
+    $("#real-data #dataType_col_a").val(data.Pf[0].type) // string or number
+    $("#real-data #dataType_col_b").val(data.Pf[1].type)
 
-    $("#dataType_col_a").val(data.Pf[0].type) // string or number
-    $("#dataType_col_b").val(data.Pf[1].type)
-    // $("#dataType_col_c").val(data.Pf[2].type) // string or number
-    // $("#dataType_col_d").val(data.Pf[3].type)
-     // console.log(data.Pf[0].type)
-     // console.log(data.Pf[1].type)
-
-    $("#col_a_label").attr("value", data.Pf[0].label) // column name
-    $("#col_b_label").attr("value", data.Pf[1].label)
+    $("#real-data #col_a_label").attr("value", data.Pf[0].label) // column name
+    $("#real-data #col_b_label").attr("value", data.Pf[1].label)
   //     console.log(data.Nf[1].c[0].v)
   //     console.log(data.Nf[1].c[1].v)
-    $("#cell_1a").attr("value", data.Nf[0].c[0].v) //first row
-    $("#cell_1b").attr("value", data.Nf[0].c[1].v)
-    // $("#cell_1c").attr("value", data.Nf[0].c[2].v)
-    // $("#cell_1d").attr("value", data.Nf[0].c[3].v)
 
-    $("#cell_2a").attr("value", data.Nf[1].c[0].v) //second row
-    $("#cell_2b").attr("value", data.Nf[1].c[1].v)
-    // $("#cell_2c").attr("value", data.Nf[1].c[2].v)
-    // $("#cell_2d").attr("value", data.Nf[1].c[3].v)
-
-    $("#cell_3a").attr("value", data.Nf[2].c[0].v) //third row
-    $("#cell_3b").attr("value", data.Nf[2].c[1].v)
-    // $("#cell_3c").attr("value", data.Nf[2].c[2].v)
-    // $("#cell_3d").attr("value", data.Nf[2].c[3].v)
-
-    $("#cell_4a").attr("value", data.Nf[3].c[0].v) //fourth row
-    $("#cell_4b").attr("value", data.Nf[3].c[1].v)
-    // $("#cell_4c").attr("value", data.Nf[3].c[2].v)
-    // $("#cell_4d").attr("value", data.Nf[3].c[3].v)
+    // var tot_rows $("tbody > tr[id^='row_']").length -4;
+    // or
+    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+    // var nf_num = last_row -1;
+    for(var i=1;i<=last_row;i++) {
+        $("#real-data #cell_" + i + "_a").attr("value", data.Nf[i-1].c[0].v) //first column
+        $("#real-data #cell_" + i + "_b").attr("value", data.Nf[i-1].c[1].v) //second column
+    }
+    console.log("line 251 HTML...last_row data: " + last_row);
   // //need to have ? true or if else in case object null,nil
-
 }
-
 
 
 function SheetRefresh() { 
