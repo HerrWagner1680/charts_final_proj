@@ -10,22 +10,22 @@ for(var i=97;i<=102;i++) {
 // returns number
 
 //DISABLES INACTIVE CHART TYPES
-$('#real-data select').change(function() {
+$('select').change(function() {
 // $( 'select[name=dataType_col_a] select[name=dataType_col_b]').change(function() {
-  if ($('#real-data select[name=dataType_col_a]').val() == "string" && 
-		$('#real-data select[name=dataType_col_b]').val() == "number") {
-		$("#real-data input[class=no_val_val]").attr('disabled', false);
-		$("#real-data input[class=no_string]").attr('disabled', true);
-  } else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
-	   $('#real-data select[name=dataType_col_b]').val() == "string") {
-		$("#real-data input[type=radio]").attr('disabled', true);
-		$("#real-data input[id=histo2]").attr('disabled', false);
-  } else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
-		$('#real-data select[name=dataType_col_b]').val() == "number") {
-		$("#real-data input[class=no_val_val]").attr('disabled', true);
-		$("#real-data input[class=no_string]").attr('disabled', false);
+  if ($('select[name=dataType_col_a]').val() == "string" && 
+		$('select[name=dataType_col_b]').val() == "number") {
+		$("input[class=no_val_val]").attr('disabled', false);
+		$("input[class=no_string]").attr('disabled', true);
+  } else if ($('select[name=dataType_col_a]').val() == "number" && 
+	   $('select[name=dataType_col_b]').val() == "string") {
+		$("input[type=radio]").attr('disabled', true);
+		$("input[id=histo2]").attr('disabled', false);
+  } else if ($('select[name=dataType_col_a]').val() == "number" && 
+		$('select[name=dataType_col_b]').val() == "number") {
+		$("input[class=no_val_val]").attr('disabled', true);
+		$("input[class=no_string]").attr('disabled', false);
   } else {
-		$("#real-data input[type=radio]").attr('disabled', true);  	
+		$("input[type=radio]").attr('disabled', true);  	
   }
 });
 // END OF - DISABLES INACTIVE CHART TYPES
@@ -121,31 +121,14 @@ function pieRefresh(deg, hole) {
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 					   $('#real-data input[name=col_b_label]').val());
 
-
 		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
-		// var nf_num = last_row -1;
 
 			for(var i=1;i<=last_row;i++) {
-			// $("#cell_" + i + "_a").attr("value", data.Nf[i-1].c[0].v) //first row
-			// $("#cell_" + i + "_b").attr("value", data.Nf[i-1].c[1].v)
 				data.addRows([
 				[($('#real-data input[name=cell_' + i + '_a').val()),
 					parseInt($('#real-data input[name=cell_' + i + '_b').val())]
 				]);
-		      console.log("line 310 PIE_REFRESH sampler js...last_row data: " + last_row);
 			}
-
-		// data.addRows([
-		// 	[($('input[name=cell_1_a]').val()), 
-		// 			parseInt($('input[name=cell_1_b]').val())],
-		// 	[($('input[name=cell_2_a]').val()), 
-		// 			parseInt($('input[name=cell_2_b]').val())],
-		// 	[($('input[name=cell_3_a]').val()), 
-		// 			parseInt($('input[name=cell_3_b]').val())],
-		// 	[($('input[name=cell_4_a]').val()), 
-		// 			parseInt($('input[name=cell_4_b]').val())],
-	 //    ]);
-	    // drawNewChart(data)
 
 	    var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
 
