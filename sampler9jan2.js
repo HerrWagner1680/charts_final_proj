@@ -246,8 +246,8 @@ $("#refresh").click(function(){
 					var valu = $("#real-data #cell_" + i + "_a").val();
 					str_col_array.push(valu);
 				}
-				console.log(str_col_array);
-				console.log("the above is first column - string")
+				// console.log(str_col_array);
+				// console.log("the above is first column - string")
 				        
 		// $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[0].c[0].v)
         // $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[1].c[1].v)
@@ -260,36 +260,46 @@ $("#refresh").click(function(){
                 var somekind_of_array = [];
                 var somekind_of_array_float = [];
             for(var i=1;i<=last_row;i++) {
-            	console.log("i " +i)
-            	console.log("last row " + last_row)
-            	console.log("c_num " + c_num)
+            	// console.log("i " +i)
+            	// console.log("last row " + last_row)
+            	// console.log("c_num " + c_num)
                 // $("#real-data #cell_" + i + "_" + col_letter).attr("value", data.Nf[i-1].c[c_num].v);
                 //getting data for each cell
                 var valu = $("#real-data #cell_" + i + "_" + col_letter).val()
-                console.log($("#real-data #cell_" + i + "_" + col_letter).val());
-                console.log(valu);
-                console.log(col_letter);
+                // console.log($("#real-data #cell_" + i + "_" + col_letter).val());
+                // console.log(valu);
+                // console.log(col_letter);
 
                 // var somekind_of_array = [];
                 somekind_of_array.push(valu);
                 somekind_of_array_float.push(parseFloat(valu));
                 var c_str = (c_num).toString(); 
-                console.log("c_str " + c_str);
+                // console.log("c_str " + c_str);
                 // window["colArray_" + c_str] = somekind_of_array
                 window["colArrayFloat_" + c_str] = somekind_of_array_float;
         		// (global["glob_rowArray" + (c_num + 1)]).push(valu);
         		// console.log(somekind_of_array);
+        		        // console.log("var " + "colArrayFloat_" + c_str)
             };
-	console.log(somekind_of_array);
+
+    console.log(str_col_array);
+	// console.log(somekind_of_array); //this does a string version of numbers
 	console.log(somekind_of_array_float);
-	console.log("LINE 281 " + col_b_num);
+	       //console.log("LINE 281 " + col_b_num);
 	// console.log(colArrayFloat_0);
-	console.log("LINE 283 " + colArrayFloat_1);
+	       //console.log("LINE 283 " + colArrayFloat_1);
+	// console.log(colArrayFloat_2);
+	// console.log(colArrayFloat_3);
 
         col_b_num++;
-        
+            var b_num = parseInt(col_b_num)
+            console.log("colArrayFloat_" + (b_num - 98))
     };
-
+    var b_num = parseInt(col_b_num)
+    console.log(b_num);
+    console.log("col_b_num LINE 298: aka # of number rows: " + parseInt(col_b_num - 98));
+    console.log(colArrayFloat_1)
+    console.log("colArrayFloat_" + (b_num - 98))
     // console.log("LINE 268 window " + colArray_1);
     // console.log(colArray_1)
     // console.log(colArray_2)
