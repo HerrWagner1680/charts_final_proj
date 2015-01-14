@@ -10,6 +10,7 @@
 <script type="text/javascript">
 
  google.load("visualization", '1', {packages:['corechart']});
+ google.load("visualization", "1.1", {packages:["bar"]});
  google.setOnLoadCallback(drawsamplerChart);
 
 function drawsamplerChart() {
@@ -116,7 +117,6 @@ function samplerResponse(response) {
   <tr id="row_2">
     <td class="col_a"><input type="text" id="cell_2_a" name="cell_2_a" value=""></td>
     <td class="col_b"><input type="text" id="cell_2_b" name="cell_2_b" value=""></td>
-
   </tr>
   <tr id="row_3">
     <td class="col_a"><input type="text" id="cell_3_a" name="cell_3_a" value=""></td>
@@ -155,75 +155,21 @@ function samplerResponse(response) {
 <br>
 <br>
 <button id="export_png">EXPORT TO PNG</button>
-
+<!-- 
 <script type="text/javascript" src="draw_new_chart.js"></script>
 <script type="text/javascript" src="sampler9jan2.js"></script>
+<script type="text/javascript" src="add_rem_col_rows.js"></script> -->
 
 <script>
 
-$('#add_col').click(function() {
-    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
-    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-
-    var last_col_int = last_col.charCodeAt(0);
-    var next_col_int = last_col_int +1;
-    var next_col = String.fromCharCode(next_col_int);
-    var next_row = last_row + 1;
-    console.log("next col " + next_col);
-    console.log(last_col_int);
-    console.log(next_col_int);
-
-    $("#real-data tr[id^='row_']").append("<td class='col_" + next_col + 
-      "'><input type='text' id='cell_1_" + next_col + "' name='cell_1_" + next_col + 
-      "' value=''>");
-
-});
-
-$('#remove_col').click(function() {
-    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-    var last_col_int = last_col.charCodeAt(0);
-    if (last_col_int <= 98){ alert("you can not delete any more columns");
-    } else {$("#real-data tr[id^='row_'] td:last-of-type").remove();}
-});
-
-$('#row_add').click(function() {
-
-    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
-    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-    var last_col_int = last_col.charCodeAt(0);
-    var next_col_int = last_col_int + 1;
-    var next_col = String.fromCharCode(next_col_int);
-    var next_row = last_row + 1;
-
-   $("#real-data").append("<tr id='row_" + next_row + "'><td class='col_" + "a" + 
-    "'><input type='text' id='cell_" + next_row + "_" + "a" + "' name='cell_" + next_row + "_" + "a" +"' value=''></td>" +
-    "<td class='col_" + "b" + "'><input type='text' " + 
-    "id='cell_" + next_row + "_" + "b" + "' name='cell_" + next_row + 
-    "_" + "b" + "' value=''></td></tr>")
-});
-
-$('#row_remove').click(function() {
-    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
-    if (last_row <= 1){ alert("you can not delete any more rows");
-    } else { $("tr:last-of-type").remove(); }
-});
-
-// //looping through letters a=65 f=70
-// for(var i=65;i<=70;i++) {
-//     console.log(String.fromCharCode(i));
-//  }
-
-//reverse engineering a letter "a"
-// "a".charCodeAt(0);
-// returns number
-
-//sample capture of id data
-// $('th:last-of-type > input').attr('id').split('_')[1]
-// $('th:last-of-type > input').attr('id').split('_')[2]
+function stackedCheckbox() {
+  $("#select_typ").append("<input id='stack' type='checkbox' name='stacked_column' value='true'></input><label id='stack2'for='stack'>stacked columns</label>");
+};
 
 $('#export_png').click(function(){
   alert("NOTE: Export to PNG STILL UNDER CONSTRUCTION")
 });
+
 
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
 //perhaps you should only ask for the goog sheet key?
@@ -255,13 +201,18 @@ function handleQueryResponse(response) {
 
   var data = response.getDataTable();
 
+  //importing data from URL UPLOAD
     $("#real-data #dataType_col_a").val(data.Pf[0].type) // string or number
     $("#real-data #dataType_col_b").val(data.Pf[1].type)
+
+    // while(current_col_int <= last_col_int){
+    // }
 
     $("#real-data #col_a_label").attr("value", data.Pf[0].label) // column name
     $("#real-data #col_b_label").attr("value", data.Pf[1].label)
   //     console.log(data.Nf[1].c[0].v)
   //     console.log(data.Nf[1].c[1].v)
+
 
     var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
     // var nf_num = last_row -1;
@@ -269,7 +220,8 @@ function handleQueryResponse(response) {
         $("#real-data #cell_" + i + "_a").attr("value", data.Nf[i-1].c[0].v) //first column
         $("#real-data #cell_" + i + "_b").attr("value", data.Nf[i-1].c[1].v) //second column
     }
-    console.log("line 251 HTML...last_row data: " + last_row);
+
+    // console.log("line 251 HTML...last_row data: " + last_row);
   // //need to have ? true or if else in case object null,nil
 }
 
@@ -295,12 +247,12 @@ function ExampleJS(){
 SheetRefresh();
 
 
-//revise is a function in sampler9jan2.js
-$("#slider3").change(revise);
-$("#piehole3").change(revise);
-//NOTE - piehole does not work in 3d mode
-
 </script>
+
+
+<script type="text/javascript" src="draw_new_chart.js"></script>
+<script type="text/javascript" src="sampler9jan2.js"></script>
+<script type="text/javascript" src="add_rem_col_rows.js"></script>
 
 </body>
 </html>

@@ -1,3 +1,34 @@
+function drawChartTest() {
+
+// stackedCheckbox()	
+var data = google.visualization.arrayToDataTable([
+  ['12342', '1234', '23423', '2342'],
+  [2014, 1000, 400, 200],
+  [2015, 1170, 460, 250],
+  [2016, 660, 1120, 300],
+  [2017, 1030, 540, 350]
+]);
+
+var stack = $('input[id=stack]:checkbox:checked').val()
+
+var options = {
+  // chart: {
+  //   title: 'Company Performance',
+  //   subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+  // },
+  // isStacked: true
+    isStacked: stack
+};
+
+$("#stack").click(drawChartTest);
+
+var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
+
+chart.draw(data, options);
+}
+
+
+
 
 function drawNewChart(data) {
 
@@ -18,10 +49,7 @@ function drawNewChart(data) {
     var stepchart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div0'));
     var columnchart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
     var linechart = new google.visualization.LineChart(document.getElementById('chart_div0'));
-    var histogram = new google.visualization.Histogram(document.getElementById('chart_div0'));
- 
     var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
- 
     var scatterchart = new google.visualization.ScatterChart(document.getElementById('chart_div0'));
 
 //FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
@@ -34,7 +62,7 @@ function drawNewChart(data) {
 
 	exportCode (data);
 
-	//READ SELECTED RADIO BUTTONS AND REDRAW CHART
+//READ SELECTED RADIO BUTTONS AND REDRAW CHART
 	switch($('input[name=chart_type]:radio:checked').val()) {
 		case "area":
 			//switch labels
@@ -63,6 +91,7 @@ function drawNewChart(data) {
 			console.log("step switch"); stepchart.draw(data, options);
 			break;
 		case "column":
+			stackedCheckbox()
 			//switch labels
 			var options = {
 					'title': ($('input[name=chart_title]').val()),

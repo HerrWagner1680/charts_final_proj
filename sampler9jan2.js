@@ -11,7 +11,6 @@ for(var i=97;i<=102;i++) {
 
 //DISABLES INACTIVE CHART TYPES
 $('select').change(function() {
-// $( 'select[name=dataType_col_a] select[name=dataType_col_b]').change(function() {
   if ($('select[name=dataType_col_a]').val() == "string" && 
 		$('select[name=dataType_col_b]').val() == "number") {
 		$("input[class=no_val_val]").attr('disabled', false);
@@ -160,6 +159,12 @@ function revise(){
 	pieRefresh(deg, hole);
 };
 
+//revise is a function in sampler9jan2.js
+$("#slider3").change(revise);
+$("#piehole3").change(revise);
+//NOTE - piehole does not work in 3d mode
+
+
 $("#refresh").click(function(){
 	var data = new google.visualization.DataTable();
 
@@ -174,28 +179,97 @@ $("#refresh").click(function(){
 	//REMOVE ANY RANGE SLIDERS
 	$("#rot").remove();
 
+	//REMOVE COLUMN STACK CHECKBOX
+	$("#stack, #stack2").remove();
+
 	// IF ELSE statements for data-type selection
 	if ($('#real-data select[name=dataType_col_a]').val() == "string" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("NO SCATTERCHART. COL_A is string COL_B is number");
-		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
-					   $('#real-data input[name=col_a_label]').val());
-		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
-					   $('#real-data input[name=col_b_label]').val());
 
-		// drawNewChart(data) // makes the columns
-	    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+//EXAMPLES: https://developers.google.com/chart/interactive/docs/examples
 
-	    for(var i=1;i<=last_row;i++) {
-	        var first_cell = $('#real-data input[name=cell_' + i + '_a]').val();
-	        var second_cell = $('#real-data input[name=cell_' + i + '_b]').val();
-	        data.addRows([
-	        	[(first_cell), parseInt(second_cell)]
-	        ]);
-	    }
+//TICKS https://developers.google.com/chart/interactive/docs/gallery/columnchart
+//see h.axis or v.axis ticks
+// getImageURI()   printing PNG charts
+
+
+		// google.setOnLoadCallback(drawChartTest);
+		// drawChartTest();
+		// data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
+		// 			   $('#real-data input[name=col_a_label]').val());
+		// data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
+		// 			   $('#real-data input[name=col_b_label]').val());
+		// data.addColumn($('number','column c'));
+
+		// var columnArray= ['string','col1', 'number','col2', 'number','col3']
+
+//XXXXXXXXXXX
+		// data.addColumn('string', 'col1')
+		// data.addColumn('number', 'col2')
+		// data.addColumn('number', 'col3')
+
+//XXXXXXXXXXX
+
+
+
+		// var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+  //   	var last_col_int = last_col.charCodeAt(0);
+  //   	var col_a_int = 97;
+		// var current_col_int = 99 // 99 is value for letter "c"
+
+		//*****************
+		//this while loop assigns type number to any additional columns
+		// while(current_col_int <= last_col_int){
+		// 	var current_col = String.fromCharCode(current_col_int);
+		// 	console.log("curr_column in type: " +current_col);
+		// 	data.addColumn("number","column: " + current_col);
+		// 	current_col_int++;
+  //   	}  //NOTE - both datatype and label are string values
+  	//************************
+
+	  //   var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+	  //   var dataArray = []
+	  //   for(var i=1;i<=last_row;i++) {
+	  //       var first_cell = $('#real-data input[name=cell_' + i + '_a]').val();
+	  //       var second_cell = $('#real-data input[name=cell_' + i + '_b]').val();
+
+	  //       // var rowArray = [(first_cell), parseInt(second_cell)];
+	  //       var rowArray = []
+	  //       console.log("i:" + i)
+	  //       console.log(current_col_int)
+	  //       console.log(current_col)
+	  //       console.log(last_col_int)
+	  //       while(col_a_int <= last_col_int){
+	  //       	var current_col = String.fromCharCode(col_a_int);
+	  //       	var num = $('#real-data input[name=cell_' + i + '_' + current_col + ']').val();
+	  //       	console.log(num);
+	  //       	rowArray.push(num);
+	  //       	console.log("rowArray: " + rowArray)
+	  //       	col_a_int++;
+	  //       }
+	  //       // data.addRows([
+	  //       // 	rowArray
+	  //       // ]);
+			// dataArray.push(rowArray);
+	  //   }
+  //XXXXXXXXXXXXXX
+  //XXXXXXXXXXXXXXXXX
+	  	// data.addRows([
+	  	// 	['asdf', 23, 56],
+	  	// 	['aswef', 3, 62],
+	  	// 	['qwdf', 29, 563],
+	  	// 	['aszz', 33, 526],
+	  	// 	]);
+		stackedCheckbox()
+	  	drawChartTest()
+  	//XXXXXXXXXXXXXXXXXX
+	    // data.addColumn(dataArray);
+
 
 	    // drawNewChart(data, rotate_slider, piehole_slider); // adds the rows
-	    drawNewChart(data);
+	    
+	    // drawNewChart(data);
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("does NOT work with stepchart or piechart ...number number");
@@ -213,7 +287,7 @@ $("#refresh").click(function(){
 			[parseInt($('#real-data input[name=cell_' + i + '_a').val()),
 				parseInt($('#real-data input[name=cell_' + i + '_b').val())]
 			]);
-            console.log("line 420 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
+            console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}
 
 		// drawNewChart(data, rotate_slider, piehole_slider); // adds the rows
@@ -226,8 +300,6 @@ $("#refresh").click(function(){
 
 });
 	// automate the choice by looking for NaN 
-
-	// is there a way to refactor using variables?
 
 // to show error in HTML
 // http://stackoverflow.com/questions/14702190/to-show-error-message-without-alert-box-in-java-script
