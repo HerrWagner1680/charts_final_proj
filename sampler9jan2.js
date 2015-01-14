@@ -1,14 +1,3 @@
-
-
-// //looping through letters a=97 f=102
-// for(var i=97;i<=102;i++) {
-//     console.log(String.fromCharCode(i));
-//  }
-
-//reverse engineering a letter "a"
-// "a".charCodeAt(0);
-// returns number
-
 //DISABLES INACTIVE CHART TYPES
 $('select').change(function() {
   if ($('select[name=dataType_col_a]').val() == "string" && 
@@ -115,6 +104,7 @@ function exportCode (data) {
 function pieRefresh(deg, hole) {
 	var data = new google.visualization.DataTable();
 		console.log("pie refresh function")
+
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 					   $('#real-data input[name=col_a_label]').val());
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
@@ -168,11 +158,7 @@ $("#piehole3").change(revise);
 $("#refresh").click(function(){
 	var data = new google.visualization.DataTable();
 
-	//current pie slider numbers
-	// var rotate_slider = $("#rangeValue3").val();
-	// var piehole_slider = $("#holeRange3").val();
-	// console.log(rotate_slider);
-	// console.log(piehole_slider);
+//CHECK FOR "IGNORE" data types and somehow remove them
 
 	console.log("refresh")
 
@@ -194,25 +180,123 @@ $("#refresh").click(function(){
 // getImageURI()   printing PNG charts
 
 
-		// google.setOnLoadCallback(drawChartTest);
-		// drawChartTest();
 		// data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 		// 			   $('#real-data input[name=col_a_label]').val());
+		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
+			   $('#real-data input[name=col_a_label]').val());
+		console.log("string line 187")
+    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+
+    var last_col_int = last_col.charCodeAt(0);
+		  var pf_num = 1
+		  while(col_a_int +1 <= last_col_int){
+		      var col_letter = String.fromCharCode(col_a_int);
+		      console.log(col_a_int);
+		      console.log(pf_num);
+		      console.log(data.Pf[0].type)
+		      console.log(data.Pf[1].type)
+		      var lab = $("#real-data #dataType_col_" + col_letter).val(data.Pf[pf_num].type);
+		      data.addColumn("number", lab);
+		      console.log("var label: " + lab)
+		      col_a_int++;
+		      pf_num++;
+		  };
 		// data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 		// 			   $('#real-data input[name=col_b_label]').val());
 		// data.addColumn('column c');
 
 		// var columnArray= ['string','col1', 'number','col2', 'number','col3']
-		console.log("hit line 206")
+		console.log("hit line 196")
 //XXXXXXXXXXX
-		data.addColumn('number','col1')
-		data.addColumn('number','col2')
-		data.addColumn('number','col3')
+		// data.addColumn('number','col1')
+		// data.addColumn('number','col2')
+		// data.addColumn('number','col3')
 
 //XXXXXXXXXXX
-		console.log("hit line 213")
+		console.log("hit line 203")
+
+		var rowArray1 = [] // array for row 1
+		var rowArray2 = [] // array for row 2
+		var rowArray3 = [] // array for row 3
+
+		var rowArray = [] // array of arrays - rem end each array var with comma
 
 
+
+
+
+    var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
+
+
+	var col_a_int = 97; //reset var
+	var col_b_num = 98;
+    while(col_b_num <= last_col_int){
+        var col_letter = String.fromCharCode(col_a_int);
+        var c_num = col_b_num; //rem first col is string
+
+        // console.log("LINE238 col_b_num " + col_b_num);
+        // console.log("LINE239 last_col_int " + last_col_int);
+
+
+        // window["wind_rowArray" + (c_num)] = [];
+        // global["glob_rowArray" + (c_num + 1)] = [];
+				var str_col_array = [];
+				for(var i=1;i<=last_row;i++) {
+					var valu = $("#real-data #cell_" + i + "_a").val();
+					str_col_array.push(valu);
+				}
+				console.log(str_col_array);
+				console.log("the above is first column - string")
+				        
+		// $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[0].c[0].v)
+        // $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[1].c[1].v)
+        // $("#real-data #cell_3_"+col_letter).attr("value",data.Nf[2].c[0].v)
+        // $("#real-data #cell_3_"+col_letter).attr("value",data.Nf[3].c[1].v)
+
+        var col_letter = String.fromCharCode(col_b_num);
+        var c_num = col_b_num - 97; //rem first col is string
+        console.log("LINE 254 col b num:" + col_b_num);
+                var somekind_of_array = [];
+                var somekind_of_array_float = [];
+            for(var i=1;i<=last_row;i++) {
+            	console.log("i " +i)
+            	console.log("last row " + last_row)
+            	console.log("c_num " + c_num)
+                // $("#real-data #cell_" + i + "_" + col_letter).attr("value", data.Nf[i-1].c[c_num].v);
+                //getting data for each cell
+                var valu = $("#real-data #cell_" + i + "_" + col_letter).val()
+                console.log($("#real-data #cell_" + i + "_" + col_letter).val());
+                console.log(valu);
+                console.log(col_letter);
+
+                // var somekind_of_array = [];
+                somekind_of_array.push(valu);
+                somekind_of_array_float.push(parseFloat(valu));
+                var c_str = (c_num).toString(); 
+                console.log("c_str " + c_str);
+                // window["colArray_" + c_str] = somekind_of_array
+                window["colArrayFloat_" + c_str] = somekind_of_array_float;
+        		// (global["glob_rowArray" + (c_num + 1)]).push(valu);
+        		// console.log(somekind_of_array);
+            };
+	console.log(somekind_of_array);
+	console.log(somekind_of_array_float);
+	console.log("LINE 281 " + col_b_num);
+	// console.log(colArrayFloat_0);
+	console.log("LINE 283 " + colArrayFloat_1);
+
+        col_b_num++;
+        
+    };
+
+    // console.log("LINE 268 window " + colArray_1);
+    // console.log(colArray_1)
+    // console.log(colArray_2)
+    // colArray_1
+    // var yada = [colArray_1]
+    // console.log(yada);
+    // console.log("global " + glob_rowArray1);
 		// var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
   //   	var last_col_int = last_col.charCodeAt(0);
   //   	var col_a_int = 97;
@@ -255,12 +339,12 @@ $("#refresh").click(function(){
 	  //   }
   //XXXXXXXXXXXXXX
   //XXXXXXXXXXXXXXXXX
-	  	data.addRows([
-	  		['asdf', 23, 56],
-	  		['aswef', 3, 62],
-	  		['qwdf', 29, 563],
-	  		['aszz', 33, 526],
-	  		]);
+	  	// data.addRows([
+	  	// 	['asdf', 23, 56],
+	  	// 	['aswef', 3, 62],
+	  	// 	['qwdf', 29, 563],
+	  	// 	['aszz', 33, 526],
+	  	// 	]);
 	//	stackedCheckbox()
 	//  	drawChartTest()
   	//XXXXXXXXXXXXXXXXXX

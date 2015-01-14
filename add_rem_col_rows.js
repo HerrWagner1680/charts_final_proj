@@ -21,8 +21,8 @@ $('#add_col').click(function() {
 
     var current_row = 1
     while(current_row <= last_row){
-        console.log("curr ROW: " + current_row);
-        console.log("last ROW: " + last_row);
+        // console.log("curr ROW: " + current_row);
+        // console.log("last ROW: " + last_row);
     $("#real-data #row_" + current_row).append("<td class='col_" + next_col + 
       "'><input type='text' id='cell_" + current_row + "_" + next_col + "' name='cell_" +
       "current_row" + "_" + next_col + "' value=''>");

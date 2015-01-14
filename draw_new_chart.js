@@ -1,5 +1,7 @@
 function drawChartTest() {
 
+	console.log("RUNNING drawChartTest function")
+
 	// stackedCheckbox()	
 	var data = google.visualization.arrayToDataTable([
 	  ['12342', '1234', '23423', '2342'],
@@ -30,9 +32,6 @@ function drawChartTest() {
 
 	chart.draw(data, options);
 }
-
-
-
 
 function drawNewChart(data) {
 
