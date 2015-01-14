@@ -1,9 +1,9 @@
 
 
-//looping through letters a=97 f=102
-for(var i=97;i<=102;i++) {
-    console.log(String.fromCharCode(i));
- }
+// //looping through letters a=97 f=102
+// for(var i=97;i<=102;i++) {
+//     console.log(String.fromCharCode(i));
+//  }
 
 //reverse engineering a letter "a"
 // "a".charCodeAt(0);
@@ -200,17 +200,17 @@ $("#refresh").click(function(){
 		// 			   $('#real-data input[name=col_a_label]').val());
 		// data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 		// 			   $('#real-data input[name=col_b_label]').val());
-		// data.addColumn($('number','column c'));
+		// data.addColumn('column c');
 
 		// var columnArray= ['string','col1', 'number','col2', 'number','col3']
+		console.log("hit line 206")
+//XXXXXXXXXXX
+		data.addColumn('number','col1')
+		data.addColumn('number','col2')
+		data.addColumn('number','col3')
 
 //XXXXXXXXXXX
-		// data.addColumn('string', 'col1')
-		// data.addColumn('number', 'col2')
-		// data.addColumn('number', 'col3')
-
-//XXXXXXXXXXX
-
+		console.log("hit line 213")
 
 
 		// var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
@@ -255,21 +255,21 @@ $("#refresh").click(function(){
 	  //   }
   //XXXXXXXXXXXXXX
   //XXXXXXXXXXXXXXXXX
-	  	// data.addRows([
-	  	// 	['asdf', 23, 56],
-	  	// 	['aswef', 3, 62],
-	  	// 	['qwdf', 29, 563],
-	  	// 	['aszz', 33, 526],
-	  	// 	]);
-		stackedCheckbox()
-	  	drawChartTest()
+	  	data.addRows([
+	  		['asdf', 23, 56],
+	  		['aswef', 3, 62],
+	  		['qwdf', 29, 563],
+	  		['aszz', 33, 526],
+	  		]);
+	//	stackedCheckbox()
+	//  	drawChartTest()
   	//XXXXXXXXXXXXXXXXXX
 	    // data.addColumn(dataArray);
 
 
 	    // drawNewChart(data, rotate_slider, piehole_slider); // adds the rows
 	    
-	    // drawNewChart(data);
+	     drawNewChart(data);
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("does NOT work with stepchart or piechart ...number number");

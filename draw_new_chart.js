@@ -1,30 +1,34 @@
 function drawChartTest() {
 
-// stackedCheckbox()	
-var data = google.visualization.arrayToDataTable([
-  ['12342', '1234', '23423', '2342'],
-  [2014, 1000, 400, 200],
-  [2015, 1170, 460, 250],
-  [2016, 660, 1120, 300],
-  [2017, 1030, 540, 350]
-]);
+	// stackedCheckbox()	
+	var data = google.visualization.arrayToDataTable([
+	  ['12342', '1234', '23423', '2342'],
+	  [2014, 1000, 400, 200],
+	  [2015, 1170, 460, 250],
+	  [2016, 660, 1120, 300],
+	  [2017, 1030, 540, 350]
+	]);
 
-var stack = $('input[id=stack]:checkbox:checked').val()
+	var wid = $("#width_chart").val()
+	var hei = $("#height_chart").val()
 
-var options = {
-  // chart: {
-  //   title: 'Company Performance',
-  //   subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-  // },
-  // isStacked: true
-    isStacked: stack
-};
+	var stack = $('input[id=stack]:checkbox:checked').val()
 
-$("#stack").click(drawChartTest);
+	var options = {
+	  	'height': hei,
+	  	'width': wid,
+	    isStacked: stack
+	};
 
-var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
+	console.log(hei);
+	console.log(wid);
 
-chart.draw(data, options);
+
+	$("#stack").click(drawChartTest);
+
+	var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
+
+	chart.draw(data, options);
 }
 
 
@@ -32,15 +36,17 @@ chart.draw(data, options);
 
 function drawNewChart(data) {
 
-	// if(rotate_slider='undefined'){ var rotate_slider=0 }
-	// if(piehole_slider='undefined'){ var piehole_slider=0 }
+	var wid = $("#width_chart").val()
+	var hei = $("#height_chart").val()
+
+	var stack = $('input[id=stack]:checkbox:checked').val()
 
 	var options = {
 			'title': ($('input[name=chart_title]').val()),
 		    vAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 		    hAxis: {title: ($('#real-data input[name=col_b_label]').val())},
-	              	'width':500,
-	              	'height':400
+	              	'width':wid,
+	              	'height':hei
 	              };
 
 //ASSIGNING METHOD NAMES FOR EACH GOOGLE CHART
@@ -70,8 +76,8 @@ function drawNewChart(data) {
 					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
-	              	'width':500,
-	              	'height':400
+	              	'width': wid,
+	              	'height': hei
 	              };
 
 			console.log("area switch"); areachart.draw(data, options);
@@ -85,8 +91,8 @@ function drawNewChart(data) {
 					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
-	              	'width':500,
-	              	'height':400
+	              	'width': wid,
+	              	'height': hei
 	              };
 			console.log("step switch"); stepchart.draw(data, options);
 			break;
@@ -97,8 +103,8 @@ function drawNewChart(data) {
 					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
-	              	'width':500,
-	              	'height':400
+	              	'width': wid,
+	              	'height': hei
 	              };
 			console.log("column switch"); columnchart.draw(data, options);
 			break;
@@ -108,8 +114,8 @@ function drawNewChart(data) {
 					'title': ($('#real-data input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
-	              	'width':500,
-	              	'height':400
+	              	'width': wid,
+	              	'height': hei
 	              };
 			console.log("line switch"); linechart.draw(data, options);
 			break;

@@ -12,9 +12,22 @@ $('#add_col').click(function() {
     console.log(last_col_int);
     console.log(next_col_int);
 
-    $("#real-data tr[id^='row_']").append("<td class='col_" + next_col + 
-      "'><input type='text' id='cell_1_" + next_col + "' name='cell_1_" + next_col + 
-      "' value=''>");
+    $('#real-data #labels').append("<th><input type='text' id='col_" + next_col + 
+        "_label' name='col_" + next_col + "_label' value=' Column " + (next_col).toUpperCase() + "'></th>");
+    $('#real-data #data_types').append("<th><select id='dataType_col_" + next_col + 
+        "' name='dataType_col_" + next_col + "' required><option value = 'number'>number</option>" + 
+    "<option value = ''> - select data type - </option>" + 
+    "<option value = 'ignore'>ignore</option></select></th>");
+
+    var current_row = 1
+    while(current_row <= last_row){
+        console.log("curr ROW: " + current_row);
+        console.log("last ROW: " + last_row);
+    $("#real-data #row_" + current_row).append("<td class='col_" + next_col + 
+      "'><input type='text' id='cell_" + current_row + "_" + next_col + "' name='cell_" +
+      "current_row" + "_" + next_col + "' value=''>");
+         current_row++;
+     };
 
 });
 
@@ -35,15 +48,18 @@ $('#row_add').click(function() {
     var next_col = String.fromCharCode(next_col_int);
     var next_row = last_row + 1;
 
-    console.log(next_row);
+    console.log("next row:" + next_row);
 
     //create empty new table row
     $("#real-data").append("<tr id='row_" + next_row + "'></td>");
 
     var col_a_int = 97;
+    
 
     while(col_a_int <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
+        console.log("col letter " + col_letter);
+        console.log("next_row " + next_row);
         $("#real-data tr:last-of-type").append("<td class='col_" + col_letter + 
           "'><input type='text' id='cell_" + next_row + "_" + col_letter + 
           "' name='cell_" + next_row + "_" + col_letter +"' value=''></td>");
