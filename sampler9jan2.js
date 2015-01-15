@@ -154,9 +154,31 @@ $("#slider3").change(revise);
 $("#piehole3").change(revise);
 //NOTE - piehole does not work in 3d mode
 
-
 $("#refresh").click(function(){
 	var data = new google.visualization.DataTable();
+
+	// drawChartTest()
+
+	// reviseColumn()
+
+    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+    var last_col_integer = last_col.charCodeAt(0) + 1;
+	var col_a_int = 97;
+
+	var TOT_COL = last_col_integer - col_a_int;
+	alert("total # columns " + TOT_COL);
+
+
+	if (TOT_COL >= 3 && $('input[id="col2"]').attr("checked")=="checked") {
+		alert("still looking for a clicked stacked box");
+		// reviseColumn();
+	} 	else {
+		alert("REFRESHED WITH 3 or more columns!!!!!!");
+			// reviseColumn();
+	}
+
+
+
 
 //CHECK FOR "IGNORE" data types and somehow remove them
 
@@ -209,7 +231,7 @@ $("#refresh").click(function(){
 		      // var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val(data.Pf[pf_num].type);
 		      var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val();
 		      data.addColumn("number", lab);
-		      console.log("var label: " + lab) //result should be number
+		      console.log("var label: " + lab); //result should be number
 		      col_b_num++;
 		      pf_num++;
 		  };
@@ -229,7 +251,7 @@ $("#refresh").click(function(){
 
 					var str_col_a = []
 					var str_col_array = [];
-					
+
 				for(var i=1;i<=last_row;i++) {
 					var valu = $("#real-data #cell_" + i + "_a").val();
 					str_col_a.push(valu);
@@ -323,7 +345,7 @@ console.log("the whole: " + kitchenSink)
 	  	// 	['qwdf', 345],
 	  	// 	['aszz', 23],
 	  	// 	]);
-	//	stackedCheckbox()
+	//	stackedCheckboxAppears()
 	//  	drawChartTest()
   	//XXXXXXXXXXXXXXXXXX
 	    // data.addColumn(dataArray);

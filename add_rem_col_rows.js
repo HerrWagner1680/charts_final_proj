@@ -29,13 +29,40 @@ $('#add_col').click(function() {
          current_row++;
      };
 
+    if($('#stack').size() == 0 && next_col_int >= 99 && document.getElementById('col2').checked==true) {
+        stackedCheckboxAppears();
+    }
+
+});
+
+$('#col2').click(function(){
+    // alert("clicked on column")
+    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+    var last_col_int = last_col.charCodeAt(0);
+    var next_col_int = last_col_int +1;
+        if($('#stack').size() == 0 && next_col_int >= 99 && document.getElementById('col2').checked==true) { 
+        stackedCheckboxAppears();
+        }
+});
+
+$('#area2, #bar2, #step2, #line2, #pie2, #scatter2, #lin2, #exp, #poly2').click(function(){
+    $('#stack, #stack2').remove();
 });
 
 $('#remove_col').click(function() {
     var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
     var last_col_int = last_col.charCodeAt(0);
-    if (last_col_int <= 98){ alert("you can not delete any more columns");
-    } else {$("#real-data tr[id^='row_'] td:last-of-type").remove();}
+    if (last_col_int <= 98){ 
+            alert("you can not delete any more columns");
+    } else if (last_col_int == 99){             
+            $('#stack, #stack2').remove();
+            $("#real-data tr[id^='row_'] td:last-of-type").remove();
+            $("#real-data tr[id='labels'] th:last-of-type").remove();
+            $("#real-data tr[id='data_types'] th:last-of-type").remove();
+    } else {$("#real-data tr[id^='row_'] td:last-of-type").remove();
+            $("#real-data tr[id='labels'] th:last-of-type").remove();
+            $("#real-data tr[id='data_types'] th:last-of-type").remove();
+    }
 });
 
 //REMINDER - create a maximum number of rows that user may not exceed
