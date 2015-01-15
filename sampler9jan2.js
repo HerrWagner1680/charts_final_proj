@@ -184,176 +184,154 @@ $("#refresh").click(function(){
 		// 			   $('#real-data input[name=col_a_label]').val());
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 			   $('#real-data input[name=col_a_label]').val());
+		data.addColumn("number", 'yada');
+
+
 		console.log("string line 187")
     var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
 
-    var last_col_int = last_col.charCodeAt(0);
-		  var pf_num = 1
-		  while(col_a_int +1 <= last_col_int){
-		      var col_letter = String.fromCharCode(col_a_int);
-		      console.log(col_a_int);
-		      console.log(pf_num);
-		      console.log(data.Pf[0].type)
-		      console.log(data.Pf[1].type)
-		      var lab = $("#real-data #dataType_col_" + col_letter).val(data.Pf[pf_num].type);
-		      data.addColumn("number", lab);
-		      console.log("var label: " + lab)
-		      col_a_int++;
-		      pf_num++;
-		  };
+     var last_col_int = last_col.charCodeAt(0);
+		  // var pf_num = 1
+		  // while(col_a_int +1 <= last_col_int){
+		  //     var col_letter = String.fromCharCode(col_a_int);
+		  //     console.log("col_a_int " + col_a_int);
+		  //     console.log(pf_num);
+		  //     console.log(data.Pf[0].type)
+		  //     console.log(data.Pf[1].type)
+		  //     var lab = $("#real-data #dataType_col_" + col_letter).val(data.Pf[pf_num].type);
+		  //     data.addColumn("number", lab);
+		  //     console.log("var label: " + lab)
+		  //     col_a_int++;
+		  //     pf_num++;
+		  // };
+
+
+
+
+
 		// data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 		// 			   $('#real-data input[name=col_b_label]').val());
-		// data.addColumn('column c');
 
-		// var columnArray= ['string','col1', 'number','col2', 'number','col3']
-		console.log("hit line 196")
-//XXXXXXXXXXX
 		// data.addColumn('number','col1')
 		// data.addColumn('number','col2')
 		// data.addColumn('number','col3')
 
-//XXXXXXXXXXX
-		console.log("hit line 203")
-
-		var rowArray1 = [] // array for row 1
-		var rowArray2 = [] // array for row 2
-		var rowArray3 = [] // array for row 3
-
-		var rowArray = [] // array of arrays - rem end each array var with comma
-
-
-
-
 
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
 
-
 	var col_a_int = 97; //reset var
 	var col_b_num = 98;
-    while(col_b_num <= last_col_int){
-        var col_letter = String.fromCharCode(col_a_int);
-        var c_num = col_b_num; //rem first col is string
 
-        // console.log("LINE238 col_b_num " + col_b_num);
-        // console.log("LINE239 last_col_int " + last_col_int);
+	var num_of_rows = last_row;
 
-
-        // window["wind_rowArray" + (c_num)] = [];
-        // global["glob_rowArray" + (c_num + 1)] = [];
-				var str_col_array = [];
+					var str_col_a = []
+					var str_col_array = [];
 				for(var i=1;i<=last_row;i++) {
 					var valu = $("#real-data #cell_" + i + "_a").val();
-					str_col_array.push(valu);
+					str_col_a.push(valu);
 				}
-				// console.log(str_col_array);
-				// console.log("the above is first column - string")
-				        
-		// $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[0].c[0].v)
-        // $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[1].c[1].v)
-        // $("#real-data #cell_3_"+col_letter).attr("value",data.Nf[2].c[0].v)
-        // $("#real-data #cell_3_"+col_letter).attr("value",data.Nf[3].c[1].v)
+				str_col_array = [str_col_a];
+
+    while(col_b_num <= last_col_int){
+        var col_letter = String.fromCharCode(col_a_int);
 
         var col_letter = String.fromCharCode(col_b_num);
         var c_num = col_b_num - 97; //rem first col is string
         console.log("LINE 254 col b num:" + col_b_num);
                 var somekind_of_array = [];
                 var somekind_of_array_float = [];
+
             for(var i=1;i<=last_row;i++) {
-            	// console.log("i " +i)
-            	// console.log("last row " + last_row)
-            	// console.log("c_num " + c_num)
-                // $("#real-data #cell_" + i + "_" + col_letter).attr("value", data.Nf[i-1].c[c_num].v);
-                //getting data for each cell
                 var valu = $("#real-data #cell_" + i + "_" + col_letter).val()
-                // console.log($("#real-data #cell_" + i + "_" + col_letter).val());
-                // console.log(valu);
-                // console.log(col_letter);
-
-                // var somekind_of_array = [];
-                somekind_of_array.push(valu);
+                // somekind_of_array.push(valu);
                 somekind_of_array_float.push(parseFloat(valu));
-                var c_str = (c_num).toString(); 
-                // console.log("c_str " + c_str);
-                // window["colArray_" + c_str] = somekind_of_array
-                window["colArrayFloat_" + c_str] = somekind_of_array_float;
-        		// (global["glob_rowArray" + (c_num + 1)]).push(valu);
-        		// console.log(somekind_of_array);
-        		        // console.log("var " + "colArrayFloat_" + c_str)
-            };
+                // var c_str = (c_num).toString(); 
+                // window["colArrayFloat_" + c_str] = somekind_of_array_float;
 
-    console.log(str_col_array);
-	// console.log(somekind_of_array); //this does a string version of numbers
-	console.log(somekind_of_array_float);
-	       //console.log("LINE 281 " + col_b_num);
+            };//END OF FOR LOOP
+
+    console.log(str_col_array);//THE WINNER!!!!!!!********
+
+	// console.log(somekind_of_array_float);
+
 	// console.log(colArrayFloat_0);
-	       //console.log("LINE 283 " + colArrayFloat_1);
+	 //console.log(colArrayFloat_1);
 	// console.log(colArrayFloat_2);
 	// console.log(colArrayFloat_3);
+	str_col_array.push(somekind_of_array_float);
 
         col_b_num++;
-            var b_num = parseInt(col_b_num)
-            console.log("colArrayFloat_" + (b_num - 98))
-    };
-    var b_num = parseInt(col_b_num)
-    console.log(b_num);
-    console.log("col_b_num LINE 298: aka # of number rows: " + parseInt(col_b_num - 98));
-    console.log(colArrayFloat_1)
-    console.log("colArrayFloat_" + (b_num - 98))
-    // console.log("LINE 268 window " + colArray_1);
-    // console.log(colArray_1)
-    // console.log(colArray_2)
-    // colArray_1
-    // var yada = [colArray_1]
-    // console.log(yada);
-    // console.log("global " + glob_rowArray1);
-		// var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-  //   	var last_col_int = last_col.charCodeAt(0);
-  //   	var col_a_int = 97;
-		// var current_col_int = 99 // 99 is value for letter "c"
 
-		//*****************
-		//this while loop assigns type number to any additional columns
-		// while(current_col_int <= last_col_int){
-		// 	var current_col = String.fromCharCode(current_col_int);
-		// 	console.log("curr_column in type: " +current_col);
-		// 	data.addColumn("number","column: " + current_col);
-		// 	current_col_int++;
-  //   	}  //NOTE - both datatype and label are string values
-  	//************************
+            // var b_num = parseInt(col_b_num)
+            // console.log("colArrayFloat_" + (b_num - 98))
 
-	  //   var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
-	  //   var dataArray = []
-	  //   for(var i=1;i<=last_row;i++) {
-	  //       var first_cell = $('#real-data input[name=cell_' + i + '_a]').val();
-	  //       var second_cell = $('#real-data input[name=cell_' + i + '_b]').val();
+    };//END OF WHILE LOOP
 
-	  //       // var rowArray = [(first_cell), parseInt(second_cell)];
-	  //       var rowArray = []
-	  //       console.log("i:" + i)
-	  //       console.log(current_col_int)
-	  //       console.log(current_col)
-	  //       console.log(last_col_int)
-	  //       while(col_a_int <= last_col_int){
-	  //       	var current_col = String.fromCharCode(col_a_int);
-	  //       	var num = $('#real-data input[name=cell_' + i + '_' + current_col + ']').val();
-	  //       	console.log(num);
-	  //       	rowArray.push(num);
-	  //       	console.log("rowArray: " + rowArray)
-	  //       	col_a_int++;
-	  //       }
-	  //       // data.addRows([
-	  //       // 	rowArray
-	  //       // ]);
-			// dataArray.push(rowArray);
-	  //   }
-  //XXXXXXXXXXXXXX
-  //XXXXXXXXXXXXXXXXX
+    // var b_num = parseInt(col_b_num);
+    console.log("outside of the loop: " + str_col_array);
+
+//make an array of the arraynames?
+//you could EXCLUDE ANY ON IGNORE data type
+
+var num_of_cols = (str_col_array.length);
+st = str_col_array;
+console.log("num_of_rows: " + num_of_rows);
+console.log("num_of_cols: " + num_of_cols);
+// break
+//the colArrayFloats must be created BEFORE THE INDEX FOR LOOP
+// var fullArray = [str_col_array]
+var kitchenSink = []
+var kitchenSink2 = []
+var stuff =[]
+     for(var k=0; k<= num_of_rows -1; k++){
+var stuff =[]
+
+     	for(var i=0; i<= num_of_cols -1; i++){
+     		console.log(str_col_array);
+     		console.log(st);
+	     		stuff.push(st[i][k]);
+				window["row_of_data_" + (k).toString() ] = [stuff];
+	     		console.log(stuff);
+     	}
+
+     	 kitchenSink.push(stuff);
+
+
+// window["row_of_data_" + (k).toString() ] = [stuff];
+// 		kitchenSink2.push(window["row_of_data_" + (k).toString() ]);
+//      	// console.log(stuff);
+// 		console.log(window["row_of_data_" + (k).toString() ]);
+// break
+
+     }
+console.log(kitchenSink)
+
+console.log("the whole: " + kitchenSink)
+
+//     	var in_str = (i).toString(); 
+//     	// var array =[]
+//     	var caf_val = ("colArrayFloat_" + in_str);
+//     	fullArray.push(caf_val);
+//     	//array starts [
+//     	// str_col_array[i],
+// //("colArrayFloat_" + (b_num - 98))[i]
+// //NOTE _ IF THAT colArray doesnt work = do a kind of constantly resetting local var equal to it
+	 data.addRows( kitchenSink );
+
+// var aa = ['asdf', 23]
+// var bb = ['aswe', 3]
+// var cc = ['sdfw', 45]
+// var dd = ['gdsd', 35]
+// var theLot = [aa, bb, cc, dd]
+// //   //XXXXXXXXXXXXXX
+// //   //XXXXXXXXXXXXXXXXX
+//   data.addRows(theLot);
 	  	// data.addRows([
-	  	// 	['asdf', 23, 56],
-	  	// 	['aswef', 3, 62],
-	  	// 	['qwdf', 29, 563],
-	  	// 	['aszz', 33, 526],
+	  	// 	['asdf', 38],
+	  	// 	['aswef', 234],
+	  	// 	['qwdf', 345],
+	  	// 	['aszz', 23],
 	  	// 	]);
 	//	stackedCheckbox()
 	//  	drawChartTest()
