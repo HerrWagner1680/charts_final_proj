@@ -33,7 +33,7 @@ function drawChartTest() {
 	chart.draw(data, options);
 }
 
-function drawNewChart(data) {
+function drawNewChart(data, check) {
 
 	var wid = $("#width_chart").val()
 	var hei = $("#height_chart").val()
@@ -97,13 +97,15 @@ function drawNewChart(data) {
 			break;
 		case "column":
 			stackedCheckboxAppears()
+			$('input[id=stack]').attr('checked',check)
 			//switch labels
 			var options = {
 					'title': ($('input[name=chart_title]').val()),
 				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
 				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
 	              	'width': wid,
-	              	'height': hei
+	              	'height': hei,
+	              	isStacked: check
 	              };
 			console.log("column switch"); columnchart.draw(data, options);
 			break;
@@ -158,6 +160,9 @@ function drawNewChart(data) {
 				'title': ($('input[name=chart_title]').val()),
 		    	vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 		    	hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+	              	'width': wid,
+	              	'height': hei
+
 			};
 		     scatterchart.draw(data, options);   // str/val ONLY
 			break;
@@ -167,6 +172,10 @@ function drawNewChart(data) {
 				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+	              	'width': wid,
+	              	'height': hei,
+
+
 			    trendlines: {
 			      0: {
 			         type: 'linear',
@@ -181,6 +190,11 @@ function drawNewChart(data) {
 				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+
+	              	'width': wid,
+	              	'height': hei,
+
+
 			    trendlines: {
 			      0: {
 			        type: 'exponential',
@@ -194,6 +208,11 @@ function drawNewChart(data) {
 				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+	              	'width': wid,
+	              	'height': hei,
+
+
+
 			    trendlines: {
 			      0: {
 			        type: 'polynomial',
@@ -237,4 +256,4 @@ function reviseColumn() {
 	              	// isStacked: true
 	              };
 			console.log("revise column"); columnchart.draw(data, options);
-}
+};

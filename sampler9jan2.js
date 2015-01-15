@@ -105,6 +105,7 @@ function pieRefresh(deg, hole) {
 	var data = new google.visualization.DataTable();
 		console.log("pie refresh function")
 
+		//NOTE - PIE ONLY TAKES TWO COLUMNS OF DATA
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 					   $('#real-data input[name=col_a_label]').val());
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
@@ -168,16 +169,12 @@ $("#refresh").click(function(){
 	var TOT_COL = last_col_integer - col_a_int;
 	alert("total # columns " + TOT_COL);
 
-
-	if (TOT_COL >= 3 && $('input[id="col2"]').attr("checked")=="checked") {
-		alert("still looking for a clicked stacked box");
-		// reviseColumn();
-	} 	else {
-		alert("REFRESHED WITH 3 or more columns!!!!!!");
-			// reviseColumn();
-	}
-
-
+	if($('input[id=stack]:checkbox:checked').val()=='true'){
+		alert("we have a clicked box we need to keep")
+		check = true
+	} else {
+		check = false
+	};
 
 
 //CHECK FOR "IGNORE" data types and somehow remove them
@@ -202,19 +199,15 @@ $("#refresh").click(function(){
 // getImageURI()   printing PNG charts
 
 
-		// data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
-		// 			   $('#real-data input[name=col_a_label]').val());
+	//setting the label and data type for column a
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 			   $('#real-data input[name=col_a_label]').val());
-		// data.addColumn("number", 'yada');
+
 
 	var col_b_num = 98;
-		// console.log("string line 190")
-  //   var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
     console.log("line 193 last_col " + last_col);
      var last_col_int = last_col.charCodeAt(0);
-  //   console.log("line 195 last_col_int " + last_col_int);
 
   console.log("line 197 last_col_int " + last_col_int)
   //THIS LOOP ASSIGNS THE LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
@@ -236,21 +229,14 @@ $("#refresh").click(function(){
 		      pf_num++;
 		  };
 
-
-
-
-
-
-		console.log("line 228")
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
+	var num_of_rows = last_row;
 
 	var col_a_int = 97; //reset var
 	var col_b_num = 98;
 
-	var num_of_rows = last_row;
-
 					var str_col_a = []
-					var str_col_array = [];
+					// var str_col_array = [];
 
 				for(var i=1;i<=last_row;i++) {
 					var valu = $("#real-data #cell_" + i + "_a").val();
@@ -258,54 +244,37 @@ $("#refresh").click(function(){
 				}
 
 				str_col_array = [str_col_a];
-				console.log("line 243")
+				// console.log("line 243")
     while(col_b_num <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
-        console.log("col a int " + col_a_int);
+        // console.log("col a int " + col_a_int);
         var col_letter = String.fromCharCode(col_b_num);
         var c_num = col_b_num - 97; //rem first col is string
-        console.log("LINE 254 col b num:" + col_b_num);
-                var somekind_of_array = [];
+        // console.log("LINE 254 col b num:" + col_b_num);
+                // var somekind_of_array = [];
                 var somekind_of_array_float = [];
 
             for(var i=1;i<=last_row;i++) {
-                var valu = $("#real-data #cell_" + i + "_" + col_letter).val()
-                // somekind_of_array.push(valu);
+                var valu = $("#real-data #cell_" + i + "_" + col_letter).val();
                 somekind_of_array_float.push(parseFloat(valu));
-                // var c_str = (c_num).toString(); 
-                // window["colArrayFloat_" + c_str] = somekind_of_array_float;
-
             };//END OF FOR LOOP
 
     console.log(str_col_array);//THE WINNER!!!!!!!********
-
-	// console.log(somekind_of_array_float);
-
-	// console.log(colArrayFloat_0);
-	 //console.log(colArrayFloat_1);
-	// console.log(colArrayFloat_2);
-	// console.log(colArrayFloat_3);
 	str_col_array.push(somekind_of_array_float);
 
         col_b_num++;
-
-            // var b_num = parseInt(col_b_num)
-            // console.log("colArrayFloat_" + (b_num - 98))
 
     };//END OF WHILE LOOP
 
 
 
-var num_of_cols = (str_col_array.length);
+	var num_of_cols = (str_col_array.length);
 
-console.log("num_of_rows: " + num_of_rows);
-console.log("num_of_cols: " + num_of_cols);
-// break
-//the colArrayFloats must be created BEFORE THE INDEX FOR LOOP
-// var fullArray = [str_col_array]
-var kitchenSink = []
+	console.log("num_of_rows: " + num_of_rows);
+	console.log("num_of_cols: " + num_of_cols);
 
-// var stuff =[]
+	var kitchenSink = []
+
      for(var k=0; k<= num_of_rows -1; k++){
 		var stuff =[]
 
@@ -314,46 +283,21 @@ var kitchenSink = []
 				window["row_of_data_" + (k).toString() ] = [stuff];
 	     		console.log(stuff);
      	}
-
      	 kitchenSink.push(stuff);
-
      }
 
-console.log("the whole: " + kitchenSink)
+	console.log("the whole: " + kitchenSink)
 
-//     	var in_str = (i).toString(); 
-//     	// var array =[]
-//     	var caf_val = ("colArrayFloat_" + in_str);
-//     	fullArray.push(caf_val);
-//     	//array starts [
-//     	// str_col_array[i],
-// //("colArrayFloat_" + (b_num - 98))[i]
-// //NOTE _ IF THAT colArray doesnt work = do a kind of constantly resetting local var equal to it
 	 data.addRows( kitchenSink );
 
-// var aa = ['asdf', 23]
-// var bb = ['aswe', 3]
-// var cc = ['sdfw', 45]
-// var dd = ['gdsd', 35]
-// var theLot = [aa, bb, cc, dd]
-// //   //XXXXXXXXXXXXXX
-// //   //XXXXXXXXXXXXXXXXX
-//   data.addRows(theLot);
-	  	// data.addRows([
-	  	// 	['asdf', 38],
-	  	// 	['aswef', 234],
-	  	// 	['qwdf', 345],
-	  	// 	['aszz', 23],
-	  	// 	]);
-	//	stackedCheckboxAppears()
-	//  	drawChartTest()
-  	//XXXXXXXXXXXXXXXXXX
-	    // data.addColumn(dataArray);
-
-
-	    // drawNewChart(data, rotate_slider, piehole_slider); // adds the rows
+		// var aa = ['asdf', 23]
+		// var bb = ['aswe', 3]
+		// var cc = ['sdfw', 45]
+		// var dd = ['gdsd', 35]
+		// var theLot = [aa, bb, cc, dd]
+	    console.log("checkbox marked? " + check);
 	    
-	     drawNewChart(data);
+	    drawNewChart(data,check);
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("does NOT work with stepchart or piechart ...number number");
