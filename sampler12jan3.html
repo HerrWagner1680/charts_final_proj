@@ -10,7 +10,7 @@
 <script type="text/javascript">
 
  google.load("visualization", '1', {packages:['corechart']});
- google.load("visualization", "1.1", {packages:["bar"]});
+ // google.load("visualization", "1.1", {packages:["bar"]});
  google.setOnLoadCallback(drawsamplerChart);
 
 
@@ -44,7 +44,7 @@ function samplerResponse(response) {
     $("#width_chart").val(500)
     $("#height_chart").val(400)
 
-    // exportCode (data);
+    exportCode(data);
 
     $("#col2").attr('checked', 'checked'); // selecting columnchart radio button for sampler
 
@@ -54,7 +54,7 @@ function samplerResponse(response) {
 
     chart.draw(data, options);
 
-    //$(document).scrollTop(0); //document scrolls to top of page
+    $(document).scrollTop(0); //document scrolls to top of page
 }
 
 </script>
@@ -102,7 +102,7 @@ function samplerResponse(response) {
 <!-- radio buttons -->
   <p id="select_typ">select a type of chart</p>
 
-  <br>
+<br>
 
   <input id="area2" class="no_val_val" type="radio" name="chart_type" value="area"><label for="area2">area</label></button>
   <input id="bar2" class="no_val_val" type="radio" name="chart_type" value="bar"><label for="bar2">horizontal bar</label>
@@ -123,9 +123,8 @@ function samplerResponse(response) {
 
 <table id="real-data">
   <tr id="labels">
-  <th><input type="text" id="col_a_label" name="col_a_label" value="Axis 1"></th>
-  <th><input type="text" id="col_b_label" name="col_b_label" value="Axis 2"></th>
-<!--   <th><button id="add_col">&gt;&gt;</button></th> -->
+  <th><input type="text" id="label_col_a" name="label_col_a" value="Axis 1"></th>
+  <th><input type="text" id="label_col_b" name="label_col_b" value="Axis 2"></th>
   </tr>
   <tr id="data_types">
     <th>
@@ -139,10 +138,8 @@ function samplerResponse(response) {
     <select id="dataType_col_b" name="dataType_col_b" required>
     <option value = "number">number</option>
     <option value = ""> - select data type - </option>
-<!--<option value = "string">string</option> -->
     </select>
     </th>
- <!--    <th><button id="remove_col">&lt;&lt;</button></th> -->
   </tr>
   <tr id="row_1">
     <td class="col_a"><input type="text" id="cell_1_a" name="cell_1_a" value=""></td>
@@ -170,6 +167,7 @@ function samplerResponse(response) {
 <!-- if you hit max or min - see message -->
 <button id="remove_col">&lt;&lt; remove column</button>
 <button id="add_col">add column &gt;&gt; </button>
+<p>* NOTE: only area, horizontal bar, step, column, and line accept three or more data columns</p>
 <br>
 <br>
 
@@ -196,36 +194,32 @@ function samplerResponse(response) {
 <script type="text/javascript" src="add_rem_col_rows.js"></script> -->
 
 <script>
+
 function stackedCheckboxAppears() {
-  $("#height_chart").after("<input id='stack' type='checkbox' name='stacked_column' value='true'></input><label id='stack2'for='stack'>stacked columns</label>");
+    $("#height_chart").after("<input id='stack' type='checkbox' name='stacked_column' value='true'></input><label id='stack2'for='stack'>stacked columns</label>");
 
-  $("#stack, #stack2").bind('click', function(){
-    console.log("stackclick");
-    // drawChartTest();
-    //note - i did try reviseColumn() - but said it was undefined
-  });
-
+    $("#stack, #stack2").bind('click', function(){
+      console.log("stackclick");
+      // drawChartTest();
+      //note - i did try reviseColumn() - but said it was undefined
+    });
 };
 
+$("#refresh").click(function(){
+    refreshing();
+});
 
-
-// function stackedCheckboxAppears() {
-//   $("#height_chart").after("<input id='stack' type='checkbox' name='stacked_column' value='true'></input><label id='stack2'for='stack'>stacked columns</label>");
-// };
 
 $('#export_png').click(function(){
-  alert("NOTE: Export to PNG STILL UNDER CONSTRUCTION")
+    alert("NOTE: Export to PNG STILL UNDER CONSTRUCTION")
 });
 
 
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
-//perhaps you should only ask for the goog sheet key?
-//ignore columns of strings after row a
 
-//https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/pubhtml
-//https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/edit?usp=sharing
+// TEST GOOG SHEET URLS BELOW ------
 //https://docs.google.com/spreadsheet/tq?key=15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA
-//WORKS://https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/gviz/tq
+//WORKS: //https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/gviz/tq
 
 // all charts must be public and published to web (have in instructions? or error message?)
   //simple column chart - IT WORKS!
@@ -243,13 +237,13 @@ var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmx
 
 //gathering data from upload url window
 function handleQueryResponse(response) {
-  if (response.isError()) {
-    alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-    return;
-  }
+    if (response.isError()) {
+      alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+      return;
+    }
 
 
-  var data = response.getDataTable();
+    var data = response.getDataTable();
 
 
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
@@ -260,25 +254,11 @@ function handleQueryResponse(response) {
     var next_row = last_row + 1;
     var col_a_int = 97;
 
-console.log("line 251: " + ($("#real-data #dataType_col_a").val()));
-  //importing data from URL UPLOAD
-        //defaults col a to string
-    // $("#real-data #dataType_col_a").attr("value", "string");
- //    $('#real-data #data_types #dataType_col_a').attr("value", data.Pf[0].type) // string or number
-
-
     $("#dataType_col_a").val(data.Pf[0].type)
-// $("#dataType_col_b").val(data.Pf[0].type)
-
-// console.log($("#dataType_col_a").val(data.Pf[0].type))
-
-// console.log($('#real-data #data_types #dataType_col_a').attr("value"));
   //ASSIGN rest of column types as number
   var pf_num = 1
   while(col_a_int +1 <= last_col_int){
       var col_letter = String.fromCharCode(col_a_int);
-      // $("#real-data #dataType_col_" + col_letter).val(data.Pf[pf_num].type)
-      //defaults col b onward to number
       $("#real-data #data_types #dataType_col_" + col_letter).attr("value", "number");
       col_a_int++;
       pf_num++;
@@ -290,7 +270,7 @@ console.log("line 251: " + ($("#real-data #dataType_col_a").val()));
     //ASSIGN column label names
     while(col_a_int <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
-        $("#real-data #col_" + col_letter + "_label").attr("value", data.Pf[pf_num].label)
+        $("#real-data #label_col_" + col_letter).attr("value", data.Pf[pf_num].label)
         col_a_int++;
         pf_num++;
     };
@@ -302,46 +282,33 @@ console.log("line 251: " + ($("#real-data #dataType_col_a").val()));
     while(col_a_int <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
         var c_num = col_a_int -97;
-        // $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[0].c[0].v)
-        // $("#real-data #cell_4_"+col_letter).attr("value",data.Nf[1].c[1].v)
-        // $("#real-data #cell_3_"+col_letter).attr("value",data.Nf[2].c[0].v)
-        // $("#real-data #cell_3_"+col_letter).attr("value",data.Nf[3].c[1].v)
             for(var i=1;i<=last_row;i++) {
                 $("#real-data #cell_" + i + "_" + col_letter).attr("value", data.Nf[i-1].c[c_num].v);
                 //getting data for each cell
                 console.log($("#real-data #cell_" + i + "_" + col_letter).val());
             };
-
         col_a_int++;
-        
     };
-
 }
 
-
 function SheetRefresh() { 
-	console.log("showing jUrl: " + jUrl);
-
-  var query = new google.visualization.Query(jUrl);
-  query.send(handleQueryResponse);
-
+  	console.log("showing jUrl: " + jUrl);
+    var query = new google.visualization.Query(jUrl);
+    query.send(handleQueryResponse);
 }
 
 function ExampleJS(){
-	event.preventDefault();
-	jUrl = document.getElementById("spreadsheet_file").value;
-    console.log("Grabbing File")
-    console.log(jUrl);
-
+  	event.preventDefault();
+  	jUrl = document.getElementById("spreadsheet_file").value;
+      // console.log("Grabbing File")
+      // console.log(jUrl);
     $('#spreadsheet_file').val(null) //clears the upload url window
     SheetRefresh();
  }
 
 SheetRefresh();
 
-
 </script>
-
 
 <script type="text/javascript" src="draw_new_chart.js"></script>
 <script type="text/javascript" src="sampler9jan2.js"></script>

@@ -1,5 +1,5 @@
 
-//REMINDER - create a maximum number of columns that user may not exceed
+//SUGGESTION - create a maximum number of columns that user may not exceed
 $('#add_col').click(function() {
     var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
@@ -32,7 +32,6 @@ $('#add_col').click(function() {
     if($('#stack').size() == 0 && next_col_int >= 99 && document.getElementById('col2').checked==true) {
         stackedCheckboxAppears();
     }
-
 });
 
 $('#col2').click(function(){
@@ -42,7 +41,7 @@ $('#col2').click(function(){
     var next_col_int = last_col_int +1;
         if($('#stack').size() == 0 && next_col_int >= 99 && document.getElementById('col2').checked==true) { 
         stackedCheckboxAppears();
-        }
+        };
 });
 
 $('#area2, #bar2, #step2, #line2, #pie2, #scatter2, #lin2, #exp, #poly2').click(function(){
@@ -65,7 +64,7 @@ $('#remove_col').click(function() {
     }
 });
 
-//REMINDER - create a maximum number of rows that user may not exceed
+//SUGGESTION - create a maximum number of rows that user may not exceed
 $('#row_add').click(function() {
 
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
@@ -81,7 +80,6 @@ $('#row_add').click(function() {
     $("#real-data").append("<tr id='row_" + next_row + "'></td>");
 
     var col_a_int = 97;
-    
 
     while(col_a_int <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
@@ -92,7 +90,6 @@ $('#row_add').click(function() {
           "' name='cell_" + next_row + "_" + col_letter +"' value=''></td>");
         col_a_int++;
     };
-
 });
 
 $('#row_remove').click(function() {
@@ -100,16 +97,3 @@ $('#row_remove').click(function() {
     if (last_row <= 1){ alert("you can not delete any more rows");
     } else { $("#real-data tr:last-of-type").remove(); }
 });
-
-// //looping through letters a=65 f=70
-// for(var i=65;i<=70;i++) {
-//     console.log(String.fromCharCode(i));
-//  }
-
-//reverse engineering a letter "a"
-// "a".charCodeAt(0);
-// returns number
-
-//sample capture of id data
-// $('th:last-of-type > input').attr('id').split('_')[1]
-// $('th:last-of-type > input').attr('id').split('_')[2]

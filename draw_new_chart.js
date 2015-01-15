@@ -25,7 +25,6 @@ function drawChartTest() {
 	console.log(hei);
 	console.log(wid);
 
-
 	$("#stack").click(drawChartTest);
 
 	var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
@@ -42,8 +41,8 @@ function drawNewChart(data, check) {
 
 	var options = {
 			'title': ($('input[name=chart_title]').val()),
-		    vAxis: {title: ($('#real-data input[name=col_a_label]').val())},
-		    hAxis: {title: ($('#real-data input[name=col_b_label]').val())},
+		    vAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+		    hAxis: {title: ($('#real-data input[name=label_col_b]').val())},
 	              	'width':wid,
 	              	'height':hei
 	              };
@@ -73,8 +72,8 @@ function drawNewChart(data, check) {
 			//switch labels
 			var options = {
 					'title': ($('input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
-				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
+				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
 	              	'width': wid,
 	              	'height': hei
 	              };
@@ -88,8 +87,8 @@ function drawNewChart(data, check) {
 			//switch labels
 			var options = {
 					'title': ($('input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
-				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
+				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
 	              	'width': wid,
 	              	'height': hei
 	              };
@@ -101,8 +100,8 @@ function drawNewChart(data, check) {
 			//switch labels
 			var options = {
 					'title': ($('input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
-				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
+				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
 	              	'width': wid,
 	              	'height': hei,
 	              	isStacked: check
@@ -113,8 +112,8 @@ function drawNewChart(data, check) {
 			//switch labels
 			var options = {
 					'title': ($('#real-data input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
-				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
+				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
 	              	'width': wid,
 	              	'height': hei
 	              };
@@ -158,8 +157,8 @@ function drawNewChart(data, check) {
 			console.log("scatter switch");
 			var options = {
 				'title': ($('input[name=chart_title]').val()),
-		    	vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-		    	hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+		    	vAxis: {title: ($('#real-data input[name=label_col_a]').val()), minValue: min_a, maxValue: max_a},
+		    	hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 	              	'width': wid,
 	              	'height': hei
 
@@ -170,8 +169,8 @@ function drawNewChart(data, check) {
 			console.log("trend_lin switch");
 			var options = {
 				'title': ($('input[name=chart_title]').val()),
-			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			    vAxis: {title: ($('#real-data input[name=label_col_a]').val()), minValue: min_a, maxValue: max_a},
+			    hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 	              	'width': wid,
 	              	'height': hei,
 
@@ -188,8 +187,8 @@ function drawNewChart(data, check) {
 			console.log("trend_exp switch");
 			var options = {
 				'title': ($('input[name=chart_title]').val()),
-			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			    vAxis: {title: ($('#real-data input[name=label_col_a]').val()), minValue: min_a, maxValue: max_a},
+			    hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 
 	              	'width': wid,
 	              	'height': hei,
@@ -206,8 +205,8 @@ function drawNewChart(data, check) {
 		case "trend_poly":
 			var options = {
 				'title': ($('input[name=chart_title]').val()),
-			    vAxis: {title: ($('#real-data input[name=col_a_label]').val()), minValue: min_a, maxValue: max_a},
-			    hAxis: {title: ($('#real-data input[name=col_b_label]').val()), minValue: min_b, maxValue: max_b},
+			    vAxis: {title: ($('#real-data input[name=label_col_a]').val()), minValue: min_a, maxValue: max_a},
+			    hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 	              	'width': wid,
 	              	'height': hei,
 
@@ -248,8 +247,8 @@ function reviseColumn() {
 
 				var options = {
 					'title': ($('input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=col_a_label]').val())},
-				    vAxis: {title: ($('#real-data input[name=col_b_label]').val())},
+				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
 	              	'width': wid,
 	              	'height': hei,
 	              	isStacked: stack

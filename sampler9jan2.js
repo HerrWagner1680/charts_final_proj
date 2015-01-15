@@ -50,20 +50,16 @@ function exportCode (data) {
 		console.log("no num in col a")
 		var mess = "no num in col a" //variable is trapped in scope of if statement
 	};
-	var col_a_label = $('#real-data input[name=col_a_label]').val()
-	var col_b_label = $('#real-data input[name=col_b_label]').val()
+	var label_col_a = $('#real-data input[name=label_col_a]').val()
+	var label_col_b = $('#real-data input[name=label_col_b]').val()
 	var dataValA = $('#real-data select[name=dataType_col_a]').val()
 	var dataValB = $('#real-data select[name=dataType_col_b]').val()
-	var br = '<br>'
-	var newline = '&#10;'
+
 	console.log("minimum col a: " + parseInt(min_a)) 
 	document.getElementsByName('export_code')[0].value=('STILL IN TEST MODE' +
 		' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array + '\r' + '\r' +
-		 "  //Load the Visualization API and the piechart package. " + '\r' +
-		 "   XXXXXXX CHART TYPE:  " + radio + "  XXXXXXXX" + '\r' +
-	" google.load('visualization', '1.0', {'packages':['corechart']}); " +
-	  " // Set a callback to run when the Google Visualization API is loaded. " + '\r' +
-	 " google.setOnLoadCallback(drawChart); " +  br + newline + '\r' + '\r' + '\r' +
+		" width: " + " height: " + " num of cols: " + " num of rows " + '\r' +
+		 "   XXXXXXX CHART TYPE:  " + radio + "  XXXXXXXX" + '\r' + '\r' +
 	 "<html>" + '\r' +
 	  "	<head>" + '\r' +
 	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" +
@@ -97,6 +93,13 @@ function exportCode (data) {
 	  "</body>" + '\r' + '\r' + 
 	"</html>"   );
 
+// VARIABLES
+// WIDTH - HEIGHT
+// TYPE OF CHART
+// TITLE
+// LABELS
+// array
+
 };
 
 
@@ -107,9 +110,9 @@ function pieRefresh(deg, hole) {
 
 		//NOTE - PIE ONLY TAKES TWO COLUMNS OF DATA
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
-					   $('#real-data input[name=col_a_label]').val());
+					   $('#real-data input[name=label_col_a]').val());
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
-					   $('#real-data input[name=col_b_label]').val());
+					   $('#real-data input[name=label_col_b]').val());
 
 		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 
@@ -155,7 +158,11 @@ $("#slider3").change(revise);
 $("#piehole3").change(revise);
 //NOTE - piehole does not work in 3d mode
 
-$("#refresh").click(function(){
+// $("#refresh").click(function(){
+// 	refreshing()
+// });
+
+function refreshing(){
 	var data = new google.visualization.DataTable();
 
 	// drawChartTest()
@@ -167,10 +174,10 @@ $("#refresh").click(function(){
 	var col_a_int = 97;
 
 	var TOT_COL = last_col_integer - col_a_int;
-	alert("total # columns " + TOT_COL);
+	// alert("total # columns " + TOT_COL);
 
 	if($('input[id=stack]:checkbox:checked').val()=='true'){
-		alert("we have a clicked box we need to keep")
+		// alert("we have a clicked box we need to keep")
 		check = true
 	} else {
 		check = false
@@ -201,7 +208,7 @@ $("#refresh").click(function(){
 
 	//setting the label and data type for column a
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
-			   $('#real-data input[name=col_a_label]').val());
+			   $('#real-data input[name=label_col_a]').val());
 
 
 	var col_b_num = 98;
@@ -302,9 +309,9 @@ $("#refresh").click(function(){
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("does NOT work with stepchart or piechart ...number number");
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
-					   $('#real-data input[name=col_a_label]').val());
+					   $('#real-data input[name=label_col_a]').val());
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
-					   $('#real-data input[name=col_b_label]').val());
+					   $('#real-data input[name=label_col_b]').val());
 
 		// drawNewChart(data) //makes the columns
 		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
@@ -326,7 +333,7 @@ $("#refresh").click(function(){
 		alert("please correct data type");
 	}
 
-});
+};
 	// automate the choice by looking for NaN 
 
 // to show error in HTML
