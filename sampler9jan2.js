@@ -184,40 +184,42 @@ $("#refresh").click(function(){
 		// 			   $('#real-data input[name=col_a_label]').val());
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 			   $('#real-data input[name=col_a_label]').val());
-		data.addColumn("number", 'yada');
+		// data.addColumn("number", 'yada');
 
-
-		console.log("string line 187")
-    var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+	var col_b_num = 98;
+		// console.log("string line 190")
+  //   var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-
+    console.log("line 193 last_col " + last_col);
      var last_col_int = last_col.charCodeAt(0);
-		  // var pf_num = 1
-		  // while(col_a_int +1 <= last_col_int){
-		  //     var col_letter = String.fromCharCode(col_a_int);
-		  //     console.log("col_a_int " + col_a_int);
-		  //     console.log(pf_num);
-		  //     console.log(data.Pf[0].type)
-		  //     console.log(data.Pf[1].type)
-		  //     var lab = $("#real-data #dataType_col_" + col_letter).val(data.Pf[pf_num].type);
-		  //     data.addColumn("number", lab);
-		  //     console.log("var label: " + lab)
-		  //     col_a_int++;
-		  //     pf_num++;
-		  // };
+  //   console.log("line 195 last_col_int " + last_col_int);
+
+  console.log("line 197 last_col_int " + last_col_int)
+  //THIS LOOP ASSIGNS THE LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
+		  var pf_num = 1
+		  while(col_b_num <= last_col_int){
+		      var col_letter = String.fromCharCode(col_b_num);
+		      console.log("col_b_num " + col_b_num);
+		      console.log("number column count: " + pf_num);
+		      console.log("line 204")
+		      console.log(data.Pf[0].type) // should be string
+		      // console.log(data.Pf[1].type)  should be number
+		      var labelll = $('#real-data input[name=col_b_label]').val();
+		      console.log(labelll);
+		      // var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val(data.Pf[pf_num].type);
+		      var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val();
+		      data.addColumn("number", lab);
+		      console.log("var label: " + lab) //result should be number
+		      col_b_num++;
+		      pf_num++;
+		  };
 
 
 
 
 
-		// data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
-		// 			   $('#real-data input[name=col_b_label]').val());
 
-		// data.addColumn('number','col1')
-		// data.addColumn('number','col2')
-		// data.addColumn('number','col3')
-
-
+		console.log("line 228")
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
 
 	var col_a_int = 97; //reset var
@@ -227,15 +229,17 @@ $("#refresh").click(function(){
 
 					var str_col_a = []
 					var str_col_array = [];
+					
 				for(var i=1;i<=last_row;i++) {
 					var valu = $("#real-data #cell_" + i + "_a").val();
 					str_col_a.push(valu);
 				}
-				str_col_array = [str_col_a];
 
+				str_col_array = [str_col_a];
+				console.log("line 243")
     while(col_b_num <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
-
+        console.log("col a int " + col_a_int);
         var col_letter = String.fromCharCode(col_b_num);
         var c_num = col_b_num - 97; //rem first col is string
         console.log("LINE 254 col b num:" + col_b_num);
@@ -268,44 +272,30 @@ $("#refresh").click(function(){
 
     };//END OF WHILE LOOP
 
-    // var b_num = parseInt(col_b_num);
-    console.log("outside of the loop: " + str_col_array);
 
-//make an array of the arraynames?
-//you could EXCLUDE ANY ON IGNORE data type
 
 var num_of_cols = (str_col_array.length);
-st = str_col_array;
+
 console.log("num_of_rows: " + num_of_rows);
 console.log("num_of_cols: " + num_of_cols);
 // break
 //the colArrayFloats must be created BEFORE THE INDEX FOR LOOP
 // var fullArray = [str_col_array]
 var kitchenSink = []
-var kitchenSink2 = []
-var stuff =[]
+
+// var stuff =[]
      for(var k=0; k<= num_of_rows -1; k++){
-var stuff =[]
+		var stuff =[]
 
      	for(var i=0; i<= num_of_cols -1; i++){
-     		console.log(str_col_array);
-     		console.log(st);
-	     		stuff.push(st[i][k]);
+	     		stuff.push(str_col_array[i][k]);
 				window["row_of_data_" + (k).toString() ] = [stuff];
 	     		console.log(stuff);
      	}
 
      	 kitchenSink.push(stuff);
 
-
-// window["row_of_data_" + (k).toString() ] = [stuff];
-// 		kitchenSink2.push(window["row_of_data_" + (k).toString() ]);
-//      	// console.log(stuff);
-// 		console.log(window["row_of_data_" + (k).toString() ]);
-// break
-
      }
-console.log(kitchenSink)
 
 console.log("the whole: " + kitchenSink)
 
