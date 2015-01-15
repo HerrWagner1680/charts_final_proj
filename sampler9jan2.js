@@ -334,6 +334,13 @@ function refreshing(){
 	}
 
 };
+
+// //colors on additional columns change color when not being used
+// $('select[id$="c"]').css({"border":"2px solid #ddd", "color":"#aaa"})
+// $('input[id$="c"]').css({"border":"2px solid #ddd", "color":"#aaa"})
+
+
+
 	// automate the choice by looking for NaN 
 
 // to show error in HTML

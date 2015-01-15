@@ -1,3 +1,8 @@
+// //colors on additional columns change color when not being used
+// $('select[id$="c"]').css({"border":"2px solid #ddd", "color":"#aaa"})
+// $('input[id$="c"]').css({"border":"2px solid #ddd", "color":"#aaa"})
+
+
 
 //SUGGESTION - create a maximum number of columns that user may not exceed
 $('#add_col').click(function() {
@@ -12,8 +17,8 @@ $('#add_col').click(function() {
     console.log(last_col_int);
     console.log(next_col_int);
 
-    $('#real-data #labels').append("<th><input type='text' id='col_" + next_col + 
-        "_label' name='col_" + next_col + "_label' value=' Column " + (next_col).toUpperCase() + "'></th>");
+    $('#real-data #labels').append("<th><input type='text' id='label_col_" + next_col + 
+        "' name='label_col_" + next_col + "' value=' Column " + (next_col).toUpperCase() + "'></th>");
     $('#real-data #data_types').append("<th><select id='dataType_col_" + next_col + 
         "' name='dataType_col_" + next_col + "' required><option value = 'number'>number</option>" + 
     "<option value = ''> - select data type - </option>" + 
@@ -46,6 +51,13 @@ $('#col2').click(function(){
 
 $('#area2, #bar2, #step2, #line2, #pie2, #scatter2, #lin2, #exp, #poly2').click(function(){
     $('#stack, #stack2').remove();
+});
+
+$('#pie2, #scatter2, #lin2, #exp, #poly2').click(function(){
+    // //colors on additional columns change color when not being used
+    var X = "c"
+     $('select[id$="'+ X +'"]').css({"border":"2px solid #ddd", "color":"#aaa"})
+     $('input[id$="'+ X +'"]').css({"border":"2px solid #ddd", "color":"#aaa"})
 });
 
 $('#remove_col').click(function() {
