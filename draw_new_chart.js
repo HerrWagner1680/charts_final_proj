@@ -95,19 +95,32 @@ function drawNewChart(data, check) {
 			console.log("step switch"); stepchart.draw(data, options);
 			break;
 		case "column":
-			stackedCheckboxAppears()
-			$('input[id=stack]').attr('checked',check)
-			//switch labels
-			var options = {
+			if (check = "missing") {
+				var options = {
 					'title': ($('input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
-				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
-	              	'width': wid,
-	              	'height': hei,
-	              	isStacked: check
-	              };
-			console.log("column switch"); columnchart.draw(data, options);
-			break;
+					hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+					vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
+					'width': wid,
+					'height': hei,
+					isStacked: false
+				};
+				console.log("column switch - no checkbox"); columnchart.draw(data, options);
+				break;
+			} else {
+				stackedCheckboxAppears();
+				$('input[id=stack]').attr('checked',check);
+				//switch labels
+				var options = {
+						'title': ($('input[name=chart_title]').val()),
+					    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+					    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
+		              	'width': wid,
+		              	'height': hei,
+		              	isStacked: check
+		              };
+				console.log("column switch - with checkbox"); columnchart.draw(data, options);
+				break;
+			}
 		case "line":
 			//switch labels
 			var options = {
@@ -126,7 +139,7 @@ function drawNewChart(data, check) {
 			addPieHoleSlider();
 			console.log("pie / donut switch"); 
 			var options = {
-	          // legend: 'none',
+	          // legend: 'none', 
 	          pieSliceText: 'label',
 	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html

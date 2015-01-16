@@ -176,12 +176,22 @@ function refreshing(){
 	var TOT_COL = last_col_integer - col_a_int;
 	// alert("total # columns " + TOT_COL);
 
-	if($('input[id=stack]:checkbox:checked').val()=='true'){
-		// alert("we have a clicked box we need to keep")
-		check = true
-	} else {
-		check = false
-	};
+	var number_of_columns = $('#row_1 td').length;
+
+	// if($('input[id=stack]:checkbox:checked').val()=='true'){
+	// 	// alert("we have a clicked box we need to keep")
+	// 	check = true
+	// } else {
+	// 	check = false
+	// };
+
+	// if($('input[id$="c"]').length == 0) {
+	// 	check = "missing";
+	// }
+
+	// if(number_of_columns = 2) {
+	// 	check = "missing";
+	// }
 
 
 //CHECK FOR "IGNORE" data types and somehow remove them
@@ -207,10 +217,12 @@ function refreshing(){
 
 
 	//setting the label and data type for column a
-		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
-			   $('#real-data input[name=label_col_a]').val());
+		// data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
+		// 	   $('#real-data input[name=label_col_a]').val());
 
-
+	var column_a_label = $('#real-data input[name=label_col_a]').val();
+	grandLabel = [];
+	grandLabel.push(column_a_label);
 	var col_b_num = 98;
     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
     console.log("line 193 last_col " + last_col);
@@ -221,28 +233,29 @@ function refreshing(){
 		  var pf_num = 1
 		  while(col_b_num <= last_col_int){
 		      var col_letter = String.fromCharCode(col_b_num);
-		      console.log("col_b_num " + col_b_num);
-		      console.log("number column count: " + pf_num);
-		      console.log("line 204")
-		      console.log(data.Pf[0].type) // should be string
+		      // console.log("col_b_num " + col_b_num);
+		      // console.log("number column count: " + pf_num);
+		      // console.log("line 204")
+		      // console.log(data.Pf[0].type) // should be string //QQQQQQQQ
 		      // console.log(data.Pf[1].type)  should be number
-		      var labelll = $('#real-data input[name=col_b_label]').val();
-		      console.log(labelll);
+		      var labelll = $("#real-data input[name=label_col_" + col_letter + "]").val();
+		      // console.log(labelll);
+		      grandLabel.push(labelll);
 		      // var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val(data.Pf[pf_num].type);
 		      var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val();
-		      data.addColumn("number", lab);
+		      // data.addColumn("number", lab); //QQQQQQQQQQQQQQ
 		      console.log("var label: " + lab); //result should be number
 		      col_b_num++;
 		      pf_num++;
 		  };
-
+console.log("line 238 grandLabel " + grandLabel);
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
 	var num_of_rows = last_row;
 
 	var col_a_int = 97; //reset var
 	var col_b_num = 98;
 
-					var str_col_a = []
+					var str_col_a = [];
 					// var str_col_array = [];
 
 				for(var i=1;i<=last_row;i++) {
@@ -251,14 +264,11 @@ function refreshing(){
 				}
 
 				str_col_array = [str_col_a];
-				// console.log("line 243")
     while(col_b_num <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
-        // console.log("col a int " + col_a_int);
         var col_letter = String.fromCharCode(col_b_num);
         var c_num = col_b_num - 97; //rem first col is string
-        // console.log("LINE 254 col b num:" + col_b_num);
-                // var somekind_of_array = [];
+
                 var somekind_of_array_float = [];
 
             for(var i=1;i<=last_row;i++) {
@@ -266,24 +276,33 @@ function refreshing(){
                 somekind_of_array_float.push(parseFloat(valu));
             };//END OF FOR LOOP
 
-    console.log(str_col_array);//THE WINNER!!!!!!!********
+    console.log(str_col_array);	//THE WINNER!!!!!!!********
 	str_col_array.push(somekind_of_array_float);
 
         col_b_num++;
 
     };//END OF WHILE LOOP
 
-
-
 	var num_of_cols = (str_col_array.length);
 
 	console.log("num_of_rows: " + num_of_rows);
 	console.log("num_of_cols: " + num_of_cols);
 
-	var kitchenSink = []
+	if(num_of_cols <= 2){
+		check = "missing";
+	} else if ($('input[id=stack]:checkbox:checked').val()=='true'){
+		// alert("we have a clicked box we need to keep")
+		check = true
+	} else {
+		check = false
+	};
 
+	console.log("LINE 302 - check: " + check);
+
+	var kitchenSink = []
+ 	kitchenSink.push(grandLabel);
      for(var k=0; k<= num_of_rows -1; k++){
-		var stuff =[]
+			var stuff=[]
 
      	for(var i=0; i<= num_of_cols -1; i++){
 	     		stuff.push(str_col_array[i][k]);
@@ -293,15 +312,12 @@ function refreshing(){
      	 kitchenSink.push(stuff);
      }
 
-	console.log("the whole: " + kitchenSink)
-
-	 data.addRows( kitchenSink );
-
+	 // data.addRows( kitchenSink );
+	var data = google.visualization.arrayToDataTable( kitchenSink );
 		// var aa = ['asdf', 23]
 		// var bb = ['aswe', 3]
 		// var cc = ['sdfw', 45]
-		// var dd = ['gdsd', 35]
-		// var theLot = [aa, bb, cc, dd]
+		// var theLot = [aa, bb, cc]
 	    console.log("checkbox marked? " + check);
 	    
 	    drawNewChart(data,check);

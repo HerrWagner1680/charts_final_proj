@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="chart.css">
-	<title>sampler - a copy of loopy_js.html</title>
+	<title>CHART SAMPLER</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
@@ -16,7 +16,9 @@
 
 function drawsamplerChart() {
   var query = new google.visualization.Query(
-  'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
+ 'https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#');
+  //metals 
+// "https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0"); //metals 
 
   query.send(samplerResponse);
 }
@@ -85,6 +87,8 @@ function samplerResponse(response) {
     <option value = "900">width - 900px</option>
     <option value = "1000">width - 1000px</option>
     <option value = "1100">width - 1100px</option>
+    <option value = "1200">width - 1200px</option>
+    <option value = "1300">width - 1300px</option>
     </select>
 
     <select id="height_chart" name="height_chart" required>
@@ -167,7 +171,7 @@ function samplerResponse(response) {
 <!-- if you hit max or min - see message -->
 <button id="remove_col">&lt;&lt; remove column</button>
 <button id="add_col">add column &gt;&gt; </button>
-<p>* NOTE: only area, horizontal bar, step, column, and line accept three or more data columns</p>
+<!-- <p>* NOTE: only area, horizontal bar, step, column, and line accept three or more data columns</p> -->
 <br>
 <br>
 
@@ -175,7 +179,7 @@ function samplerResponse(response) {
 <h3>UPLOAD GRID DATA FROM GOOGLE SHEET URL</h3>
 
   <form NAME="myform" onSubmit="JavaScript:ExampleJS()">
-  <input  type="url" id="spreadsheet_file" name="spreadsheet_file" size="30">
+  <input  type="url" id="spreadsheet_file_1" name="spreadsheet_file_1" size="30">
   <input type="submit" value="Upload URL">
   </form>
 <br>
@@ -214,26 +218,14 @@ $('#export_png').click(function(){
     alert("NOTE: Export to PNG STILL UNDER CONSTRUCTION")
 });
 
-
+// simple chart
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
 
-// TEST GOOG SHEET URLS BELOW ------
-//https://docs.google.com/spreadsheet/tq?key=15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA
-//WORKS: //https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/gviz/tq
-
-// all charts must be public and published to web (have in instructions? or error message?)
-  //simple column chart - IT WORKS!
-      // https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#
-
-//metals 
-// https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0 //metals
-
-// https://docs.google.com/spreadsheet/tq?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE  //metals 
-
-// https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#   
+// //metals 
+ // var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0"; //metals 
 
 //sample multi-column URL
-// https://docs.google.com/spreadsheets/d/1Hy-c2tyBHP_JLxsHl6hH-acd-eZgl8pGCQOT12rLPJc/edit#gid=0
+// var jUrl = "https://docs.google.com/spreadsheets/d/1Hy-c2tyBHP_JLxsHl6hH-acd-eZgl8pGCQOT12rLPJc/edit#gid=0";
 
 //gathering data from upload url window
 function handleQueryResponse(response) {
@@ -254,8 +246,13 @@ function handleQueryResponse(response) {
     var next_row = last_row + 1;
     var col_a_int = 97;
 
+    console.log("last_col line 247: " + last_col);
+    console.log("next_col: " + next_col);
+
+  //pull from URL datatype string or number for first column
     $("#dataType_col_a").val(data.Pf[0].type)
-  //ASSIGN rest of column types as number
+
+  //assign rest of column types as number
   var pf_num = 1
   while(col_a_int +1 <= last_col_int){
       var col_letter = String.fromCharCode(col_a_int);
@@ -268,24 +265,80 @@ function handleQueryResponse(response) {
     var pf_num = 0
     var col_a_int = 97;
     //ASSIGN column label names
+
+    //NOTE - COLUMN NAME USED TO READ
+    //    $("#col_a_label").attr("value", data.Pf[0].label) // column name
     while(col_a_int <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
-        $("#real-data #label_col_" + col_letter).attr("value", data.Pf[pf_num].label)
+        var label_id = $("#real-data #label_col_" + col_letter);
+
+        // if (typeof(data.Pf[pf_num].label) !== "undefined"){
+          if (typeof(data.Pf[pf_num]) !== "undefined"){
+          console.log("THE 276 line -- does this mean defined???");
+
+            // if (label_id.attr("value", data.Pf[pf_num].label).length = 0) {
+              // label_id.attr("value", "Column " + (col_letter).toUpperCase())
+            // } else {
+              label_id.attr("value", data.Pf[pf_num].label);
+            // };
+
+        } else {
+          console.log("label is undefined");
+          label_id.attr("value", "Column " + (col_letter).toUpperCase())
+        }
+
+        //check to see if data exists in corresponding column in URL
+        //if it does exist, add data, if not, add default column name
+            // if (label_id.attr("value", data.Pf[pf_num].label).length = 0) {
+            //   label_id.attr("value", "Column " + (col_letter).toUpperCase())
+            // } else {
+            //   label_id.attr("value", data.Pf[pf_num].label);
+            // };
+
+            // if (label_id.attr("value", data.Pf[pf_num].label).length = 0) {
+            //   label_id.attr("value", "Column " + (col_letter).toUpperCase())
+            // } else {
+            //   label_id.attr("value", data.Pf[pf_num].label);
+            // };
+
+
+
+
         col_a_int++;
         pf_num++;
     };
 
-    var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
-
+    //FORMAT:
+    //$("#real-data #label_col_" + col_letter).attr("value", data.Pf[pf_num].label);
+ 
+  //uploading cell data from URL
     // var c_num = 0
     var col_a_int = 97; //reset var
     while(col_a_int <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
+        // var col_id = $("#real-data #cell_" + i + "_" + col_letter);
         var c_num = col_a_int -97;
             for(var i=1;i<=last_row;i++) {
-                $("#real-data #cell_" + i + "_" + col_letter).attr("value", data.Nf[i-1].c[c_num].v);
+                var col_id = $("#real-data #cell_" + i + "_" + col_letter);
+              //check to see if data exists in corresponding cell in URL
+              //if it does exist, add data, if not, make value null
+
+                  if (typeof(data.Nf[i-1]) !== "undefined"){
+                      console.log(data.Nf[i-1].c[c_num].v);
+                      col_id.attr("value", data.Nf[i-1].c[c_num].v)
+                      console.log("line 328 --- Nf is defined")
+                  } else {
+                      console.log("line 331 ---- Nf is not defined")
+                      col_id.val(null)
+                  }
+                // if (col_id.attr("value", data.Nf[i-1].c[c_num].v).length = 0) {
+                //     col_id.val(null)
+                // } else {
+                //     col_id.attr("value", data.Nf[i-1].c[c_num].v)
+                // };
+
                 //getting data for each cell
-                console.log($("#real-data #cell_" + i + "_" + col_letter).val());
+                // console.log($("#real-data #cell_" + i + "_" + col_letter).val());
             };
         col_a_int++;
     };
@@ -299,11 +352,18 @@ function SheetRefresh() {
 
 function ExampleJS(){
   	event.preventDefault();
-  	jUrl = document.getElementById("spreadsheet_file").value;
-      // console.log("Grabbing File")
-      // console.log(jUrl);
-    $('#spreadsheet_file').val(null) //clears the upload url window
-    SheetRefresh();
+  	jUrl = document.getElementById("spreadsheet_file_1").value;
+      console.log(typeof($('#spreadsheet_file_1').val()));
+    if($('#spreadsheet_file_1').val() == ""){
+      console.log("in the undefined loop line 357");
+      alert("please paste in a URL before hitting upload button");
+      // return false
+    } else {
+      console.log("Grabbing File")
+      console.log(jUrl);
+      $('#spreadsheet_file_1').val(null) //clears the upload url window
+      SheetRefresh();
+    }
  }
 
 SheetRefresh();
