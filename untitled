@@ -1,5 +1,0 @@
-$('[id^="cell_"]').click(function() {
-
-   // $(this).find('img').attr('src','/admin/images/ok.png');
-   alert("you clicked a cell_")
-});

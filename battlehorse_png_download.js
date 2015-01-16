@@ -9,6 +9,9 @@
 //WORKING VERSION
 // http://bl.ocks.org/nverba/raw/5411684/
 
+//MINOR TWO LINE CORRECTION AND UPDATE
+//http://stackoverflow.com/questions/6660498/can-google-visualization-pie-chart-output-to-a-png-image/16137983#16137983
+
       function getImgData(chartContainer) {
         // var chartArea = chartContainer.getElementsByTagName('div')[0]
                   // contentDocument.getElementById('chartArea');
@@ -56,5 +59,3 @@
 // Riccardo Govoni (aka battlehorse)
 // Project "Demo script to convert Google Chart Tools charts into PNG images."
 // https://gist.github.com/battlehorse/1333906
-// EXAMPLE
-// HAVE NAME BE A HIDDEN LINK THAT GOES TO PAGE AND DEMO LINK
