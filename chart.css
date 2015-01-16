@@ -6,3 +6,11 @@ input[type="radio"]:disabled + label {
 	color: #BBB;
 	background-color: #444;
 }
+
+#credit a {
+	color:gray;
+	font-style: italic;
+	font-family: sans-serif;
+	font-weight: lighter;
+	text-decoration: none;
+}
