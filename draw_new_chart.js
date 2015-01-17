@@ -1,10 +1,13 @@
 function drawNewChart(data, check) {
 
+	console.log("reverse engineer " + data.Nf[0].c[0].v);//shows A - cel 1 col 1
+	console.log("reverse engineer LABEL " + data.Pf[0].label);
+	console.log("reverse engineer TYPE " + data.Pf[0].type);
 	console.log("drawnewchart var DATA: " + data);
 	console.log("DRAW NEW CHART - check: " + check);
 
-	var wid = $("#width_chart").val()
-	var hei = $("#height_chart").val()
+	var wid = $("#width_chart").val();
+	var hei = $("#height_chart").val();
 
 	var stack = $('input[id=stack]:checkbox:checked').val()
 
@@ -15,6 +18,9 @@ function drawNewChart(data, check) {
 	              	'width':wid,
 	              	'height':hei
 	              };
+
+	var chartType = $('input[name=chart_type]:radio:checked').val();
+	exportCode (data, chartType, check);
 
 //ASSIGNING METHOD NAMES FOR EACH GOOGLE CHART
     var areachart = new google.visualization.AreaChart(document.getElementById('chart_div0'));
@@ -32,8 +38,6 @@ function drawNewChart(data, check) {
 	var min_a = Math.min.apply(Math,col_a_array);
 	var max_b = Math.max.apply(Math,col_b_array);
 	var min_b = Math.min.apply(Math,col_b_array);
-
-	// exportCode (data);
 
 //READ SELECTED RADIO BUTTONS AND REDRAW CHART
 	switch($('input[name=chart_type]:radio:checked').val()) {
@@ -108,6 +112,8 @@ function drawNewChart(data, check) {
 			console.log("pie / donut switch"); 
 			var options = {
 	          // legend: 'none', 
+				 'width': wid,
+	             'height': hei,
 	          pieSliceText: 'label',
 	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html
@@ -125,6 +131,8 @@ function drawNewChart(data, check) {
 			console.log("pie switch"); 
 			var options = {
 	          // legend: 'none',
+				   'width': wid,
+	               'height': hei,
 	          pieSliceText: 'label',
 	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: 0, //change to slider variable see rotate_pie.html

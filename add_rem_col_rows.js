@@ -16,8 +16,8 @@ $('#add_col').click(function() {
         "' name='label_col_" + next_col + "' value='Column " + (next_col).toUpperCase() + "'></th>");
     $('#real-data #data_types').append("<th><select id='dataType_col_" + next_col + 
         "' name='dataType_col_" + next_col + "' required><option value = 'number'>number</option>" + 
-    "<option value = ''> - select data type - </option>" + 
-    "<option value = 'ignore'>ignore</option></select></th>");
+    "<option value = ''> - select data type - </option>"); //+ 
+    // "<option value = 'ignore'>ignore</option></select></th>");
 
     var current_row = 1
     while(current_row <= last_row){

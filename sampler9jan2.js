@@ -5,10 +5,6 @@ $('select').change(function() {
 		$("input[class=no_val_val]").attr('disabled', false);
 		$("input[class=no_string]").attr('disabled', true);
   } else if ($('select[name=dataType_col_a]').val() == "number" && 
-	   $('select[name=dataType_col_b]').val() == "string") {
-		$("input[type=radio]").attr('disabled', true);
-		$("input[id=histo2]").attr('disabled', false);
-  } else if ($('select[name=dataType_col_a]').val() == "number" && 
 		$('select[name=dataType_col_b]').val() == "number") {
 		$("input[class=no_val_val]").attr('disabled', true);
 		$("input[class=no_string]").attr('disabled', false);
@@ -30,80 +26,6 @@ function addPieHoleSlider() {
 		"<input type='text' id='holeRange3' size='2' value='0' readonly/>")
 };
 
-
-// function exportCode (data) {
-// 	//FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
-// 	var col_a_array = [ parseInt($('#real-data input[name=cell_1_a]').val()), parseInt($('#real-data input[name=cell_2_a]').val()), parseInt($('#real-data input[name=cell_3_a]').val()), parseInt($('#real-data input[name=cell_4_a]').val())];
-// 	var col_b_array = [ parseInt($('#real-data input[name=cell_1_b]').val()), parseInt($('#real-data input[name=cell_2_b]').val()), parseInt($('#real-data input[name=cell_3_b]').val()), parseInt($('#real-data input[name=cell_4_b]').val())];
-// 	var max_a = Math.max.apply(Math,col_a_array);
-// 	var min_a = Math.min.apply(Math,col_a_array);
-// 	var max_b = Math.max.apply(Math,col_b_array);
-// 	var min_b = Math.min.apply(Math,col_b_array);
-
-// 	var radio = ($('input[type=radio]:checked').val())
-// 	var col_a_array_nan = [ $('#real-data input[name=cell_1_a]').val(), $('#real-data input[name=cell_2_a]').val(), $('#real-data input[name=cell_3_a]').val(), $('#real-data input[name=cell_4_a]').val()];
-// 	//EXPORTING CODE ---- experiment -- make this into separate function
-// 	// this sep function should upload on start of program as well
-// 	var yep = 567;
-// 	var title = $('input[name=chart_title]').val();
-// 	if ($('#real-data input[name=cell_1_a]').val() == NaN) {
-// 		console.log("no num in col a")
-// 		var mess = "no num in col a" //variable is trapped in scope of if statement
-// 	};
-// 	var label_col_a = $('#real-data input[name=label_col_a]').val()
-// 	var label_col_b = $('#real-data input[name=label_col_b]').val()
-// 	var dataValA = $('#real-data select[name=dataType_col_a]').val()
-// 	var dataValB = $('#real-data select[name=dataType_col_b]').val()
-
-// 	console.log("minimum col a: " + parseInt(min_a)) 
-// 	document.getElementsByName('export_code')[0].value=('STILL IN TEST MODE' +
-// 		' minValue: ' + min_b + ', maxValue: ' + max_b + col_b_array + '\r' + '\r' +
-// 		" width: " + " height: " + " num of cols: " + " num of rows " + '\r' +
-// 		 "   XXXXXXX CHART TYPE:  " + radio + "  XXXXXXXX" + '\r' + '\r' +
-// 	 "<html>" + '\r' +
-// 	  "	<head>" + '\r' +
-// 	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" +
-// 	    "	<script type='text/javascript'>" + '\r' + '\r' +
-// 	      "	google.load('visualization', '1.1', {packages:['bar']});" + '\r' +
-// 	      "	google.setOnLoadCallback(drawChart);" + '\r' + 
-// 	      "	function drawChart() {" + '\r' +
-// 	        "		var data = google.visualization.arrayToDataTable([" + '\r' +
-// 	          "			['Year', 'Sales', 'Expenses', 'Profit']," + '\r' +
-// 	          "			['2014', 1000, 400, 200]," + '\r' +
-// 	          "			['2015', 1170, 460, 250]," + '\r' +
-// 	          "			['2016', 660, 1120, 300]," + '\r' +
-// 	          "			['2017', 1030, 540, 350]" + '\r' +
-// 	        "		]);" + '\r' + mess + " XXXXXXXX  " + 
-// 			col_a_array + " OR IF NaN: " + col_a_array_nan + " col b array " + col_b_array + " dataval:" + dataValA + " B: " + dataValB + '\r' +
-
-// 	        "		var options = {" +
-// 	          "			chart: { title: '" + title + "'' ," +
-// 	            " subtitle: 'Sales, Expenses, and Profit: 2014-2017' " +
-// 	          "}" + '\r' + 
-// 	        " };" + '\r' + 
-
-// 	        "		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));" + '\r' + 
-
-// 	        "		chart.draw(data, options);" + '\r' + 
-// 	      "		}" + '\r' + 
-// 	    "	</script>" +  '\r' + 
-// 	    "	</head>" + '\r' + '\r' + 
-// 	  "<body>" + '\r' + 
-// 	    "	<div id='columnchart_material' style='width: 900px; height: 500px;''></div>" + '\r' + 
-// 	  "</body>" + '\r' + '\r' + 
-// 	"</html>"   );
-
-// // VARIABLES
-// // WIDTH - HEIGHT
-// // TYPE OF CHART
-// // TITLE
-// // LABELS
-// // array
-
-// };
-
-
-
 function pieRefresh(deg, hole) {
 	var data = new google.visualization.DataTable();
 		console.log("pie refresh function")
@@ -123,6 +45,8 @@ function pieRefresh(deg, hole) {
 				]);
 			}
 
+		var wid = $("#width_chart").val();
+		var hei = $("#height_chart").val();
 	    var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
 
 	if ($('input[name=chart_type]:radio:checked').val()=="pie") {
@@ -132,13 +56,15 @@ function pieRefresh(deg, hole) {
 	}
 			var options = {
 	          // legend: 'none',
+	           'width':wid,
+	           'height':hei,
 	          pieSliceText: 'label',
 	          title: ($('input[name=chart_title]').val()),
 	          pieStartAngle: deg, //change to slider variable see rotate_pie.html
 	          pieHole: hole,
 	          is3D: three_dee,
 			};
-			piechart.draw(data, options);
+	piechart.draw(data, options);
 }
 
 function revise(){
@@ -176,15 +102,13 @@ function refreshing(){
     var last_col_integer = last_col.charCodeAt(0) + 1;
 	var col_a_int = 97;
 
-	var TOT_COL = last_col_integer - col_a_int;
-	// alert("total # columns " + TOT_COL);
+	// var TOT_COL = last_col_integer - col_a_int;
 
 	var number_of_columns = $('#row_1 td').length;
 
 	if(number_of_columns <= 2){
 		check = "missing"
 	} else if ($('input[id=stack]:checkbox:checked').val()=='true'){
-		// alert("we have a clicked box we need to keep")
 		check = true
 	} else {
 		check = false
@@ -205,43 +129,38 @@ function refreshing(){
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("NO SCATTERCHART. COL_A is string COL_B is number");
 
-//EXAMPLES: https://developers.google.com/chart/interactive/docs/examples
+		if($('input[class=no_val_val]:radio:checked').val()==undefined){
+			alert("Please select an available chart type");
+			return false;
+		}
 
-//TICKS https://developers.google.com/chart/interactive/docs/gallery/columnchart
-//see h.axis or v.axis ticks
+		var column_a_label = $('#real-data input[name=label_col_a]').val();
+		grandLabel = [];
+		grandLabel.push(column_a_label);
+		var col_b_num = 98;
+	    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+	    console.log("line 193 last_col " + last_col);
+	    var last_col_int = last_col.charCodeAt(0);
 
-	var column_a_label = $('#real-data input[name=label_col_a]').val();
-	grandLabel = [];
-	grandLabel.push(column_a_label);
-	var col_b_num = 98;
-    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-    console.log("line 193 last_col " + last_col);
-     var last_col_int = last_col.charCodeAt(0);
+	  	console.log("line 197 last_col_int " + last_col_int)
 
-  	console.log("line 197 last_col_int " + last_col_int)
-  //THIS LOOP ASSIGNS THE LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
+  		//WHILE LOOP - ASSIGNS LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
 		  var pf_num = 1
 		  while(col_b_num <= last_col_int){
 		      var col_letter = String.fromCharCode(col_b_num);
-		      // console.log("col_b_num " + col_b_num);
-		      // console.log("number column count: " + pf_num);
-		      // console.log("line 204")
-		      // console.log(data.Pf[0].type) // should be string //QQQQQQQQ
-		      // console.log(data.Pf[1].type)  should be number
 		      var labelll = $("#real-data input[name=label_col_" + col_letter + "]").val();
-		      // console.log(labelll);
 		      grandLabel.push(labelll);
 		      // var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val(data.Pf[pf_num].type);
 		      var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val();
-		      // data.addColumn("number", lab); //QQQQQQQQQQQQQQ
 		      console.log("var label: " + lab); //result should be number
 		      col_b_num++;
 		      pf_num++;
 		  };
-console.log("line 238 grandLabel " + grandLabel);
+
+	console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
+
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
 	var num_of_rows = last_row;
-
 	var col_a_int = 97; //reset var
 	var col_b_num = 98;
 
@@ -253,21 +172,28 @@ console.log("line 238 grandLabel " + grandLabel);
 					str_col_a.push(valu);
 				}
 
-				str_col_array = [str_col_a];
+				str_col_array = [str_col_a]; // STRING ARRAY FROM COLUMN A
     while(col_b_num <= last_col_int){
         var col_letter = String.fromCharCode(col_a_int);
         var col_letter = String.fromCharCode(col_b_num);
         var c_num = col_b_num - 97; //rem first col is string
 
-                var somekind_of_array_float = [];
+                var somekind_of_array_float = []; 
 
             for(var i=1;i<=last_row;i++) {
                 var valu = $("#real-data #cell_" + i + "_" + col_letter).val();
+
+                space = /^\s+/;
+				starts_with_space = space.test(valu);
+				if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, which means that number will not be rendered.")}
+    //             dot = /^\./;
+				// starts_with_dot = dot.test(valu);
+				// if (starts_with_dot == true) { alert (" Decimals must start with a 0, not with a dot."); return false;}
                 somekind_of_array_float.push(parseFloat(valu));
             };//END OF FOR LOOP
 
-    console.log(str_col_array);	//THE WINNER!!!!!!!********
-	str_col_array.push(somekind_of_array_float);
+    	console.log(str_col_array);	//THE WINNER
+		str_col_array.push(somekind_of_array_float);
 
         col_b_num++;
 
@@ -277,19 +203,9 @@ console.log("line 238 grandLabel " + grandLabel);
 
 	console.log("num_of_rows: " + num_of_rows);
 	console.log("num_of_cols: " + num_of_cols);
-
-	// if(num_of_cols <= 2){
-	// 	check = "missing"
-	// } else if ($('input[id=stack]:checkbox:checked').val()=='true'){
-	// 	// alert("we have a clicked box we need to keep")
-	// 	check = true
-	// } else {
-	// 	check = false
-	// };
-
 	console.log("LINE 302 - check: " + check);
 
-	var kitchenSink = []
+	var kitchenSink = [] // CREATING THE ARRAY OF ARRAYS
  	kitchenSink.push(grandLabel);
      for(var k=0; k<= num_of_rows -1; k++){
 			var stuff=[]
@@ -302,36 +218,59 @@ console.log("line 238 grandLabel " + grandLabel);
      	 kitchenSink.push(stuff);
      }
 
-	var data = google.visualization.arrayToDataTable( kitchenSink );
+    var chartType = $('input[name=chart_type]:radio:checked').val();
 
+	var data = google.visualization.arrayToDataTable( kitchenSink );
+	// shoving all arrays (kitchenSink) into google vis DataTable
 	    console.log("checkbox marked? " + check);
-	    exportCode(kitchenSink, check);
-	    drawNewChart(data,check);
+	    exportCode(data,chartType,check);
+	    drawNewChart(data,check); 
+	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
 		console.log("does NOT work with stepchart or piechart ...number number");
+
+		if($('input[class=no_string]:radio:checked').val()==undefined){
+			alert("Please select an available chart type");
+			return false;
+		}
+
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
 					   $('#real-data input[name=label_col_a]').val());
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 					   $('#real-data input[name=label_col_b]').val());
 
-		// drawNewChart(data) //makes the columns
 		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
-		// var nf_num = last_row -1;
+		
 		for(var i=1;i<=last_row;i++) {
 			data.addRows([
 			[parseInt($('#real-data input[name=cell_' + i + '_a').val()),
 				parseInt($('#real-data input[name=cell_' + i + '_b').val())]
 			]);
+			a_val = $('#real-data input[name=cell_' + i + '_a').val();
+			console.log(a_val);
+			console.log(typeof a_val);
+			acceptable_number = rest = /^\+|^\-|^\d/;
+			letters = /[A-Za-z]/;
+			dot = /^\./;
+			space = /^\s+/;
+			starts_with_space = space.test(a_val);
+			if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, which means that number will not be rendered.")}
+			starts_with_dot = dot.test(a_val);
+			if (starts_with_dot == true) { alert (" For scatter and trend charts, decimals must start with a 0, not with a dot."); return false;}
+			contains_letters = letters.test(a_val);
+			console.log(contains_letters);
+			if (acceptable_number == false) { alert ("CHART CAN NOT BE DRAWN" + '\r' + " Numbers must start with a number, + or - sign."); return false;}
             console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}
 
-		// drawNewChart(data, rotate_slider, piehole_slider); // adds the rows
 		drawNewChart(data);
 	} else {
 		console.log("col a: " + $('#real-data select[name=dataType_col_a]').val())
 		console.log("col b: " + $('#real-data select[name=dataType_col_b]').val())
 		alert("please correct data type");
 	}
-
 };
+
+//TICKS https://developers.google.com/chart/interactive/docs/gallery/columnchart
+//see h.axis or v.axis ticks

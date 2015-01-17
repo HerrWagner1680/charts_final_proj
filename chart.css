@@ -1,3 +1,74 @@
+body {
+
+margin: 0;
+	/* pattern bg from bg.siteorigin.com - a tool by SiteOrigin
+	- Patterns from Subtle Patterns */
+
+/*	background-image: url("./background_patterns/blueprint_gray.png");*/
+	/*background-image: url("./background_patterns/blueprint_light.png");*/ /******/ 
+
+	/*background-image: url("./background_patterns/blueprint_greenish.png");*/  /***/
+/*  background-image: url("./background_patterns/blueprint_pastel_purp.png");*/  /***/
+
+/*background-image: url("./background_patterns/green_cup.png"); */  /******/
+/*background-image: url("./background_patterns/sandpaper.png"); */   /*****/
+/*background-image: url("./background_patterns/wavegrid_@2X.png"); */    /****/
+/*background-image: url("./background_patterns/subtle_grunge.png"); */  /******/
+
+
+background-image: url("./background_patterns/pattern-8vco.png");
+
+/*background-image: url("./background_patterns/pattern-8vco.png"); *//*XXXXXXXX*/
+/*Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use
+subtlepatterns.com - and artist name */
+
+}
+
+header {
+	z-index: 10;
+	opacity: 0.9;
+	position: fixed;
+	transform: rotate(45deg);
+	top:40px;
+	right: -55px;
+	background: #444;
+	border-right: 50px solid #444;
+	border-left: 50px solid #444;
+}
+
+.banner {
+	display: block;
+	height: 40px;
+	color: #ccc;
+}
+
+footer {
+	bottom: 0px;
+	background: #333;
+}
+
+#chart_div0 {
+	margin-top: 40px;
+}
+
+#chart_div0 svg {
+	border-top: 10px solid #777;
+	border-bottom: 10px solid #555;
+	border-left: 10px solid #666;
+	border-right: 10px solid #888;
+	outline: 5px solid #ccc;
+}
+
+div[dir=ltr] {
+	margin-left: auto;
+	margin-right: auto;
+	left: -25px;
+}
+
+#chart_title {
+	width: 280px;
+}
+
 input[type="radio"]:checked + label {
 	background-color: #ADD8E6;
 }
@@ -7,12 +78,16 @@ input[type="radio"]:disabled + label {
 	background-color: #444;
 }
 
+#spreadsheet_file_1 {
+	width: 400px;
+}
+
 #credit {
-	color: gray;
+	color: #555;
 }
 
 #credit a {
-	color: gray;
+	color: #555;
 	font-style: italic;
 	font-family: sans-serif;
 	font-weight: lighter;
