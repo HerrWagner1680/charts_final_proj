@@ -7,8 +7,12 @@ input[type="radio"]:disabled + label {
 	background-color: #444;
 }
 
+#credit {
+	color: gray;
+}
+
 #credit a {
-	color:gray;
+	color: gray;
 	font-style: italic;
 	font-family: sans-serif;
 	font-weight: lighter;

@@ -1,38 +1,7 @@
-function drawChartTest() {
-
-	console.log("RUNNING drawChartTest function")
-
-	// stackedCheckboxAppears()	
-	var data = google.visualization.arrayToDataTable([
-	  ['12342', '1234', '23423', '2342'],
-	  [2014, 1000, 400, 200],
-	  [2015, 1170, 460, 250],
-	  [2016, 660, 1120, 300],
-	  [2017, 1030, 540, 350]
-	]);
-
-	var wid = $("#width_chart").val()
-	var hei = $("#height_chart").val()
-
-	var stack = $('input[id=stack]:checkbox:checked').val()
-
-	var options = {
-	  	'height': hei,
-	  	'width': wid,
-	    isStacked: stack
-	};
-
-	console.log(hei);
-	console.log(wid);
-
-	$("#stack").click(drawChartTest);
-
-	var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
-
-	chart.draw(data, options);
-}
-
 function drawNewChart(data, check) {
+
+	console.log("drawnewchart var DATA: " + data);
+	console.log("DRAW NEW CHART - check: " + check);
 
 	var wid = $("#width_chart").val()
 	var hei = $("#height_chart").val()
@@ -64,7 +33,7 @@ function drawNewChart(data, check) {
 	var max_b = Math.max.apply(Math,col_b_array);
 	var min_b = Math.min.apply(Math,col_b_array);
 
-	exportCode (data);
+	// exportCode (data);
 
 //READ SELECTED RADIO BUTTONS AND REDRAW CHART
 	switch($('input[name=chart_type]:radio:checked').val()) {
@@ -77,7 +46,6 @@ function drawNewChart(data, check) {
 	              	'width': wid,
 	              	'height': hei
 	              };
-
 			console.log("area switch"); areachart.draw(data, options);
 			break;
 		case "bar":
@@ -95,7 +63,7 @@ function drawNewChart(data, check) {
 			console.log("step switch"); stepchart.draw(data, options);
 			break;
 		case "column":
-			if (check = "missing") {
+			if (check == "missing") {
 				var options = {
 					'title': ($('input[name=chart_title]').val()),
 					hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
@@ -120,7 +88,7 @@ function drawNewChart(data, check) {
 		              };
 				console.log("column switch - with checkbox"); columnchart.draw(data, options);
 				break;
-			}
+			} 
 		case "line":
 			//switch labels
 			var options = {
@@ -174,7 +142,6 @@ function drawNewChart(data, check) {
 		    	hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 	              	'width': wid,
 	              	'height': hei
-
 			};
 		     scatterchart.draw(data, options);   // str/val ONLY
 			break;
@@ -186,8 +153,6 @@ function drawNewChart(data, check) {
 			    hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 	              	'width': wid,
 	              	'height': hei,
-
-
 			    trendlines: {
 			      0: {
 			         type: 'linear',
@@ -202,11 +167,8 @@ function drawNewChart(data, check) {
 				'title': ($('input[name=chart_title]').val()),
 			    vAxis: {title: ($('#real-data input[name=label_col_a]').val()), minValue: min_a, maxValue: max_a},
 			    hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
-
 	              	'width': wid,
 	              	'height': hei,
-
-
 			    trendlines: {
 			      0: {
 			        type: 'exponential',
@@ -222,9 +184,6 @@ function drawNewChart(data, check) {
 			    hAxis: {title: ($('#real-data input[name=label_col_b]').val()), minValue: min_b, maxValue: max_b},
 	              	'width': wid,
 	              	'height': hei,
-
-
-
 			    trendlines: {
 			      0: {
 			        type: 'polynomial',
@@ -242,30 +201,30 @@ function drawNewChart(data, check) {
 	}; // END OF SWITCH CASE 
 }; //END OF drawNewChart function
 
-function reviseColumn() {
+// function reviseColumn() {
 
-	console.log("running fake data - to be later inserted with...? function?")
-		var data = google.visualization.arrayToDataTable([
-	  ['12342', '1234', '23423', '2342'],
-	  [2014, 1000, 400, 200],
-	  [2015, 1170, 460, 250],
-	  [2016, 660, 1120, 300],
-	  [2017, 1030, 540, 350]
-	]);
+// 	console.log("running fake data - to be later inserted with...? function?")
+// 		var data = google.visualization.arrayToDataTable([
+// 	  ['12342', '1234', '23423', '2342'],
+// 	  [2014, 1000, 400, 200],
+// 	  [2015, 1170, 460, 250],
+// 	  [2016, 660, 1120, 300],
+// 	  [2017, 1030, 540, 350]
+// 	]);
 
-		var wid = $("#width_chart").val()
-		var hei = $("#height_chart").val()
+// 		var wid = $("#width_chart").val()
+// 		var hei = $("#height_chart").val()
 
-		var stack = $('input[id=stack]:checkbox:checked').val()
+// 		var stack = $('input[id=stack]:checkbox:checked').val()
 
-				var options = {
-					'title': ($('input[name=chart_title]').val()),
-				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
-				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
-	              	'width': wid,
-	              	'height': hei,
-	              	isStacked: stack
-	              	// isStacked: true
-	              };
-			console.log("revise column"); columnchart.draw(data, options);
-};
+// 				var options = {
+// 					'title': ($('input[name=chart_title]').val()),
+// 				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
+// 				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
+// 	              	'width': wid,
+// 	              	'height': hei,
+// 	              	isStacked: stack
+// 	              	// isStacked: true
+// 	              };
+// 			console.log("revise column"); columnchart.draw(data, options);
+// };

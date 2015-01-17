@@ -39,10 +39,12 @@
 
               console.log("column a direct" + data.Pf[0].label)
 
+              //NOTE - switch hAxis and vAxis if labels not
+              // rendering to the right axis in chart for the sample chart
               var options = {
                 'title': ($('input[name=chart_title]').val()),
-                vAxis: {title: (data.Pf[0].label)},
-                hAxis: {title: (data.Pf[1].label)},
+                hAxis: {title: (data.Pf[0].label)},
+                vAxis: {title: (data.Pf[1].label)},
                           'width':500,
                           'height':400
                         };
@@ -52,7 +54,7 @@
               $("#width_chart").val(500)
               $("#height_chart").val(400)
 
-              exportCode(data);
+              // exportCode(); //what ARGUMENTS TO PASS IN?
 
               $("#col2").attr('checked', 'checked'); // selecting columnchart radio button for sampler
 
@@ -107,7 +109,7 @@
             </select>
         <br>
         <!-- radio buttons -->
-          <p id="select_typ">select a type of chart</p>
+          <p id="select_typ">select chart type</p>
 
         <br>
 
@@ -196,19 +198,9 @@
         <!-- <button onclick="toImg(document.getElementById('chart_div0'), document.getElementById('img_div'));">Convert to image</button> -->
         <br>
         <br>
-        <p id="credit"><a href="https://gist.github.com/battlehorse/1333906">PNG download code courtesy of Battlehorse</a><p>
+        <p id="credit"><a href="https://gist.github.com/battlehorse/1333906">PNG download code courtesy of Battlehorse</a> + <a href="https://developers.google.com/chart/">chart rendering by Google Charts</a><p>
 
     <script>
-
-        function stackedCheckboxAppears() {
-            $("#height_chart").after("<input id='stack' type='checkbox' name='stacked_column' value='true'></input><label id='stack2'for='stack'>stacked columns</label>");
-
-            $("#stack, #stack2").bind('click', function(){
-              console.log("stackclick");
-              // drawChartTest();
-              //note - i did try reviseColumn() - but said it was undefined
-            });
-        };
 
         $("#refresh").click(function(){
             refreshing();
@@ -268,6 +260,7 @@
 
                   if (typeof(data.Pf[pf_num]) !== "undefined"){
                       label_id.attr("value", data.Pf[pf_num].label);
+                      console.log("line 261 " + data.Pf[pf_num].label + "col a int" + col_a_int )
                   } else {
                       console.log("label is undefined");
                       label_id.attr("value", "Column " + (col_letter).toUpperCase())
@@ -313,7 +306,7 @@
         function ExampleJS(){
           	event.preventDefault();
           	jUrl = document.getElementById("spreadsheet_file_1").value;
-              console.log(typeof($('#spreadsheet_file_1').val()));
+
             if($('#spreadsheet_file_1').val() == ""){
               console.log("in the undefined loop line 357");
               alert("please paste in a URL before clicking upload button");
@@ -332,6 +325,7 @@
     <script type="text/javascript" src="draw_new_chart.js"></script>
     <script type="text/javascript" src="sampler9jan2.js"></script>
     <script type="text/javascript" src="add_rem_col_rows.js"></script>
+    <script type="text/javascript" src="export_code.js"></script>
 
   </body>
 </html>
