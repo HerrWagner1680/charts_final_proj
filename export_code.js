@@ -74,8 +74,18 @@ var column = data.Pf
                         var col_id = $("#real-data #cell_" + i + "_" + col_letter);
                       //check to see if data exists in corresponding cell in URL
                       //if it does exist, add data, if not, make value null
-                          if (typeof(row[i-1]) !== "undefined"){
+                          if (typeof(row[i-1]) !== undefined ){
                               console.log(row[i-1].c[c_num].v);
+
+                              acceptable_number = rest = /^\+|^\-|^\d/;
+								letters = /[A-Za-z]/;
+								dot = /^\./;
+                              a_val = row[i-1].c[c_num].v;
+                              starts_with_dot = dot.test(a_val);
+								if (starts_with_dot == true) { a_val = parseFloat(a_val);}
+								console.log(">>>>>>>>>>> a_val line 261: " + a_val);
+								contains_letters = letters.test(a_val);
+								console.log(">>>>>>>>> contains letters " + contains_letters);
 
 
                               col_id.attr("value", row[i-1].c[c_num].v)
@@ -158,13 +168,16 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	var max_b = Math.max.apply(Math,col_b_array);
 	var min_b = Math.min.apply(Math,col_b_array);
 
+	console.log("max_a: " + max_a + "min_a: " + min_a + "max_b: " + max_b + "min_b: " + min_b);
+
 	var radio = ($('input[type=radio]:checked').val())
 	var col_a_array_nan = [ $('#real-data input[name=cell_1_a]').val(), $('#real-data input[name=cell_2_a]').val(), $('#real-data input[name=cell_3_a]').val(), $('#real-data input[name=cell_4_a]').val()];
 	//EXPORTING CODE ---- experiment -- make this into separate function
 	// this sep function should upload on start of program as well
 	var yep = 567;
 	var title = $('input[name=chart_title]').val();
-	if ($('#real-data input[name=cell_1_a]').val() == NaN) {
+	n = $('#real-data input[name=cell_1_a]').val()
+	if ( isNaN(n) == true) {
 		console.log("no num in col a")
 		var mess = "no num in col a" //variable is trapped in scope of if statement
 	};

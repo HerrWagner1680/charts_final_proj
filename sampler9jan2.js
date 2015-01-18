@@ -36,12 +36,24 @@ function pieRefresh(deg, hole) {
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 					   $('#real-data input[name=label_col_b]').val());
 
-		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+		var last_row = parseInt($('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 
 			for(var i=1;i<=last_row;i++) {
+				var neg = /^\-/
+				var bbb = $('#real-data input[name=cell_' + i + '_b').val();
+
+				if (neg.test(bbb) == true){
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
+					$('#rot').remove();
+					alert("negative numbers are invalid for a pie chart");
+					return false
+				} else {
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
+				}
+
 				data.addRows([
 				[($('#real-data input[name=cell_' + i + '_a').val()),
-					parseInt($('#real-data input[name=cell_' + i + '_b').val())]
+					parseFloat($('#real-data input[name=cell_' + i + '_b').val())]
 				]);
 			}
 
@@ -183,9 +195,9 @@ function refreshing(){
             for(var i=1;i<=last_row;i++) {
                 var valu = $("#real-data #cell_" + i + "_" + col_letter).val();
 
-                space = /^\s+/;
-				starts_with_space = space.test(valu);
-				if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, which means that number will not be rendered.")}
+    //             space = /^\s+/;
+				// starts_with_space = space.test(valu);
+				// if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, that number will not be rendered.")}
     //             dot = /^\./;
 				// starts_with_dot = dot.test(valu);
 				// if (starts_with_dot == true) { alert (" Decimals must start with a 0, not with a dot."); return false;}
@@ -243,23 +255,43 @@ function refreshing(){
 		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 		
 		for(var i=1;i<=last_row;i++) {
+			var aaa = parseFloat($('#real-data input[name=cell_' + i + '_a').val());
+			var bbb = parseFloat($('#real-data input[name=cell_' + i + '_b').val());
+
+			console.log("aaa " + aaa);
+			console.log("bbb " + bbb);
+			if (isNaN(aaa)==true) {
+				$('#real-data input[name=cell_' + i + '_a').css({"border":"2px solid red", "color":"red"});
+					alert("Data in first column must begin with a number," + '\r' + "or - sign followed by a number.");
+					return false
+				} else if (isNaN(bbb)==true) {
+				$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
+					alert("Data in second column must begin with a number," + '\r' + "or - sign followed by a number.");
+					return false
+				} else {
+					$('#real-data input[name=cell_' + i + '_a').css({"border":"2px inset", "color":"initial"});
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
+			}
+			
 			data.addRows([
-			[parseInt($('#real-data input[name=cell_' + i + '_a').val()),
-				parseInt($('#real-data input[name=cell_' + i + '_b').val())]
+				[aaa, bbb]
 			]);
+
 			a_val = $('#real-data input[name=cell_' + i + '_a').val();
 			console.log(a_val);
 			console.log(typeof a_val);
 			acceptable_number = rest = /^\+|^\-|^\d/;
 			letters = /[A-Za-z]/;
 			dot = /^\./;
-			space = /^\s+/;
-			starts_with_space = space.test(a_val);
-			if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, which means that number will not be rendered.")}
+			//space = /^\s+/;
+			//starts_with_space = space.test(a_val);
+			//if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, that number will not be rendered.")}
 			starts_with_dot = dot.test(a_val);
-			if (starts_with_dot == true) { alert (" For scatter and trend charts, decimals must start with a 0, not with a dot."); return false;}
+			if (starts_with_dot == true) { a_val = parseFloat(a_val);}
+			console.log(">>>>>>>>>>> a_val line 261: " + a_val);
 			contains_letters = letters.test(a_val);
-			console.log(contains_letters);
+			console.log(">>>>>>>>> contains letters " + contains_letters);
+			if (contains_letters == true){ alert("DRAW A RED BOX ON THIS ONE!!!"); return false;}
 			if (acceptable_number == false) { alert ("CHART CAN NOT BE DRAWN" + '\r' + " Numbers must start with a number, + or - sign."); return false;}
             console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}

@@ -22,6 +22,8 @@ function drawNewChart(data, check) {
 	var chartType = $('input[name=chart_type]:radio:checked').val();
 	exportCode (data, chartType, check);
 
+	var last_row = parseInt($('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+
 //ASSIGNING METHOD NAMES FOR EACH GOOGLE CHART
     var areachart = new google.visualization.AreaChart(document.getElementById('chart_div0'));
     var barchart = new google.visualization.BarChart(document.getElementById('chart_div0'));
@@ -107,6 +109,18 @@ function drawNewChart(data, check) {
 
 	//NOTE donut covers regular pie chart and donut chart with range sliders
 		case "donut":
+			for(var i=1;i<=last_row;i++) {
+				var neg = /^\-/
+				var bbb = $('#real-data input[name=cell_' + i + '_b').val();
+				
+				if (neg.test(bbb) == true){
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
+					alert("negative numbers are invalid for a pie chart");
+					return false
+				} else {
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
+				}
+			}
 			addPieRotateSlider();
 			addPieHoleSlider();
 			console.log("pie / donut switch"); 
@@ -127,6 +141,18 @@ function drawNewChart(data, check) {
 
 	//NOTE case pie is 3d pie - only has one range slider
 		case "pie":
+			for(var i=1;i<=last_row;i++) {
+				var neg = /^\-/
+				var bbb = $('#real-data input[name=cell_' + i + '_b').val();
+				
+				if (neg.test(bbb) == true){
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
+					alert("negative numbers are invalid for a pie chart");
+					return false
+				} else {
+					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
+				}
+			}
 			addPieRotateSlider();
 			console.log("pie switch"); 
 			var options = {
