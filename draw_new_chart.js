@@ -234,31 +234,3 @@ function drawNewChart(data, check) {
 	      	break;
 	}; // END OF SWITCH CASE 
 }; //END OF drawNewChart function
-
-// function reviseColumn() {
-
-// 	console.log("running fake data - to be later inserted with...? function?")
-// 		var data = google.visualization.arrayToDataTable([
-// 	  ['12342', '1234', '23423', '2342'],
-// 	  [2014, 1000, 400, 200],
-// 	  [2015, 1170, 460, 250],
-// 	  [2016, 660, 1120, 300],
-// 	  [2017, 1030, 540, 350]
-// 	]);
-
-// 		var wid = $("#width_chart").val()
-// 		var hei = $("#height_chart").val()
-
-// 		var stack = $('input[id=stack]:checkbox:checked').val()
-
-// 				var options = {
-// 					'title': ($('input[name=chart_title]').val()),
-// 				    hAxis: {title: ($('#real-data input[name=label_col_a]').val())},
-// 				    vAxis: {title: ($('#real-data input[name=label_col_b]').val())},
-// 	              	'width': wid,
-// 	              	'height': hei,
-// 	              	isStacked: stack
-// 	              	// isStacked: true
-// 	              };
-// 			console.log("revise column"); columnchart.draw(data, options);
-// };

@@ -1,0 +1,28 @@
+<html>
+<head>
+	<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+	<script type='text/javascript'>
+
+		google.load('visualization', '1', {packages:['corechart']});
+		google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+	 	  ['Name', 'Length'],
+		  ['A', 23],
+		  ['B ', 16],
+		  ['C', 10],
+		  ['D', 31]
+		]);
+		var options = {
+			chart: { title: 'Title'}
+ 		};
+		var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_material'));
+		chart.draw(data, options);
+		}
+	</script>
+</head>
+
+<body>
+	<div id='chart_material' style='width: 500px; height: 400px;'></div>
+</body>
+</html>

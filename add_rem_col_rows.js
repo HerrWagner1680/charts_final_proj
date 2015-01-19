@@ -19,16 +19,17 @@ $('#add_col').click(function() {
     "<option value = ''> - select data type - </option>"); //+ 
     // "<option value = 'ignore'>ignore</option></select></th>");
 
-    var chartType = $('input[name=chart_type]:radio:checked').val();
+    var chType = $('input[name=chart_type]:radio:checked').val();
     var current_row = 1
     while(current_row <= last_row){
-        // console.log("curr ROW: " + current_row);
-        // console.log("last ROW: " + last_row);
+      
+        console.log("chartType " + chType);
+
     $("#real-data #row_" + current_row).append("<td class='col_" + next_col + 
       "'><input type='text' id='cell_" + current_row + "_" + next_col + "' name='cell_" +
       "current_row" + "_" + next_col + "' value=''>");
          current_row++;
-         if (chartType=="#donut2", "#pie2", "#scatter2", "#lin2", "#exp", "#poly2"){
+         if (chType=="donut"|chType=="pie"|chType=="scatter"|chType=="trend_lin"|chType=="trend_exp"|chType=="trend_poly"){
             console.log("current row - line 32 " + current_row);
             $('input[id$="label_col_' + next_col +'"]').css({"border":"2px solid #ddd", "color":"#aaa"});
             $('select[id$="dataType_col_' + next_col +'"]').css({"border":"2px solid #ddd", "color":"#aaa"});

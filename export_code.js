@@ -186,43 +186,70 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	var dataValA = $('#real-data select[name=dataType_col_a]').val()
 	var dataValB = $('#real-data select[name=dataType_col_b]').val()
 
+// #area2 ct = 0 , #bar2 ct = 1, #step2 ct = 2, #col2 ct = 3, #line2 ct = 4, 
+// #donut2 ct = 5, #pie2 ct = 5, #scatter2 ct = 6, #lin2 ct = 6, #exp ct = 6, #poly2 ct = 6
+
+	var CHART_TYPE = ["AreaChart", "BarChart", "SteppedAreaChart", "ColumnChart", "LineChart", "PieChart", "ScatterChart"];
+	var CHART_OPTIONS = [["'something': 'asdf',","'title': 'title'"],["pie3D : true,"]];
+	switch(radio){
+		case "area": ct = 0; break;
+		case "bar": ct = 1; break;
+		case "step": ct = 2; break;
+		case "column": ct = 3; break;
+		case "line": ct = 4; break;
+		case "donut": ct = 5; break;
+		case "pie":	ct = 5; break;
+		case "scatter": ct = 6; break;
+		case "trend_lin": ct = 6; break;
+		case "trend_exp": ct = 6; break;
+		case "trend_poly": ct = 6; break;
+		default:
+	        console.log('default');
+	      	alert("default - radio type - EXPORT CODE");
+	      	break;
+	}; // END OF SWITCH CASE 				
+
 	console.log("minimum col a: " + parseInt(min_a)) 
-	document.getElementsByName('export_code')[0].value=('STILL IN TEST MODE' +
-		' minValue: ' +  ', maxValue: ' + '\r' + '\r' +
-		" width: " + " height: " + " num of cols: " + " num of rows " + '\r' +
-		 "   XXXXXXX CHART TYPE:  " + //radio + "  XXXXXXXX" + '\r' + '\r' +
-	 "<html>" + '\r' + (column[0].type) + (data.Pf[1].type) + (column[0].type) +
-	  "	<head>" + '\r' +
-	" and the var direct: " + indeed + "return I looppy " + theBigARRAY + 
-	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" +
+	document.getElementsByName('export_code')[0].value=(
+		// "chart options array : " + CHART_OPTIONS + '\r' +
+		// "column[0].type : " + (column[0].type) + '\r' +
+		// "data.Pf[1].type : " + (data.Pf[1].type) + '\r' +
+		// "indeed : " + indeed + '\r' + " theBigARRAY : " + theBigARRAY + '\r' +
+		// " max_a : " + max_a + '\r' + " min_a : " + min_a + '\r' +
+		// " max_b : " + max_b + '\r' + " min_b : " + min_b + '\r' +
+		// " row[0].c[0].v " + (row[0].c[0].v) + '\r' +
+		// " column[0].label " + (column[0].label) + '\r' +
+		// " column b -- column[1].label " + (column[1].label) + '\r' +
+		// " row[1].c[1].v " + (row[1].c[1].v) + '\r' + '\r' + '\r' +
+		// " check option " + check + '\r' +
+	 // "<html>" + '\r' + 
+	  "<head>" + '\r' +
+	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" + '\r' +
 	    "	<script type='text/javascript'>" + '\r' + '\r' +
-	      "	google.load('visualization', '1.1', {packages:['bar']});" + '\r' +
-	      "	google.setOnLoadCallback(drawChart);" + '\r' + 
+	      "		google.load('visualization', '1', {packages:['corechart']});" + '\r' +
+	      "		google.setOnLoadCallback(drawChart);" + '\r' + 
 	      "	function drawChart() {" + '\r' +
-	        "		var data = google.visualization.arrayToDataTable([" + '\r' +
-	          "			['Year', 'Sales', 'Expenses', 'Profit']," + '\r' +
-	          "			['2014', 1000, 400, 200]," + '\r' +
-	          "			['2015', 1170, 460, 250]," + '\r' +
-	          "			['2016', 660, 1120, 300]," + '\r' +
-	          "			['2017', 1030, 540, 350]" + '\r' +
-	        "		]);" + '\r' + //mess + " XXXXXXXX  " + 
-			//col_a_array + " OR IF NaN: " + col_a_array_nan + " col b array " + col_b_array + " dataval:" + dataValA + " B: " + dataValB + '\r' +
+	      "		var data = google.visualization.arrayToDataTable([" + '\r' +
+	      "	 	  ['" + column[0].label + "', '" + column[1].label + "']," +'\r' +
+	      "		  ['" + (row[0].c[0].v) + "', " + (row[0].c[1].v) + "]," + '\r' +
+	      "		  ['" + (row[1].c[0].v) + "', " + (row[1].c[1].v) + "]," + '\r' +
+	      "		  ['" + (row[2].c[0].v) + "', " + (row[2].c[1].v) + "]," + '\r' +
+	      "		  ['" + (row[3].c[0].v) + "', " + (row[3].c[1].v) + "]" + '\r' +
+	        "		]);" + '\r' + 
+	        "		var options = {" + '\r' +
+	          "			chart: { title: '" + chartTitle + "'}" + '\r' + 
+	        " 		};" + '\r' + 
 
-	        "		var options = {" +
-	          "			chart: { title: '" + //title + "'' ," +
-	            " subtitle: 'Sales, Expenses, and Profit: 2014-2017' " +
-	          "}" + '\r' + 
-	        " };" + '\r' + 
-
-	        "		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));" + '\r' + 
+	        "		var chart = new google.visualization." + CHART_TYPE[ct] + "(document.getElementById('chart_material'));" + '\r' + 
 
 	        "		chart.draw(data, options);" + '\r' + 
-	      "		}" + '\r' + 
+	      "		}" + '\r' + '\r' +
 	    "	</script>" +  '\r' + 
-	    "	</head>" + '\r' + '\r' + 
+	    "</head>" + '\r' + '\r' + 
 	  "<body>" + '\r' + 
-	    "	<div id='columnchart_material' style='width: 900px; height: 500px;''></div>" + '\r' + 
-	  "</body>" + '\r' + '\r' + 
+	    "	<div id='chart_material' style='width: " + chartWidth + "px; height: " + 
+	    chartHeight + "px;'></div>" + '\r' + 
+	  "</body>" + '\r' + 
 	"</html>"   );
 
 // VARIABLES

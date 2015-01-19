@@ -194,14 +194,7 @@ function refreshing(){
 
             for(var i=1;i<=last_row;i++) {
                 var valu = $("#real-data #cell_" + i + "_" + col_letter).val();
-
-    //             space = /^\s+/;
-				// starts_with_space = space.test(valu);
-				// if (starts_with_space == true) { alert (" WARNING: You have a space in front of a number, that number will not be rendered.")}
-    //             dot = /^\./;
-				// starts_with_dot = dot.test(valu);
-				// if (starts_with_dot == true) { alert (" Decimals must start with a 0, not with a dot."); return false;}
-                somekind_of_array_float.push(parseFloat(valu));
+	            somekind_of_array_float.push(parseFloat(valu));
             };//END OF FOR LOOP
 
     	console.log(str_col_array);	//THE WINNER
