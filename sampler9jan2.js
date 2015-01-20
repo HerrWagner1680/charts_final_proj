@@ -151,10 +151,10 @@ function refreshing(){
 		grandLabel.push(column_a_label);
 		var col_b_num = 98;
 	    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-	    console.log("line 193 last_col " + last_col);
+	    // console.log("line 193 last_col " + last_col);
 	    var last_col_int = last_col.charCodeAt(0);
 
-	  	console.log("line 197 last_col_int " + last_col_int)
+	  	// console.log("line 197 last_col_int " + last_col_int)
 
   		//WHILE LOOP - ASSIGNS LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
 		  var pf_num = 1
@@ -169,7 +169,7 @@ function refreshing(){
 		      pf_num++;
 		  };
 
-	console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
+	//console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
 
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
 	var num_of_rows = last_row;
@@ -197,7 +197,7 @@ function refreshing(){
 	            somekind_of_array_float.push(parseFloat(valu));
             };//END OF FOR LOOP
 
-    	console.log(str_col_array);	//THE WINNER
+    	//console.log(str_col_array);	//THE WINNER
 		str_col_array.push(somekind_of_array_float);
 
         col_b_num++;
@@ -227,8 +227,9 @@ function refreshing(){
 
 	var data = google.visualization.arrayToDataTable( kitchenSink );
 	// shoving all arrays (kitchenSink) into google vis DataTable
-	    console.log("checkbox marked? " + check);
-	    exportCode(data,chartType,check);
+	   // console.log("checkbox marked? " + check);
+	    findOptionCode(data, chartType, check);
+	    // exportCode(data,chartType,check);
 	    drawNewChart(data,check); 
 	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
@@ -288,12 +289,13 @@ function refreshing(){
 			if (acceptable_number == false) { alert ("CHART CAN NOT BE DRAWN" + '\r' + " Numbers must start with a number, + or - sign."); return false;}
             console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}
-
+		findOptionCode(data, chartType, check);
 		drawNewChart(data);
 	} else {
 		console.log("col a: " + $('#real-data select[name=dataType_col_a]').val())
 		console.log("col b: " + $('#real-data select[name=dataType_col_b]').val())
 		alert("please correct data type");
+		return false;
 	}
 };
 

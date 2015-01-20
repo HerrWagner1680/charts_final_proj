@@ -1,46 +1,40 @@
+//find_option_code.js passes information to exportCode function
 
+function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, max_b) {
 
-function exportCode (data, chartType, check, optionData) {
+	console.log("check " + check + "   optionData " + optionData)
 
-var column = data.Pf
-var row = data.Nf;
-	console.log("data in exportCode function: " + data);
-	console.log("check variable in exportCode function: " + check);
-	console.log("EXPORT CODE reverse engineer " + row[0].c[0].v);//shows A - cel 1 col 1
-	console.log("EXPORT CODE reverse engineer LABEL " + column[0].label);
-	console.log("EXPORT CODE reverse engineer TYPE " + column[0].type);
+	var column = data.Pf
+	var row = data.Nf;
 
-var row = data.Nf;
-            var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
-            var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
-            var last_col_int = last_col.charCodeAt(0);
-            var next_col_int = last_col_int + 1;
-            var next_col = String.fromCharCode(next_col_int);
-            var next_row = last_row + 1;
-            var col_a_int = 97;
+        var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
+        var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+        var last_col_int = last_col.charCodeAt(0);
+        var next_col_int = last_col_int + 1;
+        var next_col = String.fromCharCode(next_col_int);
+        var next_row = last_row + 1;
+        var col_a_int = 97;
 
-            console.log("EXPORT CODE last_col line 18: " + last_col);
-            console.log("EXPORT CODE next_col line 29: " + next_col);
+        //pull from URL datatype string or number for first column
+        // $("#dataType_col_a").val(data.Pf[0].type)
+        var dataType_col_a = column[0].type;
+        // console.log("EXPORT CODE dataType_col_a "+ dataType_col_a)
 
-          //pull from URL datatype string or number for first column
-            // $("#dataType_col_a").val(data.Pf[0].type)
-            var dataType_col_a = column[0].type;
-            console.log("EXPORT CODE dataType_col_a "+ dataType_col_a)
+        //assign rest of column types as number
+		var column_num = 0
+			while(col_a_int +1 <= last_col_int){
+				var col_letter = String.fromCharCode(col_a_int);
+				$("#real-data #data_types #dataType_col_" + col_letter).attr("value", "number");
+				col_a_int++;
+				column_num++;
+			};
 
-          //assign rest of column types as number
-          var column_num = 0
-          while(col_a_int +1 <= last_col_int){
-              var col_letter = String.fromCharCode(col_a_int);
-              $("#real-data #data_types #dataType_col_" + col_letter).attr("value", "number");
-              col_a_int++;
-              column_num++;
-          };
-var row = data.Nf;
-var column = data.Pf
-            //resetting variables
-            var column_num = 0
-            var col_a_int = 97;
-            //ASSIGN column label names
+		var row = data.Nf;
+		var column = data.Pf
+		//resetting variables
+		var column_num = 0
+		var col_a_int = 97;
+		//ASSIGN column label names
 
             //NOTE - COLUMN NAME USED TO READ
             //    $("#col_a_label").attr("value", data.Pf[0].label) // column name
@@ -50,7 +44,7 @@ var column = data.Pf
 
                   if (typeof(column[column_num]) !== "undefined"){
                       label_id.attr("value", column[column_num].label);
-                      console.log("line 261 " + column[column_num].label + "col a int" + col_a_int )
+                      //console.log("line 261 " + column[column_num].label + "col a int" + col_a_int )
                   } else {
                       console.log("label is undefined");
                       label_id.attr("value", "Column " + (col_letter).toUpperCase())
@@ -59,10 +53,9 @@ var column = data.Pf
                 col_a_int++;
                 column_num++;
             };
-var row = data.Nf;
-var column = data.Pf
-            //FORMAT:
-            //$("#real-data #label_col_" + col_letter).attr("value", data.Pf[pf_num].label);
+
+	var row = data.Nf;
+	var column = data.Pf
          
           //uploading cell data from URL
             var col_a_int = 97; //reset var
@@ -75,23 +68,17 @@ var column = data.Pf
                       //check to see if data exists in corresponding cell in URL
                       //if it does exist, add data, if not, make value null
                           if (typeof(row[i-1]) !== undefined ){
-                              console.log(row[i-1].c[c_num].v);
-
-                              acceptable_number = rest = /^\+|^\-|^\d/;
+	                            acceptable_number = rest = /^\+|^\-|^\d/;
 								letters = /[A-Za-z]/;
 								dot = /^\./;
-                              a_val = row[i-1].c[c_num].v;
-                              starts_with_dot = dot.test(a_val);
+	                            a_val = row[i-1].c[c_num].v;
+	                            starts_with_dot = dot.test(a_val);
+
 								if (starts_with_dot == true) { a_val = parseFloat(a_val);}
-								console.log(">>>>>>>>>>> a_val line 261: " + a_val);
 								contains_letters = letters.test(a_val);
-								console.log(">>>>>>>>> contains letters " + contains_letters);
-
-
-                              col_id.attr("value", row[i-1].c[c_num].v)
-                              console.log("line 328 --- Nf is defined")
+	                            col_id.attr("value", row[i-1].c[c_num].v);
                           } else {
-                              console.log("line 331 ---- Nf is not defined")
+                              //console.log("line 331 ---- Nf is not defined")
                               col_id.val(null)
                           }
                     };
@@ -104,69 +91,20 @@ var column = data.Pf
 // Nf[0] is row 0
 // c[0] is column 0
 // v is the value
-var row = data.Nf;
-var column = data.Pf
-console.log("line 86 - nf0 c 0:" + row[0].c[0].v)
+	var row = data.Nf;
+	var column = data.Pf;
 
-function dataTypeForCol(column) {
-	data.Pf[column].type
-}
+	console.log("check " + check + "   optionData " + optionData)
 
-function columnLabel(column) {
-	data.Pf[column].label
-}
+	var selectedChartType = $('input[name=chart_type]:radio:checked').val();
+	var indeed = $('input[name=chart_type]:radio:checked').val()
 
-function rowData(row_number) {
-	Nf[row_number];
-}
-
-function columnData(column) {
-	c[column].v;
-}
-
-
-      // var options = {
-var chartTitle = $('input[name=chart_title]').val();
-                // hAxis: {title: (data.Pf[0].label)},
-                // vAxis: {title: (data.Pf[1].label)},
-                          // 'width':500,
-                          // 'height':400
-                        // };
-              // var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
-//
-              //set default width and height
-var chartWidth = $("#width_chart").val();
-var chartHeight = $("#height_chart").val();
-
-              // exportCode(); //what ARGUMENTS TO PASS IN?
-//chart type
-                //RADIO  .attr('checked', 'checked');
-console.log("radio button: " + $('input[type="radio"]:checked').val())
-console.log("chart type " + chartType);
-console.log("checkbutton status: " + check);
-var selectedChartType = $('input[name=chart_type]:radio:checked').val();
-var indeed = $('input[name=chart_type]:radio:checked').val()
-
-// data.Nf[0].c[0].v
-// data.Nf[1].c[1].v
-// data.Nf[2].c[0].v
-var theBigARRAY =[[" 'TITLE': "] + [chartTitle], [" 'WIDTH': "] + [chartWidth], [" HEIGHT: "] + 
-[chartHeight], " 'CHART TYPE': " + [selectedChartType]]
 
 
 ///NOTE - you might not need to pull datatype for each column -
 //MAYBE ONLY FOR COL A -- since all the rest will be number
 //(UNLESS OF COURSE YOU DO IGNORE)
-var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data.Pf[1].type]
-
-
-	//FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
-	var col_a_array = [ parseInt($('#real-data input[name=cell_1_a]').val()), parseInt($('#real-data input[name=cell_2_a]').val()), parseInt($('#real-data input[name=cell_3_a]').val()), parseInt($('#real-data input[name=cell_4_a]').val())];
-	var col_b_array = [ parseInt($('#real-data input[name=cell_1_b]').val()), parseInt($('#real-data input[name=cell_2_b]').val()), parseInt($('#real-data input[name=cell_3_b]').val()), parseInt($('#real-data input[name=cell_4_b]').val())];
-	var max_a = Math.max.apply(Math,col_a_array);
-	var min_a = Math.min.apply(Math,col_a_array);
-	var max_b = Math.max.apply(Math,col_b_array);
-	var min_b = Math.min.apply(Math,col_b_array);
+	var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data.Pf[1].type]
 
 	console.log("max_a: " + max_a + "min_a: " + min_a + "max_b: " + max_b + "min_b: " + min_b);
 
@@ -174,20 +112,17 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	var col_a_array_nan = [ $('#real-data input[name=cell_1_a]').val(), $('#real-data input[name=cell_2_a]').val(), $('#real-data input[name=cell_3_a]').val(), $('#real-data input[name=cell_4_a]').val()];
 	//EXPORTING CODE ---- experiment -- make this into separate function
 	// this sep function should upload on start of program as well
-	var yep = 567;
-	var title = $('input[name=chart_title]').val();
+	// var yep = 567;
+	// var title = $('input[name=chart_title]').val();
 	n = $('#real-data input[name=cell_1_a]').val()
 	if ( isNaN(n) == true) {
 		console.log("no num in col a")
 		var mess = "no num in col a" //variable is trapped in scope of if statement
 	};
-	var label_col_a = $('#real-data input[name=label_col_a]').val()
-	var label_col_b = $('#real-data input[name=label_col_b]').val()
+	// var label_col_a = $('#real-data input[name=label_col_a]').val()
+	// var label_col_b = $('#real-data input[name=label_col_b]').val()
 	var dataValA = $('#real-data select[name=dataType_col_a]').val()
 	var dataValB = $('#real-data select[name=dataType_col_b]').val()
-
-// #area2 ct = 0 , #bar2 ct = 1, #step2 ct = 2, #col2 ct = 3, #line2 ct = 4, 
-// #donut2 ct = 5, #pie2 ct = 5, #scatter2 ct = 6, #lin2 ct = 6, #exp ct = 6, #poly2 ct = 6
 
 	var CHART_TYPE = ["AreaChart", "BarChart", "SteppedAreaChart", "ColumnChart", "LineChart", "PieChart", "ScatterChart"];
 	var CHART_OPTIONS = [["'something': 'asdf',","'title': 'title'"],["pie3D : true,"]];
@@ -209,20 +144,13 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	      	break;
 	}; // END OF SWITCH CASE 				
 
+	console.log("check " + check + "   optionData " + optionData)
+
 	console.log("minimum col a: " + parseInt(min_a)) 
+
+	//BELOW IS THE CODE THAT WILL SHOW IN THE TEXT AREA
 	document.getElementsByName('export_code')[0].value=(
-		// "chart options array : " + CHART_OPTIONS + '\r' +
-		// "column[0].type : " + (column[0].type) + '\r' +
-		// "data.Pf[1].type : " + (data.Pf[1].type) + '\r' +
-		// "indeed : " + indeed + '\r' + " theBigARRAY : " + theBigARRAY + '\r' +
-		// " max_a : " + max_a + '\r' + " min_a : " + min_a + '\r' +
-		// " max_b : " + max_b + '\r' + " min_b : " + min_b + '\r' +
-		// " row[0].c[0].v " + (row[0].c[0].v) + '\r' +
-		// " column[0].label " + (column[0].label) + '\r' +
-		// " column b -- column[1].label " + (column[1].label) + '\r' +
-		// " row[1].c[1].v " + (row[1].c[1].v) + '\r' + '\r' + '\r' +
-		// " check option " + check + '\r' +
-	 // "<html>" + '\r' + 
+	  "<html>" + '\r' + 
 	  "<head>" + '\r' +
 	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" + '\r' +
 	    "	<script type='text/javascript'>" + '\r' + '\r' +
@@ -235,29 +163,17 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	      "		  ['" + (row[1].c[0].v) + "', " + (row[1].c[1].v) + "]," + '\r' +
 	      "		  ['" + (row[2].c[0].v) + "', " + (row[2].c[1].v) + "]," + '\r' +
 	      "		  ['" + (row[3].c[0].v) + "', " + (row[3].c[1].v) + "]" + '\r' +
-	        "		]);" + '\r' + '\r' +
-	        // "		var options = {" + '\r' +
-	        //   "			chart: { title: '" + chartTitle + "'}" + '\r' + 
-	        // " 		};" + '\r' + 
+	        "		]);" + '\r' + '\r' + 
 	        optionData + '\r' + 
 
-	        "		var chart = new google.visualization." + CHART_TYPE[ct] + "(document.getElementById('chart_material'));" + '\r' + 
-
+	        "		var chart = new google.visualization." + CHART_TYPE[ct] + 
+	        "(document.getElementById('chart_material'));" + '\r' + 
 	        "		chart.draw(data, options);" + '\r' + 
 	      "		}" + '\r' + '\r' +
 	    "	</script>" +  '\r' + 
 	    "</head>" + '\r' + '\r' + 
 	  "<body>" + '\r' + 
-	    "	<div id='chart_material' [[[style='width: " + chartWidth + "px; height: " + 
-	    chartHeight + "px;]]]'></div>" + '\r' + 
+	    "	<div id='chart_material'></div>" + '\r' + 
 	  "</body>" + '\r' + 
 	"</html>"   );
-
-// VARIABLES
-// WIDTH - HEIGHT
-// TYPE OF CHART
-// TITLE
-// LABELS
-// array
-
 };

@@ -20,8 +20,10 @@ function drawNewChart(data, check) {
 	              };
 
 	var chartType = $('input[name=chart_type]:radio:checked').val();
-	exportCode (data, chartType, check);
-
+	// exportCode (data, chartType, check);
+	console.log("about to run optioncode function");
+	findOptionCode (data, chartType, check);
+	console.log("done with option code function");
 	var last_row = parseInt($('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 
 //ASSIGNING METHOD NAMES FOR EACH GOOGLE CHART
