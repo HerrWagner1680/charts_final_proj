@@ -1,10 +1,13 @@
-function drawNewChart(data, check) {
+function drawNewChart(data, check, deg, hole) {
 
-	console.log("reverse engineer " + data.Nf[0].c[0].v);//shows A - cel 1 col 1
-	console.log("reverse engineer LABEL " + data.Pf[0].label);
-	console.log("reverse engineer TYPE " + data.Pf[0].type);
-	console.log("drawnewchart var DATA: " + data);
-	console.log("DRAW NEW CHART - check: " + check);
+	if (deg == undefined){ deg = 0 };
+	if (hole == undefined){ hole = 0 };
+
+	// console.log("reverse engineer " + data.Nf[0].c[0].v);//shows A - cel 1 col 1
+	// console.log("reverse engineer LABEL " + data.Pf[0].label);
+	// console.log("reverse engineer TYPE " + data.Pf[0].type);
+	// console.log("drawnewchart var DATA: " + data);
+	// console.log("DRAW NEW CHART - check: " + check);
 
 	var wid = $("#width_chart").val();
 	var hei = $("#height_chart").val();
@@ -22,7 +25,7 @@ function drawNewChart(data, check) {
 	var chartType = $('input[name=chart_type]:radio:checked').val();
 	// exportCode (data, chartType, check);
 	console.log("about to run optioncode function");
-	findOptionCode (data, chartType, check);
+	findOptionCode(data, chartType, check, deg, hole);
 	console.log("done with option code function");
 	var last_row = parseInt($('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 
@@ -123,7 +126,9 @@ function drawNewChart(data, check) {
 					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
 				}
 			}
+			console.log("about to run addPieRotateSlider");
 			addPieRotateSlider();
+			console.log("about to run pieHoleSlider");
 			addPieHoleSlider();
 			console.log("pie / donut switch"); 
 			var options = {

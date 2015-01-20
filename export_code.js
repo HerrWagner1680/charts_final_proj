@@ -144,9 +144,9 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 	      	break;
 	}; // END OF SWITCH CASE 				
 
-	console.log("check " + check + "   optionData " + optionData)
+	// console.log("check " + check + "   optionData " + optionData)
 
-	console.log("minimum col a: " + parseInt(min_a)) 
+	// console.log("minimum col a: " + parseInt(min_a)) 
 
 	//BELOW IS THE CODE THAT WILL SHOW IN THE TEXT AREA
 	document.getElementsByName('export_code')[0].value=(

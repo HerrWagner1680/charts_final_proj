@@ -4,17 +4,8 @@ margin: 0;
 	/* pattern bg from bg.siteorigin.com - a tool by SiteOrigin
 	- Patterns from Subtle Patterns */
 
-/*	background-image: url("./background_patterns/blueprint_gray.png");*/
-	/*background-image: url("./background_patterns/blueprint_light.png");*/ /******/ 
-
-	/*background-image: url("./background_patterns/blueprint_greenish.png");*/  /***/
-/*  background-image: url("./background_patterns/blueprint_pastel_purp.png");*/  /***/
-
-/*background-image: url("./background_patterns/green_cup.png"); */  /******/
-/*background-image: url("./background_patterns/sandpaper.png"); */   /*****/
-/*background-image: url("./background_patterns/wavegrid_@2X.png"); */    /****/
-/*background-image: url("./background_patterns/subtle_grunge.png"); */  /******/
-
+/*	source --- http://subtlepatterns.com/green-cup/
+	Made by Atle Mo.*/
 
 background-image: url("./background_patterns/green_cup.png");
 
@@ -49,6 +40,16 @@ header {
 footer {
 	bottom: 0px;
 	background: #333;
+	text-decoration: none;
+}
+
+p #background_credit {
+	float: right;
+	color: #999;
+	font-style: italic;
+	font-family: sans-serif;
+	font-weight: lighter;
+	text-decoration: none;
 }
 
 #chart_div0 {

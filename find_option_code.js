@@ -1,5 +1,5 @@
 
-function findOptionCode(data, chartType, check) {
+function findOptionCode(data, chartType, check, deg, hole) {
 	// optionData = ["var options = {'title': ($('input[name=chart_title]').val())," + 
 	// "hAxis: {title: ($('#real-data input[name=label_col_a]').val())},"];
 	var col_a_array = [ parseFloat($('#real-data input[name=cell_1_a]').val()), parseFloat($('#real-data input[name=cell_2_a]').val()), parseFloat($('#real-data input[name=cell_3_a]').val()), parseFloat($('#real-data input[name=cell_4_a]').val())];
@@ -25,9 +25,9 @@ function findOptionCode(data, chartType, check) {
 		case "column":		
 			if (check == "missing") {
 				optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-					["'title': "] + chartTitle + '\r' + ["			"] +
-					["hAxis: {title: " + label_col_a + "},"] + '\r' + ["			"] +
-					["vAxis: {title: " + label_col_b + "},"] + '\r' + ["			"] +
+					["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
+					["hAxis: {title: '" + label_col_a + "'},"] + '\r' + ["			"] +
+					["vAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 					["'width': " + chartWidth + ","] + '\r' + ["			"] +
 					["'height': " + chartHeight + ","] + '\r' + ["			"] +
 					["};"] + '\r' ]);
@@ -37,9 +37,9 @@ function findOptionCode(data, chartType, check) {
  			} else {
 // 				// stackedCheckboxAppears();
 				optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-					["'title': "] + chartTitle + '\r' + ["			"] +
-					["hAxis: {title: " + label_col_a + "},"] + '\r' + ["			"] +
-					["vAxis: {title: " + label_col_b + "},"] + '\r' + ["			"] +
+					["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
+					["hAxis: {title: '" + label_col_a + "'},"] + '\r' + ["			"] +
+					["vAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 					["'width': " + chartWidth + ","] + '\r' + ["			"] +
 					["'height': " + chartHeight + ","] + '\r' + ["			"] +
 					["isStacked: check"] + '\r' + ["			"] +
@@ -51,38 +51,38 @@ function findOptionCode(data, chartType, check) {
 
 
 
-// // DONUT
+// // // DONUT
  		case "donut":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
 				["   legend: 'none',"] + '\r' +  ["			"] +
 				["   'width': " + chartWidth + ","] + '\r' +  ["			"] +
 				["   'height': " + chartHeight + ","] + '\r' +  ["			"] +
 				["pieSliceText: 'label',"] + '\r' +  ["			"] +
-				["title: "] + chartTitle + '\r' +  ["			"] +
-				["pieStartAngle: 0, //change to slider variable see rotate_pie.html"] + '\r' +  ["			"] +
-				["pieHole: 0, //change to slider variable see rotate_pie.html"] + '\r' +  ["			"] +
+				["title: '" + chartTitle + "',"] + '\r' +  ["			"] +
+				["pieStartAngle: " + deg + ","] + '\r' +  ["			"] +
+				["pieHole: " + hole + ","] + '\r' +  ["			"] +
 				["};"] + '\r']);
  			break;
 
-// // 3D pie
+// // // 3D pie
  		case "pie":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
 				["   legend: 'none',"] + '\r' +  ["			"] +
 				["   'width': " + chartWidth + ","] + '\r' +  ["			"] +
 				["   'height': " + chartHeight + ","] + '\r' +  ["			"] +
 				["pieSliceText: 'label',"] + '\r' +  ["			"] +
-				["title: "] + chartTitle + '\r' +  ["			"] +
-				["pieStartAngle: 0, //change to slider variable see rotate_pie.html"] + '\r' +  ["			"] +
+				["title: '" + chartTitle + "',"] + '\r' +  ["			"] +
+				["pieStartAngle: " + deg + ","] + '\r' +  ["			"] +
 				["is3D: true,"] + '\r' +  ["			"] +
 				["};"] + '\r']);
  			break;
 
-// // SCATTER
+// // // SCATTER
  		case "scatter":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["title: "] + chartTitle + '\r' +  ["			"] +
-			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
-			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
+				["title: '" + chartTitle + "',"] + '\r' +  ["			"] +
+			    ["vAxis: {title: '" + label_col_a + "', minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
+			    ["hAxis: {title: '" + label_col_b + "', minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            ["  'width': " + chartWidth + ","] + '\r' +  ["			"] +
 	            [" 	'height': " + chartHeight + ","] + '\r' +  ["			"] +
 				["};"] + '\r']);
@@ -91,7 +91,7 @@ function findOptionCode(data, chartType, check) {
  		case "trend_lin":
 // 			console.log("trend_lin switch");
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["'title': "] + chartTitle + '\r' + ["			"] +
+				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
 			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
 			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            [" 	'width': " + chartWidth + ","] + '\r' + ["			"] +
@@ -108,7 +108,7 @@ function findOptionCode(data, chartType, check) {
  		case "trend_exp":
 // 			console.log("trend_exp switch");
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["'title': "] + chartTitle + '\r' + ["			"] +
+				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
 			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
 			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            [" 	'width': " + chartWidth + ","] + '\r' + ["			"] +
@@ -123,7 +123,7 @@ function findOptionCode(data, chartType, check) {
 
  		case "trend_poly":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["'title': "] + chartTitle + '\r' + ["			"] +
+				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
 			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
 			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            [" 	'width': " + chartWidth + ","] + '\r' + ["			"] +
@@ -139,7 +139,7 @@ function findOptionCode(data, chartType, check) {
  		default:
 // 	        console.log('default');
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["'title': "] + chartTitle + '\r' + ["			"] +
+				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
 		    	["vAxis: {title: " + label_col_a + "},"] + '\r' + ["			"] +
 		    	["hAxis: {title: " + label_col_b + "},"] + '\r' + ["			"] +
 	        	["     	'width': " + chartWidth + ","] + '\r' + ["			"] +

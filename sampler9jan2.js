@@ -15,20 +15,22 @@ $('select').change(function() {
 // END OF - DISABLES INACTIVE CHART TYPES
 
 function addPieRotateSlider() {
+		// console.log("running ROTATE SLIDER");
 	$("#select_typ").append("<span id='rot'><label for='slider3'> Degrees of rotation: " + 
 		"</label><input id='slider3' type ='range' min ='-180' max='180' step ='10' value='0'/>" + 
 		"<input type='text' id='rangeValue3' size='2' value='0' readonly/></span>");
 };
 
 function addPieHoleSlider() {
-	$("span").append("<label for='piehole3'> Donut hole (range 0 - 0.9 of radius): </label>" + 
+	// console.log("RUNNING PIE HOLE SLIDER");
+	$("span[ID='rot']").append("<label for='piehole3'> Donut hole (range 0 - 0.9 of radius): </label>" + 
 		"<input id='piehole3' type='range' min ='0' max='0.9' step='0.05' value='0'/>" + 
 		"<input type='text' id='holeRange3' size='2' value='0' readonly/>")
 };
 
 function pieRefresh(deg, hole) {
 	var data = new google.visualization.DataTable();
-		console.log("pie refresh function")
+		// console.log("pie refresh function")
 
 		//NOTE - PIE ONLY TAKES TWO COLUMNS OF DATA
 		data.addColumn($('#real-data select[name=dataType_col_a]').val(), 
@@ -62,9 +64,11 @@ function pieRefresh(deg, hole) {
 	    var piechart = new google.visualization.PieChart(document.getElementById('chart_div0'));
 
 	if ($('input[name=chart_type]:radio:checked').val()=="pie") {
-		var three_dee = true
+		var three_dee = true;
+		chartType = "pie";
 	} else {
-		var three_dee = false
+		var three_dee = false;
+		chartType = "donut";
 	}
 			var options = {
 	          // legend: 'none',
@@ -77,9 +81,13 @@ function pieRefresh(deg, hole) {
 	          is3D: three_dee,
 			};
 	piechart.draw(data, options);
+
+	findOptionCode(data, chartType, check, deg, hole)
 }
 
 function revise(){
+	console.log("running REVISE - sampler9jan2")
+
 	// update the numbers to the right of the sliders
 	$("#rangeValue3").val($('#slider3').val())
 	$("#holeRange3").val(parseFloat($("#piehole3").val()))
@@ -113,6 +121,9 @@ function refreshing(){
     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
     var last_col_integer = last_col.charCodeAt(0) + 1;
 	var col_a_int = 97;
+
+	var deg = 0;
+	var hole = 0;
 
 	// var TOT_COL = last_col_integer - col_a_int;
 
@@ -227,10 +238,10 @@ function refreshing(){
 
 	var data = google.visualization.arrayToDataTable( kitchenSink );
 	// shoving all arrays (kitchenSink) into google vis DataTable
-	   // console.log("checkbox marked? " + check);
-	    findOptionCode(data, chartType, check);
-	    // exportCode(data,chartType,check);
-	    drawNewChart(data,check); 
+
+	    // findOptionCode(data, chartType, check, deg, hole);
+
+	    drawNewChart(data,check, deg, hole); 
 	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
@@ -289,8 +300,8 @@ function refreshing(){
 			if (acceptable_number == false) { alert ("CHART CAN NOT BE DRAWN" + '\r' + " Numbers must start with a number, + or - sign."); return false;}
             console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}
-		findOptionCode(data, chartType, check);
-		drawNewChart(data);
+		// findOptionCode(data, chartType, check, deg, hole);
+		drawNewChart(data, check, deg, hole); 
 	} else {
 		console.log("col a: " + $('#real-data select[name=dataType_col_a]').val())
 		console.log("col b: " + $('#real-data select[name=dataType_col_b]').val())

@@ -65,11 +65,14 @@
 
               chart.draw(data, options);
 
+              var deg = 0;
+              var hole = 0;
+
               var check = "missing";
 
               var chartType = $('input[type="radio"]:checked').val();
 
-              findOptionCode(data, chartType, check)
+              findOptionCode(data, chartType, check, deg, hole);
               // exportCode (data, chartType, check);
 
               $(document).scrollTop(0); //document scrolls to top of page
@@ -220,7 +223,9 @@
       </div> <!-- end of WRAPPER div -->
 
       <footer class="banner">
-        <p>CHART SAMPLER</p>
+        <p>CHART SAMPLER
+        <a id="background_credit" href="http://subtlepatterns.com/green-cup/">Background design by Atle Mo of subtlepatterns.com</a>
+        </p>
       </footer>
 
     <script>
