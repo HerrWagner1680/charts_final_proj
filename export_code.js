@@ -2,7 +2,7 @@
 
 function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, max_b) {
 
-	console.log("check " + check + "   optionData " + optionData)
+	// console.log("check " + check + "   optionData " + optionData)
 
 	var column = data.Pf
 	var row = data.Nf;
@@ -67,7 +67,11 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
                         var col_id = $("#real-data #cell_" + i + "_" + col_letter);
                       //check to see if data exists in corresponding cell in URL
                       //if it does exist, add data, if not, make value null
+                      	console.log(row[i-1]);
                           if (typeof(row[i-1]) !== undefined ){
+                          		console.log(row[i-1]);
+                          		console.log(row[i-1].c[c_num].v);
+
 	                            acceptable_number = rest = /^\+|^\-|^\d/;
 								letters = /[A-Za-z]/;
 								dot = /^\./;
@@ -94,7 +98,7 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 	var row = data.Nf;
 	var column = data.Pf;
 
-	console.log("check " + check + "   optionData " + optionData)
+	// console.log("check " + check + "   optionData " + optionData)
 
 	var selectedChartType = $('input[name=chart_type]:radio:checked').val();
 	var indeed = $('input[name=chart_type]:radio:checked').val()
@@ -142,7 +146,22 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 	        console.log('default');
 	      	alert("default - radio type - EXPORT CODE");
 	      	break;
-	}; // END OF SWITCH CASE 				
+	}; // END OF SWITCH CASE 	
+
+
+
+//XXXXXXXXX
+//NOTE - WITH NUMBER NUMBER --- there should be NO quotes around first column!!!!
+//XXXXXXXXXX
+// or do some weird variable equaling a single quote?
+
+	if (dataValA == "string") { var Q = "'";} else { var Q = "";};
+
+	// console.log("testing 1 without quotes");
+	// console.log(Q + "testing " + Q + "with" + Q + " quotes");
+
+
+
 
 	// console.log("check " + check + "   optionData " + optionData)
 
@@ -159,10 +178,10 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 	      "	function drawChart() {" + '\r' +
 	      "		var data = google.visualization.arrayToDataTable([" + '\r' +
 	      "	 	  ['" + column[0].label + "', '" + column[1].label + "']," +'\r' +
-	      "		  ['" + (row[0].c[0].v) + "', " + (row[0].c[1].v) + "]," + '\r' +
-	      "		  ['" + (row[1].c[0].v) + "', " + (row[1].c[1].v) + "]," + '\r' +
-	      "		  ['" + (row[2].c[0].v) + "', " + (row[2].c[1].v) + "]," + '\r' +
-	      "		  ['" + (row[3].c[0].v) + "', " + (row[3].c[1].v) + "]" + '\r' +
+	      "		  [" + Q + (row[0].c[0].v) + Q + ", " + (row[0].c[1].v) + "]," + '\r' +
+	      "		  [" + Q + (row[1].c[0].v) + Q + ", " + (row[1].c[1].v) + "]," + '\r' +
+	      "		  [" + Q + (row[2].c[0].v) + Q + ", " + (row[2].c[1].v) + "]," + '\r' +
+	      "		  [" + Q + (row[3].c[0].v) + Q + ", " + (row[3].c[1].v) + "]" + '\r' +
 	        "		]);" + '\r' + '\r' + 
 	        optionData + '\r' + 
 

@@ -8,23 +8,21 @@
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 	 	  ['Name', 'Length'],
-		  ['A', 23],
-		  ['B ', 16],
-		  ['C', 10],
-		  ['D', 31]
+		  [1, 23],
+		  [2, 16],
+		  [3, 10],
+		  [4, 31]
 		]);
 
 		var options = {
-			   legend: 'none',
-			   'width': 500,
-			   'height': 400,
-			pieSliceText: 'label',
 			title: 'Title',
-			pieStartAngle: 0, //change to slider variable see rotate_pie.html
-			is3D: true,
+			vAxis: {title: 'Name', minValue: 10, maxValue: 31},
+			hAxis: {title: 'Length', minValue: 1, maxValue: 4},
+			  'width': 500,
+			 	'height': 400,
 			};
 
-		var chart = new google.visualization.PieChart(document.getElementById('chart_material'));
+		var chart = new google.visualization.ScatterChart(document.getElementById('chart_material'));
 		chart.draw(data, options);
 		}
 

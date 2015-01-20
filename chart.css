@@ -81,6 +81,10 @@ div[dir=ltr] {
 	background-color: #ddd;
 }
 
+/*#refresh:focus {
+	outline:0;
+}*/
+
 input[type="radio"] {
 	display:none;
 }

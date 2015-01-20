@@ -165,7 +165,7 @@ function refreshing(){
 	    // console.log("line 193 last_col " + last_col);
 	    var last_col_int = last_col.charCodeAt(0);
 
-	  	// console.log("line 197 last_col_int " + last_col_int)
+	  	 console.log("line 197 last_col_int " + last_col_int)
 
   		//WHILE LOOP - ASSIGNS LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
 		  var pf_num = 1
@@ -180,7 +180,7 @@ function refreshing(){
 		      pf_num++;
 		  };
 
-	//console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
+	console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
 
     var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
 	var num_of_rows = last_row;
@@ -208,7 +208,7 @@ function refreshing(){
 	            somekind_of_array_float.push(parseFloat(valu));
             };//END OF FOR LOOP
 
-    	//console.log(str_col_array);	//THE WINNER
+    	console.log(str_col_array);	//THE WINNER
 		str_col_array.push(somekind_of_array_float);
 
         col_b_num++;
@@ -234,14 +234,17 @@ function refreshing(){
      	 kitchenSink.push(stuff);
      }
 
+    $("#refresh").css({"border":"2px outset buttonface", "color":"initial"})
+
     var chartType = $('input[name=chart_type]:radio:checked').val();
 
 	var data = google.visualization.arrayToDataTable( kitchenSink );
 	// shoving all arrays (kitchenSink) into google vis DataTable
 
-	    // findOptionCode(data, chartType, check, deg, hole);
+
 
 	    drawNewChart(data,check, deg, hole); 
+
 	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
 		$('#real-data select[name=dataType_col_b]').val() == "number") {
@@ -278,6 +281,7 @@ function refreshing(){
 					$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
 			}
 			
+
 			data.addRows([
 				[aaa, bbb]
 			]);
@@ -302,6 +306,7 @@ function refreshing(){
 		}
 		// findOptionCode(data, chartType, check, deg, hole);
 		drawNewChart(data, check, deg, hole); 
+
 	} else {
 		console.log("col a: " + $('#real-data select[name=dataType_col_a]').val())
 		console.log("col b: " + $('#real-data select[name=dataType_col_b]').val())

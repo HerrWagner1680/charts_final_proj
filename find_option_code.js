@@ -4,10 +4,10 @@ function findOptionCode(data, chartType, check, deg, hole) {
 	// "hAxis: {title: ($('#real-data input[name=label_col_a]').val())},"];
 	var col_a_array = [ parseFloat($('#real-data input[name=cell_1_a]').val()), parseFloat($('#real-data input[name=cell_2_a]').val()), parseFloat($('#real-data input[name=cell_3_a]').val()), parseFloat($('#real-data input[name=cell_4_a]').val())];
 	var col_b_array = [ parseFloat($('#real-data input[name=cell_1_b]').val()), parseFloat($('#real-data input[name=cell_2_b]').val()), parseFloat($('#real-data input[name=cell_3_b]').val()), parseFloat($('#real-data input[name=cell_4_b]').val())];
-	var max_a = Math.max.apply(Math,col_a_array);
-	var min_a = Math.min.apply(Math,col_a_array);
-	var max_b = Math.max.apply(Math,col_b_array);
-	var min_b = Math.min.apply(Math,col_b_array);
+	var max_b = Math.max.apply(Math,col_a_array);
+	var min_b = Math.min.apply(Math,col_a_array);
+	var max_a = Math.max.apply(Math,col_b_array);
+	var min_a = Math.min.apply(Math,col_b_array);
 
 	console.log("max_a" + max_a + "  min_a" + min_a + "  max_b" + max_b + "  min_b" + min_b);
 
@@ -92,10 +92,10 @@ function findOptionCode(data, chartType, check, deg, hole) {
 // 			console.log("trend_lin switch");
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
 				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
-			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
-			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
-	            [" 	'width': " + chartWidth + ","] + '\r' + ["			"] +
-	            [" 	'height': " + chartHeight + ","] + '\r' + ["			"] +
+			    ["vAxis: {title: '" + label_col_a + "', minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
+			    ["hAxis: {title: '" + label_col_b + "', minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
+	            [" 	'width': '" + chartWidth + "',"] + '\r' + ["			"] +
+	            [" 	'height': '" + chartHeight + "',"] + '\r' + ["			"] +
 			    ["trendlines: {"] + '\r' + ["			"] +
 			    ["   0: {"] + '\r' + ["			"] +
 			    ["     type: 'linear',"] + '\r' + ["			"] +
@@ -109,8 +109,8 @@ function findOptionCode(data, chartType, check, deg, hole) {
 // 			console.log("trend_exp switch");
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
 				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
-			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
-			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
+			    ["vAxis: {title: '" + label_col_a + "', minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
+			    ["hAxis: {title: '" + label_col_b + "', minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            [" 	'width': " + chartWidth + ","] + '\r' + ["			"] +
 	            [" 	'height': " + chartHeight + ","] + '\r' + ["			"] +
 			    ["trendlines: {"] + '\r' + ["			"] +
@@ -124,8 +124,8 @@ function findOptionCode(data, chartType, check, deg, hole) {
  		case "trend_poly":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
 				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
-			    ["vAxis: {title: " + label_col_a + ", minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
-			    ["hAxis: {title: " + label_col_b + ", minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
+			    ["vAxis: {title: '" + label_col_a + "', minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
+			    ["hAxis: {title: '" + label_col_b + "', minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            [" 	'width': " + chartWidth + ","] + '\r' + ["			"] +
 	            [" 	'height': " + chartHeight + ","] + '\r' + ["			"] +
 			    ["trendlines: {"] + '\r' + ["			"] +
@@ -140,8 +140,8 @@ function findOptionCode(data, chartType, check, deg, hole) {
 // 	        console.log('default');
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
 				["'title': '" + chartTitle + "',"] + '\r' + ["			"] +
-		    	["vAxis: {title: " + label_col_a + "},"] + '\r' + ["			"] +
-		    	["hAxis: {title: " + label_col_b + "},"] + '\r' + ["			"] +
+		    	["vAxis: {title: '" + label_col_a + "'},"] + '\r' + ["			"] +
+		    	["hAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 	        	["     	'width': " + chartWidth + ","] + '\r' + ["			"] +
 	       		["     	'height': " + chartHeight + ","] + '\r' + ["			"] +
 	            ["};"] + '\r']);

@@ -41,10 +41,10 @@ function drawNewChart(data, check, deg, hole) {
 //FIND LOWEST AND HIGHEST NUMBERS FOR VERTICAL AND HORIZ AXES
 	var col_a_array = [ parseInt($('#real-data input[name=cell_1_a]').val()), parseInt($('#real-data input[name=cell_2_a]').val()), parseInt($('#real-data input[name=cell_3_a]').val()), parseInt($('#real-data input[name=cell_4_a]').val())];
 	var col_b_array = [ parseInt($('#real-data input[name=cell_1_b]').val()), parseInt($('#real-data input[name=cell_2_b]').val()), parseInt($('#real-data input[name=cell_3_b]').val()), parseInt($('#real-data input[name=cell_4_b]').val())];
-	var max_a = Math.max.apply(Math,col_a_array);
-	var min_a = Math.min.apply(Math,col_a_array);
-	var max_b = Math.max.apply(Math,col_b_array);
-	var min_b = Math.min.apply(Math,col_b_array);
+	var max_b = Math.max.apply(Math,col_a_array);
+	var min_b = Math.min.apply(Math,col_a_array);
+	var max_a = Math.max.apply(Math,col_b_array);
+	var min_a = Math.min.apply(Math,col_b_array);
 
 //READ SELECTED RADIO BUTTONS AND REDRAW CHART
 	switch($('input[name=chart_type]:radio:checked').val()) {
