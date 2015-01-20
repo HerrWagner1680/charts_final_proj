@@ -1,6 +1,6 @@
 
 
-function exportCode (data, chartType, check) {
+function exportCode (data, chartType, check, optionData) {
 
 var column = data.Pf
 var row = data.Nf;
@@ -235,10 +235,11 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	      "		  ['" + (row[1].c[0].v) + "', " + (row[1].c[1].v) + "]," + '\r' +
 	      "		  ['" + (row[2].c[0].v) + "', " + (row[2].c[1].v) + "]," + '\r' +
 	      "		  ['" + (row[3].c[0].v) + "', " + (row[3].c[1].v) + "]" + '\r' +
-	        "		]);" + '\r' + 
-	        "		var options = {" + '\r' +
-	          "			chart: { title: '" + chartTitle + "'}" + '\r' + 
-	        " 		};" + '\r' + 
+	        "		]);" + '\r' + '\r' +
+	        // "		var options = {" + '\r' +
+	        //   "			chart: { title: '" + chartTitle + "'}" + '\r' + 
+	        // " 		};" + '\r' + 
+	        optionData + '\r' + 
 
 	        "		var chart = new google.visualization." + CHART_TYPE[ct] + "(document.getElementById('chart_material'));" + '\r' + 
 
@@ -247,8 +248,8 @@ var i = [column[0].type, " " + column[1].type, " " + data.Pf[0].type, " " + data
 	    "	</script>" +  '\r' + 
 	    "</head>" + '\r' + '\r' + 
 	  "<body>" + '\r' + 
-	    "	<div id='chart_material' style='width: " + chartWidth + "px; height: " + 
-	    chartHeight + "px;'></div>" + '\r' + 
+	    "	<div id='chart_material' [[[style='width: " + chartWidth + "px; height: " + 
+	    chartHeight + "px;]]]'></div>" + '\r' + 
 	  "</body>" + '\r' + 
 	"</html>"   );
 

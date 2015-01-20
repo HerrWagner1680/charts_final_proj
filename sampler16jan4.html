@@ -15,6 +15,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
+      <!--    <script type="text/javascript" src="find_option_code.js"></script> -->
+
       <script type="text/javascript">
 
           google.load("visualization", '1', {packages:['corechart']});
@@ -67,7 +69,8 @@
 
               var chartType = $('input[type="radio"]:checked').val();
 
-              exportCode (data, chartType, check);
+              findOptionCode(data, chartType, check)
+              // exportCode (data, chartType, check);
 
               $(document).scrollTop(0); //document scrolls to top of page
           }
@@ -360,6 +363,7 @@
     <script type="text/javascript" src="draw_new_chart.js"></script>
     <script type="text/javascript" src="sampler9jan2.js"></script>
     <script type="text/javascript" src="add_rem_col_rows.js"></script>
+    <script type="text/javascript" src="find_option_code.js"></script> 
     <script type="text/javascript" src="export_code.js"></script>
 
   </body>
