@@ -298,7 +298,7 @@
                 var col_letter = String.fromCharCode(col_a_int);
                 var label_id = $("#real-data #label_col_" + col_letter);
 
-                  if (typeof(data.Pf[pf_num]) !== undefined){
+                  if (typeof(data.Pf[pf_num]) !== 'undefined'){
                       label_id.attr("value", data.Pf[pf_num].label);
                       // console.log("line 261 " + data.Pf[pf_num].label + "col a int" + col_a_int )
                   } else {
@@ -323,12 +323,17 @@
                         var col_id = $("#real-data #cell_" + i + "_" + col_letter);
                       //check to see if data exists in corresponding cell in URL
                       //if it does exist, add data, if not, make value null
-                          if (typeof(data.Nf[i-1]) !== undefined){
-                              console.log(data.Nf[i-1].c[c_num].v);
-                              col_id.attr("value", data.Nf[i-1].c[c_num].v)
-                              console.log("line 328 --- Nf is defined")
+                          if (typeof(data.Nf[i-1]) !== 'undefined'){
+                                if(typeof(data.Nf[i-1].c[c_num]) !== 'undefined'){
+                                    console.log(data.Nf[i-1].c[c_num].v);
+                                    col_id.attr("value", data.Nf[i-1].c[c_num].v)
+                                    console.log("line 328 --- Nf c is defined")
+                                } else {
+                                    console.log("line 332 ---- Nf c is not defined")
+                                    col_id.val(null)
+                                }
                           } else {
-                              console.log("line 331 ---- Nf is not defined")
+                              console.log("line 335 ---- Nf is not defined")
                               col_id.val(null)
                           }
                     };
