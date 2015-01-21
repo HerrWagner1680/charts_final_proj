@@ -8,22 +8,28 @@
 
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
-			['Name','Length','Column C'],
-			['A',23,-45],
-			['B ',16,-34],
-			['C',10,-23],
-			['D',31,-45]
+			['col one','col two'],
+			['yes',46],
+			['no',24],
+			['maybe',13],
+			['so',24],
+			['',NaN],
+			['',NaN],
+			['',NaN],
+			['',NaN]
 		]);
 
 		var options = {
-			'title': 'Title',
-			vAxis: {title: 'Name'},
-			hAxis: {title: 'Length'},
-			     	'width': 500,
-			     	'height': 400,
+			   legend: 'none',
+			   'width': 500,
+			   'height': 400,
+			pieSliceText: 'label',
+			title: 'Title',
+			pieStartAngle: 0,
+			pieHole: 0,
 		};
 
-		var chart = new google.visualization.LineChart(document.getElementById('chart_material'));
+		var chart = new google.visualization.PieChart(document.getElementById('chart_material'));
 		chart.draw(data, options);
 	};
 

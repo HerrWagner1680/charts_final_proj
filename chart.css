@@ -80,23 +80,47 @@ div[dir=ltr] {
 	width: 220px;
 	border-radius: 10px;
 	background-color: #ddd;
+	margin-left: 25px;
 }
 
-/*#refresh:focus {
-	outline:0;
-}*/
+#width_chart{
+	height: 30px;
+	width: 130px;
+	font-size: 15px;
+	margin-left: 10px;
+	border: 2px solid #ddd;
+}
+
+#height_chart{
+	height: 30px;
+	width: 135px;
+	font-size: 15px;
+	border: 2px solid #ddd;
+}
+
+h3 {
+	margin-left: 10px;
+}
 
 input[type="radio"] {
 	display:none;
 }
 
+input[type="radio"] + label {
+	margin-right: 6px;
+	padding: 4px;
+	border-radius: 8px;
+}
+
 input[type="radio"]:checked + label {
 	background-color: #ADD8E6;
+	border-right: 4px solid #ADD8E6;
 }
 
 input[type="radio"]:disabled + label {
 	color: #BBB;
 	background-color: #444;
+	border-right: 4px solid #444;
 }
 
 input[type='radio'] + label span {
@@ -140,6 +164,22 @@ input[type="radio"] + label span .inner {
 
 input[type="radio"]:checked + label span{
      background-color: orange;
+}
+
+h4{
+	margin-left: 0px;
+}
+
+#data_form {
+	margin-left: 15px;
+}
+
+#url_upload {
+	margin-left: 15px;
+}
+
+#export {
+	margin-left: 15px;
 }
 
 #spreadsheet_file_1 {

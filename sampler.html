@@ -127,10 +127,11 @@
             <option value = "900">height - 900px</option>
             </select>
         <br>
-        <!-- radio buttons -->
-          <p id="select_typ">select chart type</p>
-
         <br>
+        <!-- radio buttons -->
+          <h3 id="select_typ">select chart type</h3>
+
+        
 
           <input id="area2" class="no_val_val" type="radio" name="chart_type" value="area"><label title="string / number format" for="area2"><span><span class="inner"></span></span>area</label></button>
           <input id="bar2" class="no_val_val" type="radio" name="chart_type" value="bar"><label title="string / number format" for="bar2"><span><span class="inner"></span></span>horizontal bar</label>
@@ -144,9 +145,11 @@
           <input id="exp2" class="no_string" type="radio" name="chart_type" value="trend_exp"><label title="number / number format" for="exp2"><span><span class="inner"></span></span>trend: exponential</label>
           <input id="poly2" class="no_string" type="radio" name="chart_type" value="trend_poly"><label title="number / number format" for="poly2"><span><span class="inner"></span></span>trend: polynomial</label>
           <br>
+          <br>
         <!-- END OF RADIO BUTTONS -->
 
         <!-- DATA FORM -->
+      <div id="data_form">
           <br>
           <input type="text" id="chart_title" name="chart_title" value="Title">
           <br>
@@ -196,20 +199,25 @@
         <!-- if you hit max or min - see message -->
         <button id="remove_col">&lt;&lt; remove column</button>
         <button id="add_col">add column &gt;&gt; </button>
-
+      </div> <!-- END of data_form div -->
         <br>
         <br>
 
-        <h3>UPLOAD GRID DATA FROM GOOGLE SHEET URL</h3>
+      <div id="url_upload">
+        <h4>UPLOAD GRID DATA FROM GOOGLE SHEET URL</h4>
 
           <form NAME="myform" onSubmit="JavaScript:ExampleJS()">
           <input  type="url" id="spreadsheet_file_1" name="spreadsheet_file_1" size="30">
           <input type="submit" value="Upload URL">
           </form>
+      </div>
+
         <br>
         <br>
+
+      <div id="export">  
         <!-- export code -->
-          <h5>EXPORT CODE</h5>
+          <h4>EXPORT CODE</h4>
           <!-- do an overflow hidden on text area - to hide long line -->
           <textarea name="export_code" cols=120 rows=20></textarea>
         <!-- end of export code -->
@@ -221,6 +229,8 @@
         <br>
         <br>
         <p id="credit"><a href="https://gist.github.com/battlehorse/1333906">PNG download code courtesy of Battlehorse</a> + <a href="https://developers.google.com/chart/">chart rendering by Google Charts</a></p>
+
+
 
       </div> <!-- end of WRAPPER div -->
 
@@ -320,8 +330,10 @@
                       //if it does exist, add data, if not, make value null
                           if (typeof(data.Nf[i-1]) !== 'undefined'){
                                 if(typeof(data.Nf[i-1].c[c_num]) !== 'undefined'){
-                                    console.log(data.Nf[i-1].c[c_num].v);
-                                    col_id.attr("value", data.Nf[i-1].c[c_num].v)
+                                    if(typeof(data.Nf[i-1].c[c_num].v) !== 'undefined'){
+                                        console.log(data.Nf[i-1].c[c_num].v);
+                                        col_id.attr("value", data.Nf[i-1].c[c_num].v)
+                                    };
                                     console.log("line 328 --- Nf c is defined")
                                 } else {
                                     console.log("line 332 ---- Nf c is not defined")
