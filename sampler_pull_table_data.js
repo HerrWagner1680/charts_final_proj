@@ -1,5 +1,5 @@
 //DISABLES INACTIVE CHART TYPES
-$('select').change(function() {
+function datatypeConfirm(){	
   if ($('select[name=dataType_col_a]').val() == "string" && 
 		$('select[name=dataType_col_b]').val() == "number") {
 		$("input[class=no_val_val]").attr('disabled', false);
@@ -11,8 +11,12 @@ $('select').change(function() {
   } else {
 		$("input[type=radio]").attr('disabled', true);  	
   }
-});
+};
 // END OF - DISABLES INACTIVE CHART TYPES
+
+$('select').change(function() {
+	datatypeConfirm();
+});
 
 function addPieRotateSlider() {
 		// console.log("running ROTATE SLIDER");
@@ -89,6 +93,8 @@ function pieRefresh(deg, hole) {
 
 function revise(){
 	console.log("running REVISE - sampler9jan2")
+
+	datatypeConfirm();
 
 	// update the numbers to the right of the sliders
 	$("#rangeValue3").val($('#slider3').val())
