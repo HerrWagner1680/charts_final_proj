@@ -29,11 +29,11 @@ function initialUploadCode (data) {
 	    	["vAxis: {title: '" + label_col_a + "'},"] + '\r' + ["			"] +
 	    	["hAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 	    	["     	'width': " + chartWidth + ","] + '\r' + ["			"] +
-	   		["     	'height': " + chartHeight + ","] + '\r' + ["			"] +
+	   		["     	'height': " + chartHeight + ","] + '\r' + ["		"] +
 	        ["};"] + '\r']);
 
 	//NOTE - THIS IS A TEMPORARY WORKAROUND
-	bigArrayForExport = ([
+	bigArrayForExport = ([ '\r' + 
 			  "			['" + column[0].label + "', '" + column[1].label + "']," +'\r' +
 		      "			[" + Q + (row[0].c[0].v) + Q + ", " + (row[0].c[1].v) + "]," + '\r' +
 		      "			[" + Q + (row[1].c[0].v) + Q + ", " + (row[1].c[1].v) + "]," + '\r' +
@@ -81,7 +81,7 @@ function exportCode (optionData, bigArrayForExport) {
 	      "	google.load('visualization', '1', {packages:['corechart']});" + '\r' +
 	      "	google.setOnLoadCallback(drawChart);" + '\r' + '\r' +
 	      "	function drawChart() {" + '\r' +
-	      "		var data = google.visualization.arrayToDataTable([" + '\r' +
+	      "		var data = google.visualization.arrayToDataTable([" + 
 	      bigArrayForExport + '\r' +
 	      // "	 	  ['" + column[0].label + "', '" + column[1].label + "']," +'\r' +
 	      // "		  [" + Q + (row[0].c[0].v) + Q + ", " + (row[0].c[1].v) + "]," + '\r' +

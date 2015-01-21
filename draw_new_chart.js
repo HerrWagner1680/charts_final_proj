@@ -1,7 +1,41 @@
+ 
+// function dimmingColumns() {
+//     var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
+//     var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
+
+//     var last_col_int = last_col.charCodeAt(0);
+//     var next_col_int = last_col_int +1;
+//     var next_col = String.fromCharCode(next_col_int);
+//     var next_row = last_row + 1;
+//     console.log("next col " + next_col);
+//     console.log("last col " + last_col);
+//     console.log(next_col_int);
+//     console.log(" last col int " + last_col_int);
+//     console.log(next_col_int);
+
+//     var chType = $('input[name=chart_type]:radio:checked').val();
+//     var current_row = 1
+//     while(current_row <= last_row){
+      
+//         console.log("chartType " + chType);
+
+//          current_row++;
+//          if (chType=="donut"|chType=="pie"|chType=="scatter"|chType=="trend_lin"|chType=="trend_exp"|chType=="trend_poly"){
+//             console.log("current row - line 32 " + current_row);
+//             $('input[id$="label_col_' + next_col +'"]').css({"border":"2px solid #ddd", "color":"#aaa"});
+//             $('select[id$="dataType_col_' + next_col +'"]').css({"border":"2px solid #ddd", "color":"#aaa"});
+//             $('input[id$="cell_'+ current_row + "_" + next_col + '"]').css({"border":"2px solid #ddd", "color":"#aaa"});
+//          }
+//      };
+
+// };
+
+
+
 function drawNewChart(data, check, deg, hole, bigArrayForExport) {
 
-	if (deg == undefined){ deg = 0 };
-	if (hole == undefined){ hole = 0 };
+	if (deg == 'undefined'){ deg = 0 };
+	if (hole == 'undefined'){ hole = 0 };
 
 	// console.log("reverse engineer " + data.Nf[0].c[0].v);//shows A - cel 1 col 1
 	// console.log("reverse engineer LABEL " + data.Pf[0].label);
@@ -12,7 +46,7 @@ function drawNewChart(data, check, deg, hole, bigArrayForExport) {
 	var wid = $("#width_chart").val();
 	var hei = $("#height_chart").val();
 
-	var stack = $('input[id=stack]:checkbox:checked').val()
+	var stack = $('input[id=stack]:checkbox:checked').val();
 
 	var options = {
 			'title': ($('input[name=chart_title]').val()),

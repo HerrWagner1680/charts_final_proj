@@ -179,6 +179,11 @@ function refreshing(){
 
 	  	console.log("line 197 last_col_int " + last_col_int)
 
+		var chType = $('input[name=chart_type]:radio:checked').val();
+	  	if (chType=="donut"|chType=="pie"|chType=="scatter"|chType=="trend_lin"|chType=="trend_exp"|chType=="trend_poly"){
+	  		last_col_int = 98;
+	  	}
+
   		//WHILE LOOP - ASSIGNS LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
 		// var pf_num = 1
 		while(col_b_num <= last_col_int){
@@ -210,6 +215,14 @@ function refreshing(){
 		}
 
 		str_col_array = [str_col_a]; // STRING ARRAY FROM COLUMN A
+
+
+		var chType = $('input[name=chart_type]:radio:checked').val();
+	  	if (chType=="donut"|chType=="pie"|chType=="scatter"|chType=="trend_lin"|chType=="trend_exp"|chType=="trend_poly"){
+	  		last_col_int = 98;
+	  	}
+
+
 
 	    while(col_b_num <= last_col_int){ //LOOP GATHERS COL B, C, etc. DATA
 	        var col_letter = String.fromCharCode(col_a_int);
@@ -249,7 +262,7 @@ function refreshing(){
 		var kitchenSink = [] // CREATING THE ARRAY OF ARRAYS
 		var bigArrayForExport = []
 	 	kitchenSink.push(grandLabel);
-	 	bigArrayForExport.push("\r                  ["+strLabel+"]");
+	 	bigArrayForExport.push("\r			["+strLabel+"]");
 	    for(var k=0; k<= num_of_rows -1; k++){
 	    		var no_string_stuff = []
 				var stuff=[]
@@ -263,7 +276,7 @@ function refreshing(){
 	     	}
 	     	 kitchenSink.push(no_string_stuff); // large array for chart draw
 	     	 // console.log(kitchenSink);
-	     	 bigArrayForExport.push("\r                  ["+stuff+"]");
+	     	 bigArrayForExport.push("\r			["+stuff+"]");
 	     }
 
 	    // $("#refresh").css({"border":"2px outset buttonface", "color":"initial"})
@@ -274,8 +287,13 @@ function refreshing(){
 
 		console.log("KITCHENSINK " + kitchenSink);
 		console.log("bigArrayForExport " + bigArrayForExport);
+		console.log("data " + data);
+		console.log("check " + check);
+		console.log("deg " + deg);
+		console.log("hole " + hole);
 
 		drawNewChart(data, check, deg, hole, bigArrayForExport); 
+
 
 	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
@@ -332,7 +350,11 @@ function refreshing(){
 			console.log(">>>>>>>>>>> a_val line 261: " + a_val);
 			contains_letters = letters.test(a_val);
 			console.log(">>>>>>>>> contains letters " + contains_letters);
-			if (contains_letters == true){ alert("DRAW A RED BOX ON THIS ONE!!!"); return false;}
+			if (contains_letters == true){ 
+				$('#real-data input[name=cell_' + i + '_a').css({"border":"2px solid red", "color":"red"});
+				alert("Make sure there are no letters or symbols in the number column");
+			 	return false;
+			 };
 			if (acceptable_number == false) { alert ("CHART CAN NOT BE DRAWN" + '\r' + " Numbers must start with a number, + or - sign."); return false;}
             console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}

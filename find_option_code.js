@@ -33,7 +33,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 					["hAxis: {title: '" + label_col_a + "'},"] + '\r' + ["			"] +
 					["vAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 					["'width': " + chartWidth + ","] + '\r' + ["			"] +
-					["'height': " + chartHeight + ","] + '\r' + ["			"] +
+					["'height': " + chartHeight + ","] + '\r' + ["		"] +
 					["};"] + '\r' ]);
 
 // 				console.log("column switch - no checkbox"); columnchart.draw(data, options);
@@ -46,7 +46,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 					["vAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 					["'width': " + chartWidth + ","] + '\r' + ["			"] +
 					["'height': " + chartHeight + ","] + '\r' + ["			"] +
-					["isStacked: " + check] + '\r' + ["			"] +
+					["isStacked: " + check] + '\r' + ["		"] +
 					["};"] + '\r']);
 
 // 				console.log("column switch - with checkbox"); columnchart.draw(data, options);
@@ -64,7 +64,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 				["pieSliceText: 'label',"] + '\r' +  ["			"] +
 				["title: '" + chartTitle + "',"] + '\r' +  ["			"] +
 				["pieStartAngle: " + deg + ","] + '\r' +  ["			"] +
-				["pieHole: " + hole + ","] + '\r' +  ["			"] +
+				["pieHole: " + hole + ","] + '\r' +  ["		"] +
 				["};"] + '\r']);
  			break;
 
@@ -77,7 +77,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 				["pieSliceText: 'label',"] + '\r' +  ["			"] +
 				["title: '" + chartTitle + "',"] + '\r' +  ["			"] +
 				["pieStartAngle: " + deg + ","] + '\r' +  ["			"] +
-				["is3D: true,"] + '\r' +  ["			"] +
+				["is3D: true,"] + '\r' +  ["		"] +
 				["};"] + '\r']);
  			break;
 
@@ -88,7 +88,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 			    ["vAxis: {title: '" + label_col_a + "', minValue: " + min_a + ", maxValue: " + max_a + "},"] + '\r' + ["			"] +
 			    ["hAxis: {title: '" + label_col_b + "', minValue: " + min_b + ", maxValue: " + max_b + "},"] + '\r' + ["			"] +
 	            ["  'width': " + chartWidth + ","] + '\r' +  ["			"] +
-	            [" 	'height': " + chartHeight + ","] + '\r' +  ["			"] +
+	            [" 	'height': " + chartHeight + ","] + '\r' +  ["		"] +
 				["};"] + '\r']);
  			break;
 
@@ -104,7 +104,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 			    ["   0: {"] + '\r' + ["			"] +
 			    ["     type: 'linear',"] + '\r' + ["			"] +
 				["     }"] + '\r' + ["			"] +
-				["}"] + '\r' + ["			"] +
+				["}"] + '\r' + ["		"] +
 				["};"] + '\r']);
 
  			break;
@@ -121,7 +121,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 			    ["   0: {"] + '\r' + ["			"] +
 			    ["   type: 'exponential',"] + '\r' + ["			"] +
 			    ["	 }"] + '\r' + ["			"] +
-				["}"] + '\r' + ["			"] +
+				["}"] + '\r' + ["		"] +
 				["};"] + '\r']);
  			break;
 
@@ -137,7 +137,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 			    ["   type: 'polynomial',"] + '\r' + ["			"] +
 			    ["   degree: 3, // degree is used with polynomial"] + '\r' + ["			"] +
 			    ["   }"] + '\r' + ["			"] +
-				["}"] + '\r' + ["			"] +
+				["}"] + '\r' + ["		"] +
 				["};"] + '\r']); 
  			break;
  		default:
@@ -147,7 +147,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 		    	["vAxis: {title: '" + label_col_a + "'},"] + '\r' + ["			"] +
 		    	["hAxis: {title: '" + label_col_b + "'},"] + '\r' + ["			"] +
 	        	["     	'width': " + chartWidth + ","] + '\r' + ["			"] +
-	       		["     	'height': " + chartHeight + ","] + '\r' + ["			"] +
+	       		["     	'height': " + chartHeight + ","] + '\r' + ["		"] +
 	            ["};"] + '\r']);
 	        break;
 	}
