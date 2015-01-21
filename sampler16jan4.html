@@ -71,8 +71,10 @@
               var check = "missing";
 
               var chartType = $('input[type="radio"]:checked').val();
+              var bigArrayForExport = []
 
-              findOptionCode(data, chartType, check, deg, hole);
+              initialUploadCode (data);
+              // findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
               // exportCode (data, chartType, check);
 
               $(document).scrollTop(0); //document scrolls to top of page
@@ -231,6 +233,7 @@
     <script>
 
         $("#refresh").click(function(){
+          $(this).blur();
           // $("#refresh").css({"border":"2px solid blue", "color":"blue"})
           console.log("refresh HTML")
             refreshing();
@@ -260,13 +263,6 @@
             }
 
             var data = response.getDataTable();
-
-            //var chartType = $('input[type="radio"]:checked').val();
-
-            //status of stacked column checkbox
-            // var check = "missing";
-
-            // exportCode (data, chartType, check);
 
             var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
             var last_col = $('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
@@ -367,10 +363,10 @@
     </script>
 
     <script type="text/javascript" src="draw_new_chart.js"></script>
-    <script type="text/javascript" src="sampler9jan2.js"></script>
+    <script type="text/javascript" src="sampler_pull_table_data.js"></script>
     <script type="text/javascript" src="add_rem_col_rows.js"></script>
     <script type="text/javascript" src="find_option_code.js"></script> 
-    <script type="text/javascript" src="export_code.js"></script>
+    <script type="text/javascript" src="export_code2.js"></script>
 
   </body>
 </html>

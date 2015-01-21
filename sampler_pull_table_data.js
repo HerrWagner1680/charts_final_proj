@@ -82,7 +82,9 @@ function pieRefresh(deg, hole) {
 			};
 	piechart.draw(data, options);
 
-	findOptionCode(data, chartType, check, deg, hole)
+	if(typeof(bigArrayForExport=='undefined')){ bigArrayForExport=[]}
+
+	findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
 }
 
 function revise(){
@@ -158,92 +160,136 @@ function refreshing(){
 		}
 
 		var column_a_label = $('#real-data input[name=label_col_a]').val();
+
 		grandLabel = [];
-		grandLabel.push(column_a_label);
+			grandLabel.push(column_a_label);
+		strLabel = [];
+			strLabel.push("'"+column_a_label+"'")
+
 		var col_b_num = 98;
 	    var last_col = $('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[2];
 	    // console.log("line 193 last_col " + last_col);
 	    var last_col_int = last_col.charCodeAt(0);
 
-	  	 console.log("line 197 last_col_int " + last_col_int)
+	  	console.log("line 197 last_col_int " + last_col_int)
 
   		//WHILE LOOP - ASSIGNS LABELS (FROM NUMBER COLUMNS) TO THE CHART FROM THE GRID
-		  var pf_num = 1
-		  while(col_b_num <= last_col_int){
-		      var col_letter = String.fromCharCode(col_b_num);
-		      var labelll = $("#real-data input[name=label_col_" + col_letter + "]").val();
-		      grandLabel.push(labelll);
-		      // var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val(data.Pf[pf_num].type);
-		      var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val();
-		      console.log("var label: " + lab); //result should be number
-		      col_b_num++;
-		      pf_num++;
-		  };
+		// var pf_num = 1
+		while(col_b_num <= last_col_int){
+			var col_letter = String.fromCharCode(col_b_num);
+			var labelll = $("#real-data input[name=label_col_" + col_letter + "]").val();
+			grandLabel.push(labelll);
+			strLabel.push("'"+labelll+"'");
+			// var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val(data.Pf[pf_num].type);
+			var lab = $("#real-data select[name=dataType_col_" + col_letter + "]").val();
+			console.log("var label: " + lab); //result should be number
+			col_b_num++;
+			// pf_num++;
+		};
 
-	console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
+		console.log("line 238 grandLabel " + grandLabel); // ARRAY OF LABELS
 
-    var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
-	var num_of_rows = last_row;
-	var col_a_int = 97; //reset var
-	var col_b_num = 98;
+	    var last_row = parseInt($('#real-data tr:last-of-type').attr('id').split('_')[1]);
+		var num_of_rows = last_row;
+		var col_a_int = 97; //reset var
+		var col_b_num = 98;
 
-					var str_col_a = [];
-					// var str_col_array = [];
+		var str_col_a = [];
+		var stringy_string_array = [];
 
-				for(var i=1;i<=last_row;i++) {
-					var valu = $("#real-data #cell_" + i + "_a").val();
-					str_col_a.push(valu);
-				}
+		for(var i=1;i<=last_row;i++) { //LOOP GATHERS COL A DATA - STRING
+			var valu = $("#real-data #cell_" + i + "_a").val();
+			str_col_a.push(valu);
+			stringy_string_array.push("'" + valu + "'");
+		}
 
-				str_col_array = [str_col_a]; // STRING ARRAY FROM COLUMN A
-    while(col_b_num <= last_col_int){
-        var col_letter = String.fromCharCode(col_a_int);
-        var col_letter = String.fromCharCode(col_b_num);
-        var c_num = col_b_num - 97; //rem first col is string
+		str_col_array = [str_col_a]; // STRING ARRAY FROM COLUMN A
 
-                var somekind_of_array_float = []; 
+	    while(col_b_num <= last_col_int){ //LOOP GATHERS COL B, C, etc. DATA
+	        var col_letter = String.fromCharCode(col_a_int);
+	        var col_letter = String.fromCharCode(col_b_num);
+	        var c_num = col_b_num - 97; //rem col b onwards are number types
+	        var somekind_of_array_float = []; 
 
-            for(var i=1;i<=last_row;i++) {
-                var valu = $("#real-data #cell_" + i + "_" + col_letter).val();
-	            somekind_of_array_float.push(parseFloat(valu));
-            };//END OF FOR LOOP
+	            for(var i=1;i<=last_row;i++) {
+	                var valu = $("#real-data #cell_" + i + "_" + col_letter).val();
+	                //RESET ANY ALERT COLORING  //
+	                $("#real-data #cell_" + i + "_" + col_letter).css({"border":"2px inset", "color":"initial"});
 
-    	console.log(str_col_array);	//THE WINNER
-		str_col_array.push(somekind_of_array_float);
+	                if(isNaN(valu)==false){ //will only add numbers to array
+		            	somekind_of_array_float.push(parseFloat(valu));
+		  			} else {
+		  				$("#real-data #cell_" + i + "_" + col_letter).css({"border":"2px solid red", "color":"red"});
+		  				alert("Data in number column must begin with a number," + '\r' + "or a minus sign followed by a number.");
+						return false;
+		  			}
+	            };//END OF FOR LOOP
 
-        col_b_num++;
-
-    };//END OF WHILE LOOP
-
-	var num_of_cols = (str_col_array.length);
-
-	console.log("num_of_rows: " + num_of_rows);
-	console.log("num_of_cols: " + num_of_cols);
-	console.log("LINE 302 - check: " + check);
-
-	var kitchenSink = [] // CREATING THE ARRAY OF ARRAYS
- 	kitchenSink.push(grandLabel);
-     for(var k=0; k<= num_of_rows -1; k++){
-			var stuff=[]
-
-     	for(var i=0; i<= num_of_cols -1; i++){
-	     		stuff.push(str_col_array[i][k]);
-				window["row_of_data_" + (k).toString() ] = [stuff];
-	     		console.log(stuff);
-     	}
-     	 kitchenSink.push(stuff);
-     }
-
-    $("#refresh").css({"border":"2px outset buttonface", "color":"initial"})
-
-    var chartType = $('input[name=chart_type]:radio:checked').val();
-
-	var data = google.visualization.arrayToDataTable( kitchenSink );
-	// shoving all arrays (kitchenSink) into google vis DataTable
+			// if (isNaN(aaa)==true) {
+			// 	$('#real-data input[name=cell_' + i + '_a').css({"border":"2px solid red", "color":"red"});
+			// 		alert("Data in first column must begin with a number," + '\r' + "or - sign followed by a number.");
+			// 		return false
+			// 	} else if (isNaN(bbb)==true) {
+			// 	$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
+			// 		alert("Data in second column must begin with a number," + '\r' + "or - sign followed by a number.");
+			// 		return false
+			// 	} else {
+			// 		$('#real-data input[name=cell_' + i + '_a').css({"border":"2px inset", "color":"initial"});
+			// 		$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
+			// }
 
 
 
-	    drawNewChart(data,check, deg, hole); 
+
+
+
+
+
+	    	console.log("str_col_array " + str_col_array);	//THE WINNER
+			str_col_array.push(somekind_of_array_float);
+
+	        col_b_num++;
+
+	    };//END OF WHILE LOOP
+
+		var num_of_cols = (str_col_array.length);
+
+		console.log("num_of_rows: " + num_of_rows);
+		console.log("num_of_cols: " + num_of_cols);
+		console.log("LINE 302 - check: " + check);
+		console.log("OUT OF LOOP str_col_array " + str_col_array);
+		console.log("stringy_string_array " + stringy_string_array);
+
+		var kitchenSink = [] // CREATING THE ARRAY OF ARRAYS
+		var bigArrayForExport = []
+	 	kitchenSink.push(grandLabel);
+	 	bigArrayForExport.push("\r                  ["+strLabel+"]");
+	    for(var k=0; k<= num_of_rows -1; k++){
+	    		var no_string_stuff = []
+				var stuff=[]
+	     	for(var i=0; i<= num_of_cols -1; i++){
+	     		no_string_stuff.push(str_col_array[i][k]);
+	     		if(i!=0){ 
+		     		stuff.push(str_col_array[i][k]);
+		     	} else {
+		     		stuff.push("'" + str_col_array[i][k] + "'"); //first col stringified
+		     	}
+	     	}
+	     	 kitchenSink.push(no_string_stuff); // large array for chart draw
+	     	 // console.log(kitchenSink);
+	     	 bigArrayForExport.push("\r                  ["+stuff+"]");
+	     }
+
+	    // $("#refresh").css({"border":"2px outset buttonface", "color":"initial"})
+
+	    var chartType = $('input[name=chart_type]:radio:checked').val();
+		var data = google.visualization.arrayToDataTable( kitchenSink );
+		// shoving all arrays (kitchenSink) into google vis DataTable
+
+		console.log("KITCHENSINK " + kitchenSink);
+		console.log("bigArrayForExport " + bigArrayForExport);
+
+		drawNewChart(data, check, deg, hole, bigArrayForExport); 
 
 	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
@@ -270,11 +316,11 @@ function refreshing(){
 			console.log("bbb " + bbb);
 			if (isNaN(aaa)==true) {
 				$('#real-data input[name=cell_' + i + '_a').css({"border":"2px solid red", "color":"red"});
-					alert("Data in first column must begin with a number," + '\r' + "or - sign followed by a number.");
+					alert("Data in first column must begin with a number," + '\r' + "or a minus sign followed by a number.");
 					return false
 				} else if (isNaN(bbb)==true) {
 				$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
-					alert("Data in second column must begin with a number," + '\r' + "or - sign followed by a number.");
+					alert("Data in second column must begin with a number," + '\r' + "or a minus sign followed by a number.");
 					return false
 				} else {
 					$('#real-data input[name=cell_' + i + '_a').css({"border":"2px inset", "color":"initial"});
@@ -305,7 +351,7 @@ function refreshing(){
             console.log("line 244 col b" + parseInt($('#real-data input[name=cell_' + i + '_b').val()));
 		}
 		// findOptionCode(data, chartType, check, deg, hole);
-		drawNewChart(data, check, deg, hole); 
+		drawNewChart(data, check, deg, hole, bigArrayForExport); 
 
 	} else {
 		console.log("col a: " + $('#real-data select[name=dataType_col_a]').val())

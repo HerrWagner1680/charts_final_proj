@@ -1,6 +1,6 @@
 //find_option_code.js passes information to exportCode function
 
-function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, max_b) {
+function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, max_b, bigArrayForExport) {
 
 	// console.log("check " + check + "   optionData " + optionData)
 
@@ -36,14 +36,17 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 		var col_a_int = 97;
 		//ASSIGN column label names
 
+
+			labelArray = [];
             //NOTE - COLUMN NAME USED TO READ
             //    $("#col_a_label").attr("value", data.Pf[0].label) // column name
             while(col_a_int <= last_col_int){
                 var col_letter = String.fromCharCode(col_a_int);
                 var label_id = $("#real-data #label_col_" + col_letter);
 
-                  if (typeof(column[column_num]) !== "undefined"){
+                  if (typeof(column[column_num]) !== 'undefined'){
                       label_id.attr("value", column[column_num].label);
+                      labelArray.push(column[column_num].label);
                       //console.log("line 261 " + column[column_num].label + "col a int" + col_a_int )
                   } else {
                       console.log("label is undefined");
@@ -54,23 +57,28 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
                 column_num++;
             };
 
+    console.log("labelArray " + labelArray);
+
 	var row = data.Nf;
 	var column = data.Pf
-         
+    
+    var bigArray = [];
           //uploading cell data from URL
             var col_a_int = 97; //reset var
             while(col_a_int <= last_col_int){
                 var col_letter = String.fromCharCode(col_a_int);
                 var c_num = col_a_int -97;
-
+                var smallArray = [];
                     for(var i=1;i<=last_row;i++) {
                         var col_id = $("#real-data #cell_" + i + "_" + col_letter);
                       //check to see if data exists in corresponding cell in URL
                       //if it does exist, add data, if not, make value null
-                      	console.log(row[i-1]);
-                          if (typeof(row[i-1]) !== undefined ){
-                          		console.log(row[i-1]);
-                          		console.log(row[i-1].c[c_num].v);
+                      	// console.log(row[i-1]);
+                          if (typeof(row[i-1]) !=='undefined' ){
+                          		// console.log(row[i-1]);
+                          		console.log("row[i-1]" + row[i-1].c[c_num].v);
+
+                          		console.log("c_num: " + c_num);
 
 	                            acceptable_number = rest = /^\+|^\-|^\d/;
 								letters = /[A-Za-z]/;
@@ -81,14 +89,24 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 								if (starts_with_dot == true) { a_val = parseFloat(a_val);}
 								contains_letters = letters.test(a_val);
 	                            col_id.attr("value", row[i-1].c[c_num].v);
-                          } else {
+
+	                            smallArray.push( row[i-1].c[c_num].v );
+
+	                            //handling isNaN() on col b and later
+
+                          } else if (isNaN(row[i-1])==true) {
+                          		alert("NOT A NUMBER!!!!!")
                               //console.log("line 331 ---- Nf is not defined")
+                          } else {
                               col_id.val(null)
+                              alert("RED BOX!!!!!")
                           }
                     };
-
+                bigArray.push("\r                  ["+smallArray+"]")
                 col_a_int++;
             }; // END OF col_a_int while loop
+
+    console.log("bigArray " + bigArray);
 
 // Pf[0].type is the data type for column 0
 // Pf[0].label is the label for column 0 
@@ -177,11 +195,12 @@ function exportCode (data, chartType, check, optionData, min_a, max_a, min_b, ma
 	      "		google.setOnLoadCallback(drawChart);" + '\r' + 
 	      "	function drawChart() {" + '\r' +
 	      "		var data = google.visualization.arrayToDataTable([" + '\r' +
-	      "	 	  ['" + column[0].label + "', '" + column[1].label + "']," +'\r' +
-	      "		  [" + Q + (row[0].c[0].v) + Q + ", " + (row[0].c[1].v) + "]," + '\r' +
-	      "		  [" + Q + (row[1].c[0].v) + Q + ", " + (row[1].c[1].v) + "]," + '\r' +
-	      "		  [" + Q + (row[2].c[0].v) + Q + ", " + (row[2].c[1].v) + "]," + '\r' +
-	      "		  [" + Q + (row[3].c[0].v) + Q + ", " + (row[3].c[1].v) + "]" + '\r' +
+	      bigArrayForExport + '\r' +
+	      // "	 	  ['" + column[0].label + "', '" + column[1].label + "']," +'\r' +
+	      // "		  [" + Q + (row[0].c[0].v) + Q + ", " + (row[0].c[1].v) + "]," + '\r' +
+	      // "		  [" + Q + (row[1].c[0].v) + Q + ", " + (row[1].c[1].v) + "]," + '\r' +
+	      // "		  [" + Q + (row[2].c[0].v) + Q + ", " + (row[2].c[1].v) + "]," + '\r' +
+	      // "		  [" + Q + (row[3].c[0].v) + Q + ", " + (row[3].c[1].v) + "]" + '\r' +
 	        "		]);" + '\r' + '\r' + 
 	        optionData + '\r' + 
 

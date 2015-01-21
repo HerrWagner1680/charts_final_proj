@@ -1,4 +1,4 @@
-function drawNewChart(data, check, deg, hole) {
+function drawNewChart(data, check, deg, hole, bigArrayForExport) {
 
 	if (deg == undefined){ deg = 0 };
 	if (hole == undefined){ hole = 0 };
@@ -25,7 +25,9 @@ function drawNewChart(data, check, deg, hole) {
 	var chartType = $('input[name=chart_type]:radio:checked').val();
 	// exportCode (data, chartType, check);
 	console.log("about to run optioncode function");
-	findOptionCode(data, chartType, check, deg, hole);
+
+	// findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+
 	console.log("done with option code function");
 	var last_row = parseInt($('#real-data tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 
@@ -57,10 +59,14 @@ function drawNewChart(data, check, deg, hole) {
 	              	'width': wid,
 	              	'height': hei
 	              };
-			console.log("area switch"); areachart.draw(data, options);
+			console.log("area switch"); 
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+			areachart.draw(data, options);
 			break;
 		case "bar":
-			console.log("bar switch"); barchart.draw(data, options);
+			console.log("bar switch"); 
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+			barchart.draw(data, options);
 			break;
 		case "step":
 			//switch labels
@@ -71,7 +77,9 @@ function drawNewChart(data, check, deg, hole) {
 	              	'width': wid,
 	              	'height': hei
 	              };
-			console.log("step switch"); stepchart.draw(data, options);
+			console.log("step switch"); 
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+			stepchart.draw(data, options);
 			break;
 		case "column":
 			if (check == "missing") {
@@ -83,7 +91,9 @@ function drawNewChart(data, check, deg, hole) {
 					'height': hei,
 					isStacked: false
 				};
-				console.log("column switch - no checkbox"); columnchart.draw(data, options);
+				console.log("column switch - no checkbox"); 
+				findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+				columnchart.draw(data, options);
 				break;
 			} else {
 				stackedCheckboxAppears();
@@ -97,7 +107,9 @@ function drawNewChart(data, check, deg, hole) {
 		              	'height': hei,
 		              	isStacked: check
 		              };
-				console.log("column switch - with checkbox"); columnchart.draw(data, options);
+				console.log("column switch - with checkbox"); 
+				findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+				columnchart.draw(data, options);
 				break;
 			} 
 		case "line":
@@ -109,7 +121,9 @@ function drawNewChart(data, check, deg, hole) {
 	              	'width': wid,
 	              	'height': hei
 	              };
-			console.log("line switch"); linechart.draw(data, options);
+			console.log("line switch"); 
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+			linechart.draw(data, options);
 			break;
 
 	//NOTE donut covers regular pie chart and donut chart with range sliders
@@ -142,6 +156,8 @@ function drawNewChart(data, check, deg, hole) {
 			};
 			$("#slider3").change(revise);
 			$("#piehole3").change(revise);
+
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
 			//NOTE - piehole does not work in 3d mode
 			piechart.draw(data, options);
 			break
@@ -172,6 +188,8 @@ function drawNewChart(data, check, deg, hole) {
 	          is3D: true,
 			};
 			$("#slider3").change(revise);
+
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
 			piechart.draw(data, options);
 			break;
 
@@ -184,7 +202,8 @@ function drawNewChart(data, check, deg, hole) {
 	              	'width': wid,
 	              	'height': hei
 			};
-		     scatterchart.draw(data, options);   // str/val ONLY
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+		    scatterchart.draw(data, options);   // str/val ONLY
 			break;
 		case "trend_lin":
 			console.log("trend_lin switch");
@@ -200,7 +219,8 @@ function drawNewChart(data, check, deg, hole) {
 				     }
 				}
 				};
-		     scatterchart.draw(data, options);   // str/val ONLY
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+		    scatterchart.draw(data, options);   // str/val ONLY
 			break;	
 		case "trend_exp":
 			console.log("trend_exp switch");
@@ -216,7 +236,8 @@ function drawNewChart(data, check, deg, hole) {
 			     	 }
 				}
 				};
-		     scatterchart.draw(data, options);   // str/val ONLY
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+		    scatterchart.draw(data, options);   // str/val ONLY
 			break;
 		case "trend_poly":
 			var options = {
@@ -232,7 +253,8 @@ function drawNewChart(data, check, deg, hole) {
 			      	 }
 				}
 				};
-			     scatterchart.draw(data, options);   // str/val ONLY
+			findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
+			scatterchart.draw(data, options);   // str/val ONLY
 			console.log("trend_poly switch");
 			break;
 		default:
