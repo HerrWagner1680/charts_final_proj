@@ -43,7 +43,12 @@ footer {
 	text-decoration: none;
 }
 
+footer p {
+	padding: 5px;
+}
+
 p #background_credit {
+	padding-right: 4px;
 	float: right;
 	color: #999;
 	font-style: italic;
@@ -70,7 +75,12 @@ div[dir=ltr] {
 	left: -25px;
 }
 
+#stack {
+	margin-left: 15px;
+}
+
 #chart_title {
+	margin-left: 2px;
 	width: 280px;
 }
 
@@ -80,14 +90,14 @@ div[dir=ltr] {
 	width: 220px;
 	border-radius: 10px;
 	background-color: #ddd;
-	margin-left: 25px;
+	margin-left: 60px;
 }
 
 #width_chart{
 	height: 30px;
 	width: 130px;
 	font-size: 15px;
-	margin-left: 10px;
+	margin-left: 40px;
 	border: 2px solid #ddd;
 }
 
@@ -100,6 +110,7 @@ div[dir=ltr] {
 
 h3 {
 	margin-left: 10px;
+	font-family: sans-serif;
 }
 
 input[type="radio"] {
@@ -168,23 +179,33 @@ input[type="radio"]:checked + label span{
 
 h4{
 	margin-left: 0px;
+	font-family: sans-serif;
 }
 
 #rot label{
 	margin-left: 30px;
+	font-weight: lighter;
+	font-style: italic;
+	font-family: sans-serif;
 }
 
 
 #data_form {
-	margin-left: 15px;
+	margin-left: 35px;
 }
 
 #url_upload {
-	margin-left: 15px;
+/*	margin-left: 15px;*/
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #export {
-	margin-left: 15px;
+/*	margin-left: 15px;*/
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #spreadsheet_file_1 {
@@ -193,6 +214,11 @@ h4{
 
 #credit {
 	color: #555;
+	font-style: italic;
+	font-family: sans-serif;
+	font-weight: lighter;
+	text-decoration: none;
+	text-align: center
 }
 
 #credit a {
