@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+	<script type='text/javascript'>
+
+	google.load('visualization', '1', {packages:['corechart']});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+
+                  ['col one','col two','col three','col four'],
+                  ['yes',46,68,34],
+                  ['no',24,57,36],
+                  ['maybe',13,45,27],
+                  ['so',24,78,48]
+		]);
+
+		var options = {
+			'title': 'Title',
+			hAxis: {title: 'col one'},
+			vAxis: {title: 'col two'},
+			'width': 500,
+			'height': 400,
+			isStacked: true
+			};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_material'));
+		chart.draw(data, options);
+	};
+
+	</script>
+</head>
+
+<body>
+	<div id='chart_material'></div>
+</body>
+</html>

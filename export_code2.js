@@ -239,8 +239,8 @@ function exportCode (optionData, bigArrayForExport) {
 	  "<head>" + '\r' +
 	    "	<script type='text/javascript' src='https://www.google.com/jsapi'></script>" + '\r' +
 	    "	<script type='text/javascript'>" + '\r' + '\r' +
-	      "		google.load('visualization', '1', {packages:['corechart']});" + '\r' +
-	      "		google.setOnLoadCallback(drawChart);" + '\r' + 
+	      "	google.load('visualization', '1', {packages:['corechart']});" + '\r' +
+	      "	google.setOnLoadCallback(drawChart);" + '\r' + '\r' +
 	      "	function drawChart() {" + '\r' +
 	      "		var data = google.visualization.arrayToDataTable([" + '\r' +
 	      bigArrayForExport + '\r' +
@@ -255,7 +255,7 @@ function exportCode (optionData, bigArrayForExport) {
 	        "		var chart = new google.visualization." + CHART_TYPE[ct] + 
 	        "(document.getElementById('chart_material'));" + '\r' + 
 	        "		chart.draw(data, options);" + '\r' + 
-	      "		}" + '\r' + '\r' +
+	      "	};" + '\r' + '\r' +
 	    "	</script>" +  '\r' + 
 	    "</head>" + '\r' + '\r' + 
 	  "<body>" + '\r' + 

@@ -225,26 +225,6 @@ function refreshing(){
 		  			}
 	            };//END OF FOR LOOP
 
-			// if (isNaN(aaa)==true) {
-			// 	$('#real-data input[name=cell_' + i + '_a').css({"border":"2px solid red", "color":"red"});
-			// 		alert("Data in first column must begin with a number," + '\r' + "or - sign followed by a number.");
-			// 		return false
-			// 	} else if (isNaN(bbb)==true) {
-			// 	$('#real-data input[name=cell_' + i + '_b').css({"border":"2px solid red", "color":"red"});
-			// 		alert("Data in second column must begin with a number," + '\r' + "or - sign followed by a number.");
-			// 		return false
-			// 	} else {
-			// 		$('#real-data input[name=cell_' + i + '_a').css({"border":"2px inset", "color":"initial"});
-			// 		$('#real-data input[name=cell_' + i + '_b').css({"border":"2px inset", "color":"initial"});
-			// }
-
-
-
-
-
-
-
-
 	    	console.log("str_col_array " + str_col_array);	//THE WINNER
 			str_col_array.push(somekind_of_array_float);
 
