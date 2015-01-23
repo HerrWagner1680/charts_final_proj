@@ -86,7 +86,7 @@ function pieRefresh(deg, hole) {
 			};
 	piechart.draw(data, options);
 
-	if(typeof(bigArrayForExport=='undefined')){ bigArrayForExport=[]}
+	// if(typeof(bigArrayForExport=='undefined')){ bigArrayForExport=[]}
 
 	findOptionCode(data, chartType, check, deg, hole, bigArrayForExport);
 }

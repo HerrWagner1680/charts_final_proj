@@ -23,13 +23,18 @@ header {
 	z-index: 10;
 	opacity: 0.9;
 	position: fixed;
-	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+  	-moz-transform: rotate(45deg);
+  	-ms-transform: rotate(45deg);
+  	-o-transform: rotate(45deg);
+  	transform: rotate(45deg);
 	top:40px;
 	right: -55px;
 	background: #444;
 	border-right: 50px solid #444;
 	border-left: 50px solid #444;
 }
+
 
 .banner {
 	display: block;

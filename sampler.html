@@ -2,6 +2,7 @@
   <html lang="en">
     <head>
       <meta charset="UTF-8">
+      <link rel="stylesheet" type="text/css" href="reset.css">
       <link rel="stylesheet" type="text/css" href="chart.css">
       <title>CHART SAMPLER</title>
 
@@ -329,10 +330,10 @@
                       //if it does exist, add data, if not, make value null
                           if (typeof(data.Nf[i-1]) !== 'undefined'){
                                 if(typeof(data.Nf[i-1].c[c_num]) !== 'undefined'){
-                                    if(typeof(data.Nf[i-1].c[c_num].v) !== 'undefined'){
-                                        console.log(data.Nf[i-1].c[c_num].v);
+                                    // if(typeof(data.Nf[i-1].c[c_num].v) !== 'undefined'){
+                                    //     console.log(data.Nf[i-1].c[c_num].v);
                                         col_id.attr("value", data.Nf[i-1].c[c_num].v)
-                                    };
+                                    // };
                                     console.log("line 328 --- Nf c is defined")
                                 } else {
                                     console.log("line 332 ---- Nf c is not defined")
