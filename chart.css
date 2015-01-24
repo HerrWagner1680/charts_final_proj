@@ -311,4 +311,25 @@ h4{
 	font-family: sans-serif;
 	font-weight: lighter;
 	text-decoration: none;
+	margin-top: 5px
+}
+
+#credit #herrwagner {
+	display: inline-block;
+	min-width: 267px;
+}
+
+#credit #nycda {
+	display: inline-block;
+	min-width: 298px;
+}
+
+#credit #battlehorse {
+	display: inline-block;
+	min-width: 318px;
+}
+
+#credit #googlecharts {
+	display: inline-block;
+	min-width: 242px;
 }

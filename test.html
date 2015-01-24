@@ -19,12 +19,13 @@
 			'title': 'Title',
 			vAxis: {title: 'Name', minValue: 10, maxValue: 31},
 			hAxis: {title: 'Length', minValue: -67, maxValue: 24},
-			 	'width': 500,
+			 	'width': 900,
 			 	'height': 400,
 			trendlines: {
 			   0: {
-			   type: 'exponential',
-				 }
+			   type: 'polynomial',
+			   degree: 3, // degree is used with polynomial
+			   }
 			}
 		};
 
