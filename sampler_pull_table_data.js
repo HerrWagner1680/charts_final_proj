@@ -293,7 +293,7 @@ function refreshing(){
 		console.log("hole " + hole);
 
 		drawNewChart(data, check, deg, hole, bigArrayForExport); 
-
+		bigArrayForExport.push(drawNewChart);
 
 	  //END of col a = string && col b = number IF statement   
 	} else if ($('#real-data select[name=dataType_col_a]').val() == "number" && 
@@ -309,6 +309,11 @@ function refreshing(){
 					   $('#real-data input[name=label_col_a]').val());
 		data.addColumn($('#real-data select[name=dataType_col_b]').val(), 
 					   $('#real-data input[name=label_col_b]').val());
+
+		label_array = ["\r			['" + $('#real-data input[name=label_col_a]').val() + "', '" + $('#real-data input[name=label_col_b]').val() + "']" ]
+
+		bigArrayForExport = [];
+		bigArrayForExport.push(label_array);
 
 		var last_row = parseInt($('tr:last-of-type > td:last-of-type > input').attr('id').split('_')[1]);
 		
@@ -336,6 +341,8 @@ function refreshing(){
 				[aaa, bbb]
 			]);
 
+					bigArrayForExport.push("\r			[" + aaa + "," + bbb + "]");
+					console.log("bigArrayForExport " + bigArrayForExport);
 			a_val = $('#real-data input[name=cell_' + i + '_a').val();
 			console.log(a_val);
 			console.log(typeof a_val);

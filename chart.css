@@ -123,10 +123,76 @@ h3 {
 	font-family: sans-serif;
 }
 
-#num_num_buttons {
+/*#num_num_buttons {
 	margin-top: 10px;
 	display: inline-block;
 	min-width: 300px;
+}*/
+
+div #area1 {
+	display: inline-block;
+	min-width: 60px;
+	margin-top: 18px;
+}
+
+div #bar1 {
+	display: inline-block;
+	min-width: 123px;
+	margin-top: 18px;
+}
+
+div #step1 {
+	display: inline-block;
+	min-width: 60px;
+	margin-top: 18px;
+}
+
+div #col1 {
+	display: inline-block;
+	min-width: 86px;
+	margin-top: 18px;
+}
+
+div #line1 {
+	display: inline-block;
+	min-width: 58px;
+	margin-top: 18px;
+}
+
+div #donut1 {
+	display: inline-block;
+	min-width: 103px;
+	margin-top: 18px;
+}
+
+div #pie1 {
+	display: inline-block;
+	min-width: 77px;
+	margin-top: 18px;
+}
+
+div #scatter1 {
+	display: inline-block;
+	min-width: 79px;
+	margin-top: 18px;
+}
+
+div #lin1 {
+	display: inline-block;
+	min-width: 116px;
+	margin-top: 18px;
+}
+
+div #exp1 {
+	display: inline-block;
+	min-width: 154px;
+	margin-top: 18px;
+}
+
+div #poly1 {
+	display: inline-block;
+	min-width: 152px;
+	margin-top: 18px;
 }
 
 input[type="radio"] {
@@ -155,14 +221,16 @@ input[type='radio'] + label span {
     width:16px;
     height:16px;
     margin-left:2px;
+    margin-right: 3px;
     vertical-align:middle;
     -moz-border-radius:  50%;
     border-radius:  50%;
+    background-color: #666;
 }
 
-input[type="radio"] + label span {
+/*input[type="radio"] + label span {
      background-color: #666;
-}
+}*/
 
 input[type="radio"]:disabled + label span {
      background-color: #333;

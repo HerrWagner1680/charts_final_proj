@@ -9,22 +9,26 @@
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Name', 'Length'],
-			['A', 23],
-			['B ', 16],
-			['C', 10],
-			['D', 31]
+			[-56,23],
+			[-34,16],
+			[24,10],
+			[-67,31]
 		]);
 
 		var options = {
-			   'width': 800,
-			   'height': 600,
-			pieSliceText: 'label',
-			title: 'Title',
-			pieStartAngle: 50,
-			pieHole: 0.5,
+			'title': 'Title',
+			vAxis: {title: 'Name', minValue: 10, maxValue: 31},
+			hAxis: {title: 'Length', minValue: -67, maxValue: 24},
+			 	'width': 500,
+			 	'height': 400,
+			trendlines: {
+			   0: {
+			   type: 'exponential',
+				 }
+			}
 		};
 
-		var chart = new google.visualization.PieChart(document.getElementById('chart_material'));
+		var chart = new google.visualization.ScatterChart(document.getElementById('chart_material'));
 		chart.draw(data, options);
 	};
 
