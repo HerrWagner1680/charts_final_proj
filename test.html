@@ -8,27 +8,23 @@
 
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
-			['Element','Percent'],
-			['23',32.1],
-			['24',30.1],
-			['34',15.1],
-			['45',13.9],
-			['sulfur',2.9],
-			['nickel',1.8],
-			['calcium',1.5],
-			['aluminium',1.4],
-			['',NaN]
+			['Name', 'Length'],
+			['A', 23],
+			['B ', 16],
+			['C', 10],
+			['D', 31]
 		]);
 
 		var options = {
-			'title': 'Title',
-			hAxis: {title: 'Element'},
-			vAxis: {title: 'Percent'},
-			'width': 900,
-			'height': 700,
+			   'width': 800,
+			   'height': 600,
+			pieSliceText: 'label',
+			title: 'Title',
+			pieStartAngle: 50,
+			pieHole: 0.5,
 		};
 
-		var chart = new google.visualization.ColumnChart(document.getElementById('chart_material'));
+		var chart = new google.visualization.PieChart(document.getElementById('chart_material'));
 		chart.draw(data, options);
 	};
 

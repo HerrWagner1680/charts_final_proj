@@ -53,12 +53,10 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
  				break;
  			}
 
-
-
 // // // DONUT
  		case "donut":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["   legend: 'none',"] + '\r' +  ["			"] +
+				// ["   legend: 'none',"] + '\r' +  ["			"] +
 				["   'width': " + chartWidth + ","] + '\r' +  ["			"] +
 				["   'height': " + chartHeight + ","] + '\r' +  ["			"] +
 				["pieSliceText: 'label',"] + '\r' +  ["			"] +
@@ -71,7 +69,7 @@ function findOptionCode(data, chartType, check, deg, hole, bigArrayForExport) {
 // // // 3D pie
  		case "pie":
  			optionData = ([["		"] + ["var options = {"] + '\r' + ["			"] +
-				["   legend: 'none',"] + '\r' +  ["			"] +
+				// ["   legend: 'none',"] + '\r' +  ["			"] +
 				["   'width': " + chartWidth + ","] + '\r' +  ["			"] +
 				["   'height': " + chartHeight + ","] + '\r' +  ["			"] +
 				["pieSliceText: 'label',"] + '\r' +  ["			"] +
