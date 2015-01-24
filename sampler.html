@@ -256,12 +256,6 @@
         // simple chart
         var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
 
-        // metals - two columns - over five rows 
-         // var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0"; //metals 
-
-        // sample multi-column URL
-        // var jUrl = "https://docs.google.com/spreadsheets/d/1Hy-c2tyBHP_JLxsHl6hH-acd-eZgl8pGCQOT12rLPJc/edit#gid=0";
-
         //gathering data from upload url window
         function handleQueryResponse(response) {
             if (response.isError()) {
@@ -309,18 +303,13 @@
 
                   if (typeof(data.Pf[pf_num]) !== 'undefined'){
                       label_id.attr("value", data.Pf[pf_num].label);
-                      // console.log("line 261 " + data.Pf[pf_num].label + "col a int" + col_a_int )
                   } else {
                       console.log("label is undefined");
                       label_id.attr("value", "Column " + (col_letter).toUpperCase())
                   }
-
                 col_a_int++;
                 pf_num++;
             };
-
-            //FORMAT:
-            //$("#real-data #label_col_" + col_letter).attr("value", data.Pf[pf_num].label);
          
           //uploading cell data from URL
             var col_a_int = 97; //reset var

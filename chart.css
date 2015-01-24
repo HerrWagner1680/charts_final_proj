@@ -154,7 +154,7 @@ input[type='radio'] + label span {
     display:inline-block;
     width:16px;
     height:16px;
-    margin:0px;
+    margin-left:2px;
     vertical-align:middle;
     -moz-border-radius:  50%;
     border-radius:  50%;
@@ -170,8 +170,8 @@ input[type="radio"]:disabled + label span {
 }
 
 input[type="radio"]:disabled + label span .inner {
-	margin-left: 10%;
-	margin-top: 10%;
+/*	margin-left: 10%;
+	margin-top: 10%;*/
     width:12px;
     height:12px;
     -moz-border-radius:  50%;
@@ -180,8 +180,8 @@ input[type="radio"]:disabled + label span .inner {
 }
 
 input[type="radio"] + label span .inner {
-	margin-left: 10%;
-	margin-top: 10%;
+/*	margin-left: 10%;
+	margin-top: 10%;*/
     width:12px;
     height:12px;
     -moz-border-radius:  50%;
