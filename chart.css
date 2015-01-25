@@ -94,13 +94,18 @@ div[dir=ltr] {
 	width: 280px;
 }
 
+/*button {
+	margin: auto;
+	left: -25px;
+}*/
+
 #refresh {
 	font-size: 15px;
 	height: 40px;
 	width: 220px;
 	border-radius: 10px;
-	background-color: #ddd;
-	margin-left: 60px;
+	display: block;
+	margin-left: 80px;
 }
 
 #width_chart{

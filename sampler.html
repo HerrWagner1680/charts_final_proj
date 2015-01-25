@@ -96,8 +96,7 @@
         <br>
         <br>
         <br>
-        <button id="refresh">REFRESH (redraw chart)</button>
-        <br>
+        <button title="ctrl + r" id="refresh">REFRESH (redraw chart)</button>
         <br>
         <br>
             <select id="width_chart" name="width_chart" required>
@@ -129,6 +128,8 @@
             </select>
         <br>
         <br>
+        <br>
+        <br>
         <!-- radio buttons -->
           <h3 id="select_typ">SELECT CHART TYPE</h3>
 
@@ -157,6 +158,7 @@
 
           <!-- </div> --> <!-- end of num_num_buttons div -->
 
+          <br>
           <br>
           <br>
         <!-- END OF RADIO BUTTONS -->
@@ -215,6 +217,7 @@
       </div> <!-- END of data_form div -->
         <br>
         <br>
+        <br>
 
       <div id="url_upload">
         <h4>UPLOAD GRID DATA FROM GOOGLE SHEET URL</h4>
@@ -232,12 +235,12 @@
         <!-- export code -->
           <h4>EXPORT CODE</h4>
           <!-- do an overflow hidden on text area - to hide long line -->
-          <textarea name="export_code" cols=110 rows=20></textarea>
+          <textarea name="export_code" cols=100 rows=20></textarea>
         <!-- end of export code -->
         <br>
         <br>
 
-        <button onclick="saveAsImg(document.getElementById('chart_div0'));">Download as PNG Image</button>
+        <button title="ctrl + p" onclick="saveAsImg(document.getElementById('chart_div0'));">Download as PNG Image</button>
         <!-- <button onclick="toImg(document.getElementById('chart_div0'), document.getElementById('img_div'));">Convert to image</button> -->
         </div>
         <br>

@@ -1,3 +1,23 @@
+$(window).bind('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey) {
+        switch (String.fromCharCode(event.which).toLowerCase()) {
+      
+      	case 'r':
+      		// event.preventDefault();
+      		refreshing();
+      		break;
+		case 'p':
+            // event.preventDefault();
+            saveAsImg(document.getElementById('chart_div0'));
+            break;
+        }
+    }
+});
+
+
+
+
+
 //NOTE - initial upload is still a draft
 //ONLY reads two columns and four rows
 
