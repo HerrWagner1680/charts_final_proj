@@ -278,6 +278,11 @@ h4{
 	font-family: sans-serif;
 }
 
+th {
+	max-width: 128px;
+	padding: 0px;
+}
+
 
 #data_form {
 	margin-left: 35px;
