@@ -1,7 +1,7 @@
 charts_final_proj
 =================
 
-final NYC+DA project - involves chart samples
+Final NYC+DA project - Google chart samples
 
 This program lets you sample a number of chart types using Google Charts program.
 
@@ -12,6 +12,7 @@ Data can be uploaded via a Google Sheets URL.
 Feel free to copy and paste the export code into your favorite text editor.
 Once that exported HTML code is uploaded to a browser, it should act as an interactive chart.
 
-KEYBOARD SHORTCUTS:
-ctrl + r = shortcut to refresh chart window
-ctrl + p = shortcut to export chart to png image
+####KEYBOARD SHORTCUTS:
+------------------
+* ctrl + r = shortcut to refresh chart window
+* ctrl + p = shortcut to export chart to png image
