@@ -15,3 +15,6 @@ Once that exported HTML code is uploaded to a browser, it should act as an inter
 ####KEYBOARD SHORTCUTS:
 * ctrl + r = shortcut to refresh chart window
 * ctrl + p = shortcut to export chart to png image
+
+[DEMO](https://herrwagner1680.github.io/charts_final_proj/sampler.html)
+
