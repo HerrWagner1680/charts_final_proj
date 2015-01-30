@@ -9,27 +9,22 @@
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Name', 'Length'],
-			[-56,23],
-			[-34,16],
-			[24,10],
-			[-67,31]
+			['A', 23],
+			['B ', 16],
+			['C', 10],
+			['D', 31]
 		]);
 
 		var options = {
-			'title': 'Title',
-			vAxis: {title: 'Name', minValue: 10, maxValue: 31},
-			hAxis: {title: 'Length', minValue: -67, maxValue: 24},
-			 	'width': 900,
-			 	'height': 400,
-			trendlines: {
-			   0: {
-			   type: 'polynomial',
-			   degree: 3, // degree is used with polynomial
-			   }
-			}
+			   'width': 500,
+			   'height': 400,
+			pieSliceText: 'label',
+			title: 'Title',
+			pieStartAngle: -60,
+			pieHole: 0.4,
 		};
 
-		var chart = new google.visualization.ScatterChart(document.getElementById('chart_material'));
+		var chart = new google.visualization.PieChart(document.getElementById('chart_material'));
 		chart.draw(data, options);
 	};
 
