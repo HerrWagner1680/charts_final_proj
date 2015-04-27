@@ -1,11 +1,20 @@
+REVISED TEST URLS -- ONES THAT HAVE BEEN MARKED PUBLISHED TO WEB
+=================================
+ONES THAT WORK:
+https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#
+
+NON PARSED JSON ***********
+https://docs.google.com/spreadsheets/d/182Rv5RbkPSM1SD7RtpEcZi9s4S3lU9m93a0CnUsC8CE/gviz/tq#gid=0
+
+SAMPLER PIE CHART - JSONP VERSION
+https://docs.google.com/spreadsheet/tq?key=1y-9pjq1nTngMRvr2mPU8vbcGapbsc2q1QitsZ6y-PIc#gid=0
+
 // TEST GOOG SHEET URLS BELOW ------
 JSON FEED:
 //WORKS: //https://docs.google.com/spreadsheets/d/15tPYmvsQvHmSdyPp-wzw92lQZdhoM9QGJ-zR-2_k5PA/gviz/tq
 
-
 // world population:
 // https://docs.google.com/spreadsheets/d/182Rv5RbkPSM1SD7RtpEcZi9s4S3lU9m93a0CnUsC8CE/edit#gid=0
-
 
 // all charts must be public and published to web (have in instructions? or error message?)
   //simple column chart 
@@ -13,12 +22,37 @@ JSON FEED:
 
 //metals 
 // https://docs.google.com/spreadsheet/ccc?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0 //metals
-  
+JSONP version:   https://docs.google.com/spreadsheet/tq?key=0AiFfbdok-kQKcENRYmV0ZC1DcHRIbndKRWZvOHRBTEE#gid=0
 
 //sample multi-column URL
 // https://docs.google.com/spreadsheets/d/1Hy-c2tyBHP_JLxsHl6hH-acd-eZgl8pGCQOT12rLPJc/edit#gid=0
 
 
-
-
 var jUrl = "https://docs.google.com/spreadsheet/ccc?key=0Atw2BTU52lOCdEZpUlVIdmxGOWZBR2tuLXhYN2dQTWc&usp=drive_web&gid=0#";
+
+
+
+DOES NOT WORK WITH REVISED SAMPLER!!!!!!!     SAMPLER PIE CHART 
+https://docs.google.com/spreadsheets/d/1y-9pjq1nTngMRvr2mPU8vbcGapbsc2q1QitsZ6y-PIc/pubhtml?gid=0&single=true
+
+
+DOES NOT WORK WITH REVISED SAMPLER!!!!!!!   //BIG CHALLENGE FILLED WITH ERRORS DOCUMENT
+https://docs.google.com/spreadsheets/d/1VARVG6QDRJlYHPTEWo9FH-cDOw4d0GdFXGQVhtRG7J8/pubhtml?gid=0&single=true
+
+DOES NOT WORK WIH REVISED SAMPLER!!!
+//BIG CHALLENGE FILLED WITH ERRORS DOCUMENT
+https://docs.google.com/spreadsheets/d/1VARVG6QDRJlYHPTEWo9FH-cDOw4d0GdFXGQVhtRG7J8/pubhtml?gid=0&single=true
+
+
+
+
+
+https://docs.google.com/spreadsheet/tq?key=
+  {key}
+#gid=0
+
+
+
+
+
+
