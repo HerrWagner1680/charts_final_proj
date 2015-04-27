@@ -18,4 +18,3 @@ Once that exported HTML code is uploaded to a browser, it should act as an inter
 
 [DEMO](https://herrwagner1680.github.io/charts_final_proj/sampler.html)
 
-NOTE: Google Sheets appears to have changed its JSON formating since I originally wrote this. I'm now in the process of updating the program so that it can glean data from Google Sheets once again.
