@@ -41,14 +41,14 @@
 
               var data = response.getDataTable();
 
-              console.log("column a direct" + data.Pf[0].label)
+              console.log("column a direct" + data.If[0].label)
 
               //NOTE - switch hAxis and vAxis if labels not
               // rendering to the right axis in chart for the sample chart
               var options = {
                 'title': ($('input[name=chart_title]').val()),
-                hAxis: {title: (data.Pf[0].label)},
-                vAxis: {title: (data.Pf[1].label)},
+                hAxis: {title: (data.If[0].label)},
+                vAxis: {title: (data.If[1].label)},
                           'width':500,
                           'height':400
                         };
@@ -272,14 +272,8 @@
         //gathering data from upload url window
         function handleQueryResponse(response) {
 
-          console.log("handleQueryResponse running");
-          //console.log($('pre').innerHTML);
           console.log(response.getDataTable());
-          // console.log(aq.If[0].label);
           console.log(response.getDataTable().If[0].label);
-          // console.log(response.getDataTable().aq.If[0].label);        
-          //console.log("json gibberish " + json.table.rows[0].c[2].v);
-
 
             if (response.isError()) {
               alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
@@ -300,21 +294,21 @@
             console.log("next_col line 257: " + next_col);
 
           //pull from URL datatype string or number for first column
-            $("#dataType_col_a").val(data.Pf[0].type)
+            $("#dataType_col_a").val(data.If[0].type)
 
           //assign rest of column types as number
-          var pf_num = 1
+          var If_num = 1
           while(col_a_int +1 <= last_col_int){
               var col_letter = String.fromCharCode(col_a_int);
               $("#real-data #data_types #dataType_col_" + col_letter).attr("value", "number");
               col_a_int++;
-              pf_num++;
+              If_num++;
           };
 
           datatypeConfirm();
 
             //resetting variables
-            var pf_num = 0
+            var If_num = 0
             var col_a_int = 97;
             //ASSIGN column label names
 
@@ -324,14 +318,14 @@
                 var col_letter = String.fromCharCode(col_a_int);
                 var label_id = $("#real-data #label_col_" + col_letter);
 
-                  if (typeof(data.Pf[pf_num]) !== 'undefined'){
-                      label_id.attr("value", data.Pf[pf_num].label);
+                  if (typeof(data.If[If_num]) !== 'undefined'){
+                      label_id.attr("value", data.If[If_num].label);
                   } else {
                       console.log("label is undefined");
                       label_id.attr("value", "Column " + (col_letter).toUpperCase())
                   }
                 col_a_int++;
-                pf_num++;
+                If_num++;
             };
          
           //uploading cell data from URL
@@ -344,19 +338,19 @@
                         var col_id = $("#real-data #cell_" + i + "_" + col_letter);
                       //check to see if data exists in corresponding cell in URL
                       //if it does exist, add data, if not, make value null
-                          if (typeof(data.Nf[i-1]) !== 'undefined'){
-                                if(typeof(data.Nf[i-1].c[c_num]) !== 'undefined'){
+                          if (typeof(data.Lf[i-1]) !== 'undefined'){
+                                if(typeof(data.Lf[i-1].c[c_num]) !== 'undefined'){
                                     // if(typeof(data.Nf[i-1].c[c_num].v) !== 'undefined'){
                                     //     console.log(data.Nf[i-1].c[c_num].v);
-                                        col_id.attr("value", data.Nf[i-1].c[c_num].v)
+                                        col_id.attr("value", data.Lf[i-1].c[c_num].v)
                                     // };
-                                    console.log("line 328 --- Nf c is defined")
+                                    console.log("line 328 --- If c is defined")
                                 } else {
-                                    console.log("line 332 ---- Nf c is not defined")
+                                    console.log("line 332 ---- If c is not defined")
                                     col_id.val(null)
                                 }
                           } else {
-                              console.log("line 335 ---- Nf is not defined")
+                              console.log("line 335 ---- If is not defined")
                               col_id.val(null)
                           }
                     };

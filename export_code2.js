@@ -28,8 +28,8 @@ function initialUploadCode (data) {
 	// // Nf[0] is row 0
 	// // c[0] is column 0
 	// // v is the value
-	var row = data.Nf;
-	var column = data.Pf;
+	var row = data.Lf;
+	var column = data.If;
 	var chartTitle = $('input[name=chart_title]').val();
 	              //set default width and height
 	var chartWidth = $("#width_chart").val();
