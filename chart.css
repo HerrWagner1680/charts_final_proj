@@ -205,65 +205,48 @@ input[type="radio"] {
 }
 
 input[type="radio"] + label {
-	margin-right: 6px;
-	padding: 6px;
+	margin-right: 4px;
+	padding: 6px 11px 6px 4px;
 	border-radius: 8px;
 }
 
 input[type="radio"]:checked + label {
 	background-color: #ADD8E6;
-	border-right: 4px solid #ADD8E6;
+/*	border-right: 4px solid #ADD8E6;*/
 }
 
 input[type="radio"]:disabled + label {
 	color: #BBB;
 	background-color: #444;
-	border-right: 4px solid #444;
+/*	border-right: 4px solid #444;*/
 }
 
 input[type='radio'] + label span {
     display:inline-block;
-    width:16px;
-    height:16px;
-    margin-left:2px;
-    margin-right: 3px;
-    vertical-align:middle;
-    -moz-border-radius:  50%;
-    border-radius:  50%;
-    background-color: #666;
 }
 
-/*input[type="radio"] + label span {
-     background-color: #666;
-}*/
-
-input[type="radio"]:disabled + label span {
-     background-color: #333;
-     cursor:default;
-}
 
 input[type="radio"]:disabled + label span .inner {
-/*	margin-left: 10%;
-	margin-top: 10%;*/
-    width:12px;
-    height:12px;
-    -moz-border-radius:  50%;
-    border-radius:  50%;
-    background-color: #888;
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='30' width='30'><circle cx='15' cy='15' r='8' stroke='#333' stroke-width='3' fill='#888' /></svg>");
+    background-repeat: no-repeat;
 }
 
 input[type="radio"] + label span .inner {
-/*	margin-left: 10%;
-	margin-top: 10%;*/
-    width:12px;
-    height:12px;
-    -moz-border-radius:  50%;
-    border-radius:  50%;
-    background-color: #99c199;
+    width: 30px;
+	height: 30px;
+	vertical-align: middle;
+
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='30' width='30'><circle cx='15' cy='15' r='8' stroke='#666' stroke-width='3' fill='#99c199' /></svg>");
+    background-repeat: no-repeat;
 }
 
 input[type="radio"]:checked + label span{
-     background-color: orange;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='30' width='30'><circle cx='15' cy='15' r='8' stroke='orange' stroke-width='3' fill='orange' /></svg>");
+    background-repeat: no-repeat;
 }
 
 h4{
